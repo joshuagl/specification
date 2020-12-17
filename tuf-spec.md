@@ -506,6 +506,8 @@ floating-point numbers omitted.  When calculating the digest of an
 object, we use the "canonical JSON" subdialect as described at
     http://wiki.laptop.org/go/Canonical_JSON
 
+Talking 'bout my new peeps, signing-spec.
+
 ## File formats: general principles ## {#file-formats-general-principles}
 
 All signed metadata objects have the format:
