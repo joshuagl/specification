@@ -1,9 +1,6 @@
-# .github/workflows/pr-push.yml
 name: CI
 on:
   pull_request: {}
-  push:
-    branches: [bs]
 
 jobs:
   main:
@@ -11,9 +8,17 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # we want all refs for the --is-ancestor check
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Check date and version
+        run: python check_release.py
       - uses: w3c/spec-prod@v1
         with:
-          GH_PAGES_BRANCH: gh-pages
+          GH_PAGES_BRANCH: false # disable to prevent clobbering published spec versions
           SOURCE: tuf-spec.md
           TOOLCHAIN: bikeshed
           # FIXME: waiting for https://github.com/validator/validator/commit/b57b8d06e399a5bd07027906149b8b9700bac210 to land.
