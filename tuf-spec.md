@@ -3,7 +3,7 @@ Title: The Update Framework Specification
 Shortname: TUF
 Status: LS-COMMIT
 Abstract: A framework for securing software update systems.
-Date: 2020-12-11
+Date: 2020-12-17
 Editor: Justin Cappos, NYU
 Editor: Trishank Karthik Kuppusamy, Datadog
 Editor: Joshua Lock, VMware
@@ -16,7 +16,7 @@ Boilerplate: copyright no, conformance no
 Markup Shorthands: css no, markdown yes
 </pre>
 
-Version: **1.0.17**
+Version: **1.0.18**
 
 We strive to make the specification easy to implement, so if you come across
 any inconsistencies or experience any difficulty, do let us know by sending an
@@ -1495,15 +1495,10 @@ it in the next step.
   2. Otherwise, recursively search the list of delegations in
      order of appearance.
 
-    1. If the current delegation is a multi-role delegation,
-       recursively visit each role, and check that each has signed exactly the
-       same non-custom metadata (i.e., length and hashes) about the target (or
-       the lack of any such metadata).
-
-    2. If the current delegation is a terminating delegation,
+    1. If the current delegation is a terminating delegation,
        then jump to step [[#fetch-target]].
 
-    3. Otherwise, if the current delegation is a
+    2. Otherwise, if the current delegation is a
        non-terminating delegation, continue processing the next delegation, if
        any. Stop the search, and jump to step [[#fetch-target]] as soon as a delegation
        returns a result.
