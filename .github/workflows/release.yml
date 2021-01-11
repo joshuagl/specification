@@ -43,12 +43,14 @@ jobs:
         spec_version=`grep -oP 'VERSION \K(\d+\.\d+\.\d+)' tuf-spec.md`
         echo "::set-output name=spec_version::$(echo -n $spec_version)"
 
-    - name: Tag release
-      uses: mathieudutour/github-tag-action@v5
+    - name: Make release
+      id: makerel
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        custom_tag: ${{ steps.getver.outputs.spec_version }}
-        default_bump: false
+        tag_name: v${{ steps.getver.outputs.spec_version }}
+        release_name: v${{ steps.getver.outputs.spec_version }}
 
     - name: Build specification
       run: |
