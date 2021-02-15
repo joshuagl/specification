@@ -432,6 +432,8 @@ the framework.
 
 ### Metadata files ### {#metadata-files}
 
+<!-- TODO: add something about the signing spec here? -->
+
 The filenames and directory structure of repository metadata are strictly
 defined.  All metadata filenames will have an extension (EXT) based on the
 metaformat, for example JSON metadata files would have an EXT of json.
