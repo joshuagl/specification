@@ -24,12 +24,18 @@ jobs:
         # Use the os dependent pip cache directory found above
         path: ${{ steps.pip-cache.outputs.dir }}
         # A match with 'key' counts as cache hit
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}
-        # A match with 'restore-keys' is used as fallback
-        restore-keys: ${{ runner.os }}-pip-
+        key: ${{ runner.os }}-pip-
 
-    - name: Clone
+    - name: Clone main
       uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+      with:
+        fetch-depth: 0
+
+    - name: Get previous version
+      id: prevver
+      run: |
+        prev_version=`git tag | sort -V -r | head -n 1 | cut -c 2-`
+        echo "::set-output name=prev_version::$(echo -n $prev_version)"
 
     - name: Get version
       id: getver
@@ -38,7 +44,7 @@ jobs:
         echo "::set-output name=spec_version::$(echo -n $spec_version)"
 
     - name: Make release
-      id: makerel
+      if: steps.getver.outputs.spec_version != steps.prevver.outputs.prev_version
       uses: actions/create-release@0cb9c9b65d5d1901c1f53e5e66eaf4afd303e70e
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -48,18 +54,21 @@ jobs:
         body: Specification release v${{ steps.getver.outputs.spec_version }}
 
     - name: Build specification
+      if: steps.getver.outputs.spec_version != steps.prevver.outputs.prev_version
       run: |
         python -m pip install bikeshed
         mkdir build && cd build
         make -f ../Makefile release
 
     - name: Switch branch
+      if: steps.getver.outputs.spec_version != steps.prevver.outputs.prev_version
       uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
       with:
         ref: gh-pages
         clean: false
 
     - name: Push generated specification
+      if: steps.getver.outputs.spec_version != steps.prevver.outputs.prev_version
       run: |
         git config user.name "TUF Specification Automation"
         git config user.email tuf-spec-bot@example.com
