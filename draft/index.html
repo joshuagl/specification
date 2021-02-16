@@ -1485,7 +1485,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version c5172e83, updated Fri Nov 20 15:35:20 2020 -0800" name="generator">
-  <meta content="c13ac1c249a6a7935742d9ba789625789093e92e" name="document-revision">
+  <meta content="ff270db019b457e4711e9f25083cea6c238c8491" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -2036,7 +2036,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">The Update Framework Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content"> Version: 1.0.17 <br> Last modified: <time class="dt-updated" datetime="2020-12-11">11 December 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content"> Version: DRAFT <br> Last modified: <time class="dt-updated" datetime="2020-12-11">11 December 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Feedback:
@@ -2914,11 +2914,13 @@ the metadata at <a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-sn
   <c- f>"version"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#role-version" id="ref-for-role-version③">VERSION</a><c- p>,</c->
   <c- f>"expires"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#expires" id="ref-for-expires③">EXPIRES</a><c- p>,</c->
   <c- f>"targets"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#targets-obj-targets" id="ref-for-targets-obj-targets">TARGETS</a><c- p>,</c->
-  (<c- f>"delegations"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#delegations" id="ref-for-delegations">DELEGATIONS</a>)
+  (<a data-link-type="dfn" href="#keys" id="ref-for-keys"><c- f>"keys"</c-></a><c- p>:</c-> <c- p>{</c->
+    <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid②">KEYID</a> : <a data-link-type="dfn" href="#key" id="ref-for-key①">KEY</a>,
+    ... <c- p>},</c->
+  <a data-link-type="dfn" href="#delegations" id="ref-for-delegations"><c- f>"delegations"</c-></a> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#delegation" id="ref-for-delegation">DELEGATION</a><c- p>,</c-> ... <c- p>]</c->)
 <c- p>}</c->
 </pre>
-   <p><a data-link-type="dfn" href="#spec_version" id="ref-for-spec_version④">SPEC_VERSION</a>, <a data-link-type="dfn" href="#role-version" id="ref-for-role-version④">VERSION</a> and <a data-link-type="dfn" href="#expires" id="ref-for-expires④">EXPIRES</a> are the same
-as is described for the <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson③">root.json</a> file.</p>
+   <p><a data-link-type="dfn" href="#spec_version" id="ref-for-spec_version④">SPEC_VERSION</a>, <a data-link-type="dfn" href="#role-version" id="ref-for-role-version④">VERSION</a>, <a data-link-type="dfn" href="#expires" id="ref-for-expires④">EXPIRES</a>, <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid③">KEYID</a>, and <a data-link-type="dfn" href="#key" id="ref-for-key②">KEY</a> are the same as is described for the <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson③">root.json</a> file.</p>
    <p><dfn class="dfn-paneled" data-dfn-for="targets-obj" data-dfn-type="dfn" data-noexport id="targets-obj-targets">TARGETS</dfn> is an object whose format is the following:</p>
 <pre class="highlight"><c- p>{</c->
   <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath">TARGETPATH</a> : {
@@ -2957,41 +2959,34 @@ that the "custom" attribute maps to an object.  The <a data-link-type="dfn" href
 may include version numbers, dependencies, requirements, or any other data
 that the application wants to include to describe the file at <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑦">TARGETPATH</a>.  The application may use this information to guide
 download decisions.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="keys">"keys"</dfn>
+    <dd data-md>
+     <p>A list of the public keys to verify signatures of delegated targets roles.
+Revocation and replacement of delegated targets roles keys is done by
+changing the keys in this field in the delegating role’s metadata.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="delegations">"delegations"</dfn>
+    <dd data-md>
+     <p>A list of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="delegation">DELEGATION</dfn> objects whose format is the following:</p>
    </dl>
-   <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="delegations">DELEGATIONS</dfn> is an object whose format is the following:</p>
 <pre class="highlight"><c- p>{</c->
-  <c- f>"keys"</c-> <c- p>:</c-> <c- p>{</c->
-      <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑤">KEYID</a> : <a data-link-type="dfn" href="#key" id="ref-for-key①">KEY</a>,
-      ...
-  <c- p>},</c->
-  <c- f>"roles"</c-> <c- p>:</c-> <c- p>[</c->
-    <c- p>{</c->
-      <c- f>"name"</c-><c- p>:</c-> <a data-link-type="dfn" href="#rolename" id="ref-for-rolename">ROLENAME</a><c- p>,</c->
-      <c- f>"keyids"</c-> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑥">KEYID</a><c- p>,</c-> ... <c- p>]</c-> <c- p>,</c->
-      <c- f>"threshold"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①">THRESHOLD</a><c- p>,</c->
-      (<a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes"><c- f>"path_hash_prefixes"</c-></a> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#hex_digest" id="ref-for-hex_digest">HEX_DIGEST</a><c- p>,</c-> ... <c- p>]</c-> |
-      <a data-link-type="dfn" href="#delegation-role-paths" id="ref-for-delegation-role-paths"><c- u>"paths"</c-></a> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern">PATHPATTERN</a><c- p>,</c-> ... <c- p>]</c->)<c- p>,</c->
-      <c- f>"terminating"</c-><c- p>:</c-> <a data-link-type="dfn" href="#terminating" id="ref-for-terminating">TERMINATING</a><c- p>,</c->
-    <c- p>},</c->
-    ...
-  <c- p>]</c->
+  <c- f>"name"</c-><c- p>:</c-> <a data-link-type="dfn" href="#delegation_name" id="ref-for-delegation_name">DELEGATION_NAME</a><c- p>,</c->
+  (<a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes"><c- f>"path_hash_prefixes"</c-></a> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#hex_digest" id="ref-for-hex_digest">HEX_DIGEST</a><c- p>,</c-> ... <c- p>]</c-> |
+  <a data-link-type="dfn" href="#delegation-role-paths" id="ref-for-delegation-role-paths"><c- u>"paths"</c-></a> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern">PATHPATTERN</a><c- p>,</c-> ... <c- p>]</c->)<c- p>,</c->
+  <c- f>"terminating"</c-><c- p>:</c-> <a data-link-type="dfn" href="#terminating" id="ref-for-terminating">TERMINATING</a><c- p>,</c->
+  <c- f>"min_roles_in_agreement"</c-><c- p>:</c-> <a data-link-type="dfn" href="#num_roles" id="ref-for-num_roles">NUM_ROLES</a><c- p>,</c->
+  <c- f>"roles"</c-> <c- p>:</c-> <c- p>[{</c->
+      <c- f>"rolename"</c-><c- p>:</c-> <a data-link-type="dfn" href="#rolename" id="ref-for-rolename">ROLENAME</a><c- p>,</c->
+      <c- f>"keyids"</c-> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid④">KEYID</a><c- p>,</c-> ... <c- p>]</c-> <c- p>,</c->
+      <c- f>"threshold"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①">THRESHOLD</a>
+    <c- p>},</c-> ... <c- p>]</c->
 <c- p>}</c->
 </pre>
-   <p><a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid②">KEYID</a> and <a data-link-type="dfn" href="#key" id="ref-for-key②">KEY</a> are the same as is described for the <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson④">root.json</a> file.</p>
+   <p><a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid⑤">KEYID</a> and <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②">THRESHOLD</a> are the same as is described
+  for the <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson④">root.json</a> file.</p>
    <dl>
-    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rolename">ROLENAME</dfn>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="delegation_name">DELEGATION_NAME</dfn>
     <dd data-md>
-     <p>A string giving the name of the delegated role.  For example, "projects".</p>
-    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="terminating">TERMINATING</dfn>
-    <dd data-md>
-     <p>A boolean indicating whether subsequent delegations should be considered.</p>
-     <p>As explained in the <a href="https://theupdateframework.io/papers/protect-community-repositories-nsdi2016.pdf">Diplomat paper </a>,
-terminating delegations instruct the client not to consider future trust
-statements that match the delegation’s pattern, which stops the delegation
-processing once this delegation (and its descendants) have been processed.
-A terminating delegation for a package causes any further statements about a
-package that are not made by the delegated party or its descendants to be
-ignored.</p>
+     <p>A string giving the name of the delegation. For example, "projects-delegation".</p>
    </dl>
    <p>In order to discuss target paths, a role MUST specify only one of the <a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes①">"path_hash_prefixes"</a> or <a data-link-type="dfn" href="#delegation-role-paths" id="ref-for-delegation-role-paths①">"paths"</a> attributes, each of which we
 discuss next.</p>
@@ -3021,18 +3016,37 @@ Likewise, path pattern "foo-version-?.tgz" matches "foo-version-2.tgz" and
 To avoid surprising behavior when matching targets with <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern①">PATHPATTERN</a>,
 it is RECOMMENDED that <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern②">PATHPATTERN</a> uses the forward slash (/) as
 directory separator and does not start with a directory separator, akin to <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑧">TARGETPATH</a>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="terminating">TERMINATING</dfn>
+    <dd data-md>
+     <p>A boolean indicating whether subsequent delegations should be considered.</p>
+     <p>As explained in the <a href="https://theupdateframework.io/papers/protect-community-repositories-nsdi2016.pdf">Diplomat paper </a>,
+terminating delegations instruct the client not to consider future trust
+statements that match the delegation’s pattern, which stops the delegation
+processing once this delegation (and its descendants) have been processed.
+A terminating delegation for a package causes any further statements about a
+package that are not made by the delegated party or its descendants to be
+ignored.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="num_roles">NUM_ROLES</dfn>
+    <dd data-md>
+     <p>An integer describing the minimum number of delegated targets roles that
+must be in agreement about targets hashes and lengths entrusted by the
+delegation. The delegated targets roles for a given delegation are listed
+in its "roles" field.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rolename">ROLENAME</dfn>
+    <dd data-md>
+     <p>A string giving the name of the delegated role.  For example, "projects".</p>
    </dl>
-   <p>Prioritized delegations allow clients to resolve conflicts between delegated
-roles that share responsibility for overlapping target paths.  To resolve
-conflicts, clients must consider metadata in order of appearance of delegations;
-we treat the order of delegations such that the first delegation is trusted
-over the second one, the second delegation is trusted more than the third
-one, and so on. Likewise, the metadata of the first delegation will override that
-of the second delegation, the metadata of the second delegation will override
-that of the third one, etc. In order to accommodate prioritized
-delegations, the "roles" key in the <a data-link-type="dfn" href="#delegations" id="ref-for-delegations①">DELEGATIONS</a> object above points to an array
-of delegated roles, rather than to a hash table.</p>
-   <p>The metadata files for delegated target roles has the same format as the
+   <p>Prioritization exists both for delegations and delegated targets roles. That
+is, if delegations handle overlapping targets paths, clients MUST consider
+them in the order of their appearance in the "delegations" field. The
+first delegation is trusted over the second one, the second delegation is
+trusted over the third one, and so on. Likewise, in a multi-role delegation,
+if <a data-link-type="dfn" href="#num_roles" id="ref-for-num_roles①">NUM_ROLES</a> is less than or equal to half the number of roles in
+"roles" field, different groups of roles may have different agreements
+on targets hashes or lengths. Such conflicts must be
+resolved by prioritizing the first role in the list, that specifies target
+metadata agreed to by at least <a data-link-type="dfn" href="#num_roles" id="ref-for-num_roles②">NUM_ROLES</a>.</p>
+   <p>The metadata files for delegated targets roles have the same format as the
 top-level <a data-link-type="dfn" href="#targetsjson" id="ref-for-targetsjson">targets.json</a> metadata file.</p>
    <div class="example" id="example-targets.json">
     <a class="self-link" href="#example-targets.json"></a> A <a data-link-type="dfn" href="#targetsjson" id="ref-for-targetsjson①">targets.json</a> example file: 
@@ -3047,29 +3061,34 @@ top-level <a data-link-type="dfn" href="#targetsjson" id="ref-for-targetsjson">t
   <c- f>"signed"</c-><c- p>:</c-> <c- p>{</c->
     <c- f>"_type"</c-><c- p>:</c-> <c- u>"targets"</c-><c- p>,</c->
     <c- f>"spec_version"</c-><c- p>:</c-> <c- u>"1.0.0"</c-><c- p>,</c->
-    <c- f>"delegations"</c-><c- p>:</c-> <c- p>{</c->
-      <c- f>"keys"</c-><c- p>:</c-> <c- p>{</c->
-        <c- f>"f761033eb880143c52358d941d987ca5577675090e2215e856ba0099bc0ce4f6"</c-><c- p>:</c-> <c- p>{</c->
-          <c- f>"keytype"</c-><c- p>:</c-> <c- u>"ed25519"</c-><c- p>,</c->
-          <c- f>"scheme"</c-><c- p>:</c-> <c- u>"ed25519"</c-><c- p>,</c->
-          <c- f>"keyval"</c-><c- p>:</c-> <c- p>{</c->
-            <c- f>"public"</c-><c- p>:</c-> <c- u>"b6e40fb71a6041212a3d84331336ecaa1f48a0c523f80ccc762a034c727606fa"</c->
-          <c- p>}</c->
+    <c- f>"keys"</c-><c- p>:</c-> <c- p>{</c->
+      <c- f>"f761033eb880143c52358d941d987ca5577675090e2215e856ba0099bc0ce4f6"</c-><c- p>:</c-> <c- p>{</c->
+        <c- f>"keytype"</c-><c- p>:</c-> <c- u>"ed25519"</c-><c- p>,</c->
+        <c- f>"scheme"</c-><c- p>:</c-> <c- u>"ed25519"</c-><c- p>,</c->
+        <c- f>"keyval"</c-><c- p>:</c-> <c- p>{</c->
+          <c- f>"public"</c-><c- p>:</c-> <c- u>"b6e40fb71a6041212a3d84331336ecaa1f48a0c523f80ccc762a034c727606fa"</c->
         <c- p>}</c->
-      <c- p>},</c->
-      <c- f>"roles"</c-><c- p>:</c-> <c- p>[</c->
-        <c- p>{</c->
-          <c- f>"keyids"</c-><c- p>:</c-> <c- p>[</c->
-            <c- u>"f761033eb880143c52358d941d987ca5577675090e2215e856ba0099bc0ce4f6"</c->
-          <c- p>],</c->
-          <c- f>"name"</c-><c- p>:</c-> <c- u>"project"</c-><c- p>,</c->
-          <c- f>"paths"</c-><c- p>:</c-> <c- p>[</c->
-            <c- u>"project/file3.txt"</c->
-          <c- p>],</c->
-          <c- f>"threshold"</c-><c- p>:</c-> <c- mi>1</c->
-        <c- p>}</c->
-      <c- p>]</c->
+      <c- p>}</c->
     <c- p>},</c->
+    <c- f>"delegations"</c-><c- p>:</c-> <c- p>[</c->
+      <c- p>{</c->
+        <c- f>"name"</c-><c- p>:</c-> <c- u>"project-delegation"</c-><c- p>,</c->
+        <c- f>"paths"</c-><c- p>:</c-> <c- p>[</c->
+          <c- u>"project/file3.txt"</c->
+        <c- p>],</c->
+        <c- f>"terminating"</c-><c- p>:</c-> <c- kc>true</c-><c- p>,</c->
+        <c- f>"min_roles_in_agreement"</c-><c- p>:</c-> <c- mi>1</c-><c- p>,</c->
+        <c- f>"roles"</c-><c- p>:</c-> <c- p>[</c->
+          <c- p>{</c->
+            <c- f>"name"</c-><c- p>:</c-> <c- u>"project"</c-><c- p>,</c->
+            <c- f>"keyids"</c-><c- p>:</c-> <c- p>[</c->
+              <c- u>"f761033eb880143c52358d941d987ca5577675090e2215e856ba0099bc0ce4f6"</c->
+            <c- p>],</c->
+            <c- f>"threshold"</c-><c- p>:</c-> <c- mi>1</c->
+          <c- p>}</c->
+        <c- p>]</c->
+      <c- p>}</c->
+    <c- p>],</c->
     <c- f>"expires"</c-><c- p>:</c-> <c- u>"2030-01-01T00:00:00Z"</c-><c- p>,</c->
     <c- f>"targets"</c-><c- p>:</c-> <c- p>{</c->
       <c- f>"file1.txt"</c-><c- p>:</c-> <c- p>{</c->
@@ -3408,9 +3427,9 @@ validated, end the search and report that the target cannot be found.</p>
        <ol>
         <li data-md>
          <p>If the current delegation is a multi-role delegation,
- recursively visit each role, and check that each has signed exactly the
- same non-custom metadata (i.e., length and hashes) about the target (or
- the lack of any such metadata).</p>
+ recursively visit each role, and check that a defined minimum number of
+ roles agrees about non-custom metadata, i.e. length and hashes of the
+ target (or the lack of any such metadata).</p>
         <li data-md>
          <p>If the current delegation is a terminating delegation,
  then jump to step <a href="#fetch-target">§ 5.7 Fetch target</a>.</p>
@@ -3679,7 +3698,9 @@ to have incorrect clocks.</p>
    <li><a href="#consistent_snapshot">CONSISTENT_SNAPSHOT</a><span>, in §4.3</span>
    <li><a href="#custom">CUSTOM</a><span>, in §4.5</span>
    <li><a href="#date-time">date-time</a><span>, in §4.2</span>
-   <li><a href="#delegations">DELEGATIONS</a><span>, in §4.5</span>
+   <li><a href="#delegation">DELEGATION</a><span>, in §4.5</span>
+   <li><a href="#delegation_name">DELEGATION_NAME</a><span>, in §4.5</span>
+   <li><a href="#delegations">"delegations"</a><span>, in §4.5</span>
    <li>
     "ecdsa-sha2-nistp256"
     <ul>
@@ -3708,6 +3729,7 @@ to have incorrect clocks.</p>
      <li><a href="#role-keyid">dfn for role</a><span>, in §4.2</span>
      <li><a href="#root-keyid">dfn for root</a><span>, in §4.3</span>
     </ul>
+   <li><a href="#keys">"keys"</a><span>, in §4.5</span>
    <li><a href="#keytype">KEYTYPE</a><span>, in §4.2</span>
    <li><a href="#keyval">KEYVAL</a><span>, in §4.2</span>
    <li>
@@ -3724,6 +3746,7 @@ to have incorrect clocks.</p>
      <li><a href="#snapshot-metapath">dfn for snapshot</a><span>, in §4.4</span>
     </ul>
    <li><a href="#mirrorsjson">mirrors.json</a><span>, in §4.7</span>
+   <li><a href="#num_roles">NUM_ROLES</a><span>, in §4.5</span>
    <li><a href="#path_hash_prefixes">"path_hash_prefixes"</a><span>, in §4.5</span>
    <li><a href="#pathpattern">PATHPATTERN</a><span>, in §4.5</span>
    <li><a href="#delegation-role-paths">"paths"</a><span>, in §4.5</span>
@@ -3774,7 +3797,6 @@ to have incorrect clocks.</p>
    <ul>
     <li><a href="#ref-for-role-keyid">4.2. File formats: general principles</a>
     <li><a href="#ref-for-role-keyid①">4.3. File formats: root.json</a> <a href="#ref-for-role-keyid②">(2)</a> <a href="#ref-for-role-keyid③">(3)</a> <a href="#ref-for-role-keyid④">(4)</a>
-    <li><a href="#ref-for-role-keyid⑤">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-role-keyid⑥">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="signature">
@@ -3925,14 +3947,14 @@ to have incorrect clocks.</p>
    <b><a href="#root-keyid">#root-keyid</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-root-keyid">4.3. File formats: root.json</a> <a href="#ref-for-root-keyid①">(2)</a>
-    <li><a href="#ref-for-root-keyid②">4.5. File formats: targets.json and delegated target roles</a>
+    <li><a href="#ref-for-root-keyid②">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-root-keyid③">(2)</a> <a href="#ref-for-root-keyid④">(3)</a> <a href="#ref-for-root-keyid⑤">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="threshold">
    <b><a href="#threshold">#threshold</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-threshold">4.3. File formats: root.json</a>
-    <li><a href="#ref-for-threshold①">4.5. File formats: targets.json and delegated target roles</a>
+    <li><a href="#ref-for-threshold①">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-threshold②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="snapshotjson">
@@ -4016,22 +4038,28 @@ to have incorrect clocks.</p>
     <li><a href="#ref-for-custom">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-custom①">(2)</a> <a href="#ref-for-custom②">(3)</a> <a href="#ref-for-custom③">(4)</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="keys">
+   <b><a href="#keys">#keys</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-keys">4.5. File formats: targets.json and delegated target roles</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="delegations">
    <b><a href="#delegations">#delegations</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-delegations">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-delegations①">(2)</a>
+    <li><a href="#ref-for-delegations">4.5. File formats: targets.json and delegated target roles</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="rolename">
-   <b><a href="#rolename">#rolename</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="delegation">
+   <b><a href="#delegation">#delegation</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-rolename">4.5. File formats: targets.json and delegated target roles</a>
+    <li><a href="#ref-for-delegation">4.5. File formats: targets.json and delegated target roles</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="terminating">
-   <b><a href="#terminating">#terminating</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="delegation_name">
+   <b><a href="#delegation_name">#delegation_name</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-terminating">4.5. File formats: targets.json and delegated target roles</a>
+    <li><a href="#ref-for-delegation_name">4.5. File formats: targets.json and delegated target roles</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="path_hash_prefixes">
@@ -4057,6 +4085,24 @@ to have incorrect clocks.</p>
    <ul>
     <li><a href="#ref-for-pathpattern">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-pathpattern①">(2)</a> <a href="#ref-for-pathpattern②">(3)</a>
     <li><a href="#ref-for-pathpattern③">4.7. File formats: mirrors.json</a> <a href="#ref-for-pathpattern④">(2)</a> <a href="#ref-for-pathpattern⑤">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="terminating">
+   <b><a href="#terminating">#terminating</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-terminating">4.5. File formats: targets.json and delegated target roles</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="num_roles">
+   <b><a href="#num_roles">#num_roles</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-num_roles">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-num_roles①">(2)</a> <a href="#ref-for-num_roles②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="rolename">
+   <b><a href="#rolename">#rolename</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-rolename">4.5. File formats: targets.json and delegated target roles</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="timestampjson">
