@@ -9,6 +9,10 @@ latest: spec
 	mkdir -p latest
 	cp tuf-spec.html latest/index.html
 
+draft: spec
+	mkdir -p draft
+	cp tuf-spec.html draft/index.html
+
 versioned: spec
 	mkdir -p `python3 $(SPEC_DIR)/get_version.py $(SPEC_DIR)/tuf-spec.md`
 	cp tuf-spec.html `python3 $(SPEC_DIR)/get_version.py $(SPEC_DIR)/tuf-spec.md`/index.html
