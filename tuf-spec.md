@@ -16,7 +16,7 @@ Boilerplate: copyright no, conformance no
 Local Boilerplate: header yes
 Markup Shorthands: css no, markdown yes
 Metadata Include: This version off, Abstract off
-Text Macro: VERSION 1.0.18
+Text Macro: VERSION 1.0.19
 </pre>
 
 Note: We strive to make the specification easy to implement, so if you come
