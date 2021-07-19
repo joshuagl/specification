@@ -3,7 +3,7 @@ Title: The Update Framework Specification
 Shortname: TUF
 Status: LS
 Abstract: A framework for securing software update systems.
-Date: 2021-05-27
+Date: 2021-05-28
 Editor: Justin Cappos, NYU
 Editor: Trishank Karthik Kuppusamy, Datadog
 Editor: Joshua Lock, VMware
@@ -16,7 +16,7 @@ Boilerplate: copyright no, conformance no
 Local Boilerplate: header yes
 Markup Shorthands: css no, markdown yes
 Metadata Include: This version off, Abstract off
-Text Macro: VERSION 1.0.19
+Text Macro: VERSION 1.0.20
 </pre>
 
 Note: We strive to make the specification easy to implement, so if you come
@@ -534,6 +534,10 @@ All signed metadata objects have the format:
       ::
         A hex-encoded signature of the canonical form of the metadata for <a for="role">ROLE</a>.
 
+Note: The "signatures" list SHOULD only contain one <a>SIGNATURE</a> per
+<a for="role">KEYID</a>. This helps prevent multiple signatures by the same key
+being counted erroneously towards the minimum <a>THRESHOLD</a> indicating valid
+metadata.
 
 All <dfn>KEY</dfn>s have the format:
 
@@ -1285,12 +1289,15 @@ it in the next step.
   example, Y may be 2^10.
 
 4. **Check for an arbitrary software attack.** Version N+1 of the root
-  metadata file MUST have been signed by: (1) a threshold of keys specified in
-  the trusted root metadata file (version N), and (2) a threshold of keys
-  specified in the new root metadata file being validated (version N+1).  If
-  version N+1 is not signed as required, discard it, abort the update cycle,
-  and report the signature failure.  On the next update cycle, begin at step
-  [[#update-root]] and version N of the root metadata file.
+  metadata file MUST have been signed by: (1) a <a>THRESHOLD</a> of keys
+  specified in the trusted root metadata file (version N), and (2) a
+  <a>THRESHOLD</a> of keys specified in the new root metadata file being
+  validated (version N+1).  When computing the <a>THRESHOLD</a> each
+  <a>KEY</a> must ONLY contribute one <a>SIGNATURE</a> towards the
+  <a>THRESHOLD</a>, even if the <a>KEY</a> is listed more than once in a role's
+  signatures field.  If version N+1 is not signed as required, discard it, abort
+  the update cycle, and report the signature failure.  On the next update cycle,
+  begin at step [[#update-root]] and version N of the root metadata file.
 
 5. **Check for a rollback attack.** The version number of the trusted
   root metadata file (version N) MUST be less than or equal to the version
@@ -1340,10 +1347,12 @@ it in the next step.
   (e.g., timestamp.json).
 
 2. **Check for an arbitrary software attack.** The new timestamp
-  metadata file MUST have been signed by a threshold of keys specified in the
-  trusted root metadata file.  If the new timestamp metadata file is not
-  properly signed, discard it, abort the update cycle, and report the signature
-  failure.
+  metadata file MUST have been signed by a <a>THRESHOLD</a> of keys specified in
+  the trusted root metadata file.  When computing the <a>THRESHOLD</a> each
+  <a>KEY</a> must ONLY contribute one <a>SIGNATURE</a> towards the
+  <a>THRESHOLD</a>, even if the <a>KEY</a> is listed more than once in a role's
+  signatures field.  If the new timestamp metadata file is not properly signed,
+  discard it, abort the update cycle, and report the signature failure.
 
 3. **Check for a rollback attack.**
 
@@ -1388,9 +1397,12 @@ it in the next step.
   the failure.
 
 3. **Check for an arbitrary software attack**. The new snapshot
-  metadata file MUST have been signed by a threshold of keys specified in the
-  trusted root metadata file.  If the new snapshot metadata file is not signed
-  as required, discard it, abort the update cycle, and report the signature
+  metadata file MUST have been signed by a <a>THRESHOLD</a> of keys specified in
+  the trusted root metadata file.  When computing the <a>THRESHOLD</a> each
+  <a>KEY</a> must ONLY contribute one <a>SIGNATURE</a> towards the
+  <a>THRESHOLD</a>, even if the <a>KEY</a> is listed more than once in a role's
+  signatures field.  If the new snapshot metadata file is not signed as
+  required, discard it, abort the update cycle, and report the signature
   failure.
 
 4. **Check against timestamp role's snapshot version**. The version
@@ -1437,9 +1449,12 @@ it in the next step.
   report the failure.
 
 3. **Check for an arbitrary software attack**. The new targets
-  metadata file MUST have been signed by a threshold of keys specified in the
-  trusted root metadata file.  If the new targets metadata file is not signed
-  as required, discard it, abort the update cycle, and report the failure.
+  metadata file MUST have been signed by a <a>THRESHOLD</a> of keys specified in
+  the trusted root metadata file.  When computing the <a>THRESHOLD</a> each
+  <a>KEY</a> must ONLY contribute one <a>SIGNATURE</a> towards the
+  <a>THRESHOLD</a>, even if the <a>KEY</a> is listed more than once in a role's
+  signatures field.  If the new targets metadata file is not signed as required,
+  discard it, abort the update cycle, and report the failure.
 
 4. **Check against snapshot role's targets version**. The version
   number of the new targets metadata file MUST match the version number listed
