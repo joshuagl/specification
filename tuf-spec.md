@@ -68,10 +68,9 @@ and the [National Science Foundation](https://www.nsf.gov/) (NSF) have
 provided support for the development of TUF.
 
 TUF's reference implementation is based on prior work on
-[Thandy](https://www.torproject.org/), the application
-updater for Tor. Its design and this spec
-also came from ideas jointly developed in discussion with Thandy's authors.
-The Thandy spec can be found at
+[Thandy](https://www.torproject.org/), the application updater for Tor. Its
+design and this spec also came from ideas jointly developed in discussion
+with Thandy's authors. The Thandy spec can be found at
 [https://gitweb.torproject.org/thandy.git/tree/specs/thandy-spec.txt
 ](https://gitweb.torproject.org/thandy.git/tree/specs/thandy-spec.txt)
 
