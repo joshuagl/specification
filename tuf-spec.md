@@ -16,7 +16,7 @@ Boilerplate: copyright no, conformance no
 Local Boilerplate: header yes
 Markup Shorthands: css no, markdown yes
 Metadata Include: This version off, Abstract off
-Text Macro: VERSION 1.0.31
+Text Macro: VERSION 9.9.9
 </pre>
 
 Note: We strive to make the specification easy to implement, so if you come
@@ -1682,6 +1682,22 @@ when adding targets to the repository, or updating existing targets.
 4. Write the updated timestamp metadata, ensuring the timestamp metadata
    filename is prefixed with the <a for="role">VERSION</a> number if consistent
    snapshots are enabled for the repository.
+
+## Metadata retention and cleanup
+
+Describe how long to retain and when it is safe to clean up
+
+### Root metadata
+
+Must be retained for as long as a client is shipping trusted metadata
+
+### Snapshot and Targets metadata
+
+Until keys are rotated
+
+### Targets (top-level and delegated) metadata
+
+???
 
 # Future directions and open questions # {#future-directions-and-open-questions}
 
