@@ -1487,8 +1487,8 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
-  <meta content="b64301238bce88878d270de102c81d174d76c4af" name="document-revision">
+  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
+  <meta content="d8f914c84c620abccb53e767479b3f23ce60f1a3" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1777,6 +1777,14 @@ a.self-link:hover {
 .heading > a.self-link {
     font-size: 83%;
 }
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
 }
@@ -2049,7 +2057,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">The Update Framework Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content"> Version: 1.0.31 <br> Last modified: <time class="dt-updated" datetime="2022-09-09">9 September 2022</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content"> Version: 9.9.10 <br> Last modified: <time class="dt-updated" datetime="2022-09-09">9 September 2022</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Feedback:
@@ -2154,6 +2162,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <li><a href="#update-targets-metadata"><span class="secno">6.3.1</span> <span class="content">Update targets metadata</span></a>
         <li><a href="#update-snapshot-metadata"><span class="secno">6.3.2</span> <span class="content">Update snapshot metadata</span></a>
         <li><a href="#update-timestamp-metadata"><span class="secno">6.3.3</span> <span class="content">Update timestamp metadata</span></a>
+       </ol>
+      <li>
+       <a href="#metadata-retention-and-cleanup"><span class="secno">6.4</span> <span class="content">Metadata retention and cleanup</span></a>
+       <ol class="toc">
+        <li><a href="#root-metadata"><span class="secno">6.4.1</span> <span class="content">Root metadata</span></a>
+        <li><a href="#snapshot-and-targets-metadata"><span class="secno">6.4.2</span> <span class="content">Snapshot and Targets metadata</span></a>
+        <li><a href="#targets-top-level-and-delegated-metadata"><span class="secno">6.4.3</span> <span class="content">Targets (top-level and delegated) metadata</span></a>
        </ol>
      </ol>
     <li>
@@ -3631,6 +3646,14 @@ when adding targets to the repository, or updating existing targets.</p>
  filename is prefixed with the <a data-link-type="dfn" href="#role-version" id="ref-for-role-version①④">VERSION</a> number if consistent
  snapshots are enabled for the repository.</p>
    </ol>
+   <h3 class="heading settled" data-level="6.4" id="metadata-retention-and-cleanup"><span class="secno">6.4. </span><span class="content">Metadata retention and cleanup</span><a class="self-link" href="#metadata-retention-and-cleanup"></a></h3>
+   <p>Describe how long to retain and when it is safe to clean up</p>
+   <h4 class="heading settled" data-level="6.4.1" id="root-metadata"><span class="secno">6.4.1. </span><span class="content">Root metadata</span><a class="self-link" href="#root-metadata"></a></h4>
+   <p>Must be retained for as long as a client is shipping trusted metadata</p>
+   <h4 class="heading settled" data-level="6.4.2" id="snapshot-and-targets-metadata"><span class="secno">6.4.2. </span><span class="content">Snapshot and Targets metadata</span><a class="self-link" href="#snapshot-and-targets-metadata"></a></h4>
+   <p>Until keys are rotated</p>
+   <h4 class="heading settled" data-level="6.4.3" id="targets-top-level-and-delegated-metadata"><span class="secno">6.4.3. </span><span class="content">Targets (top-level and delegated) metadata</span><a class="self-link" href="#targets-top-level-and-delegated-metadata"></a></h4>
+   <p>???</p>
    <h2 class="heading settled" data-level="7" id="future-directions-and-open-questions"><span class="secno">7. </span><span class="content">Future directions and open questions</span><a class="self-link" href="#future-directions-and-open-questions"></a></h2>
    <h3 class="heading settled" data-level="7.1" id="support-for-bogus-clocks"><span class="secno">7.1. </span><span class="content">Support for bogus clocks</span><a class="self-link" href="#support-for-bogus-clocks"></a></h3>
    <p>The framework may need to offer an application-enablable "no, my clock is <em>supposed</em> to be wrong" mode, since others have noticed that many users seem
