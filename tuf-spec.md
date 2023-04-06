@@ -477,9 +477,10 @@ to the base URL of metadata available from a given repository mirror.
 #### Metadata files for targets delegation #### {#metadata-files-for-targets-delegation}
 
 When the targets role delegates trust to other roles, each delegated role
-provides one signed metadata file.  As is the case with the directory
-structure of top-level metadata, the delegated files are relative to the
-base URL of metadata available from a given repository mirror.
+provides one signed metadata file. This file lists hashes and sizes of target
+files, and specifies any further delegation information. As is the case with the
+directory structure of top-level metadata, the delegated files are relative to
+the base URL of metadata available from a given repository mirror.
 
 A delegated role file is located at:
 
@@ -952,7 +953,12 @@ as is described for the <a>root.json</a> file.
 
   : <a for="targets-obj">TARGETS</a>
   ::
-    Each key of the <a for="targets-obj">TARGETS</a> object is a <a>TARGETPATH</a>.
+    Each key of the <a for="targets-obj">TARGETS</a> object is a
+    <a>TARGETPATH</a>. Each field within the object describes a file within the
+    repository which this role attests is trusted. There may be many other files
+    that are part of the repository which are not listed in this
+    <a for="targets-obj">TARGETS</a> object, but only if they are described by a
+    delegated role in one of the targets metadata <a>DELEGATIONS</a> field.
 
   : <dfn>TARGETPATH</dfn>
   ::
