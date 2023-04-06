@@ -1488,19 +1488,23 @@ it in the next step.
 6. **Persist targets metadata**. The client MUST write the file to
   non-volatile storage as FILENAME.EXT (e.g. targets.json).
 
-7. **Perform a pre-order depth-first search for metadata about the
+7. **Perform a pre-order depth-first search for metadata describing the
   desired target, beginning with the top-level targets role.** Note: If
-  any metadata requested in steps 5.6.7.1 - 5.6.7.2 cannot be downloaded nor
+  any metadata requested in steps 5.6.7.1 - 5.6.7.3 cannot be downloaded nor
   validated, end the search and report that the target cannot be found.
 
   1. If this role has been visited before, then skip this role
      (so that cycles in the delegation graph are avoided).  Otherwise, if an
      application-specific maximum number of roles have been visited, then go to
-     step [[#fetch-target]] (so that attackers cannot cause the client to waste excessive
-     bandwidth or time).  Otherwise, if this role contains metadata about the
-     desired target, then go to step [[#fetch-target]].
+     step [[#fetch-target]] (so that attackers cannot cause the client to waste
+     excessive bandwidth or time).
 
-  2. Otherwise, recursively search the list of delegations in
+  2. If the target file being searched for is described by this role's
+     <a>TARGETS</a> object, that is the <a>TARGETS</a> object for the role has
+     a <a>TARGETPATH</a> key matching the desired target, then go to step
+     [[#fetch-target]].
+
+  3. Otherwise, recursively search the list of delegations in
      order of appearance.
 
     1. If the current delegation is a terminating delegation,
@@ -1508,12 +1512,13 @@ it in the next step.
 
     2. Otherwise, if the current delegation is a
        non-terminating delegation, continue processing the next delegation, if
-       any. Stop the search, and jump to step [[#fetch-target]] as soon as a delegation
-       returns a result.
+       any. Stop the search, and jump to step [[#fetch-target]] as soon as a
+       delegation returns a result.
 
 ## Fetch target ## {#fetch-target}
 
-1. **Verify the desired target against its targets metadata**.
+1. **Verify the desired target against the description in the found role's
+   <a>TARGETS</a> object**.
 
 2. If there is no targets metadata about this target, abort the
     update cycle and report that there is no such target.
