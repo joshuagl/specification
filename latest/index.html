@@ -1487,10 +1487,9 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
-  <meta content="d8f914c84c620abccb53e767479b3f23ce60f1a3" name="document-revision">
+  <meta content="Bikeshed version 3383f409d, updated Fri Apr 28 15:49:22 2023 -0700" name="generator">
+  <meta content="e76054b9c81477d016ad7bbf0ce8c70469af0f8f" name="document-revision">
 <style>/* style-autolinks */
-
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -1550,7 +1549,8 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
+}
+</style>
 <style>/* style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
@@ -1659,9 +1659,9 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
+}
+</style>
 <style>/* style-counters */
-
 body {
     counter-reset: example figure issue;
 }
@@ -1688,9 +1688,9 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
-}</style>
+}
+</style>
 <style>/* style-dfn-panel */
-
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
@@ -1698,10 +1698,9 @@ figcaption:not(.no-marker)::before {
 .dfn-panel {
     position: absolute;
     z-index: 35;
+    width: 20em;
+    width: 300px;
     height: auto;
-    width: -webkit-fit-content;
-    width: fit-content;
-    max-width: 300px;
     max-height: 500px;
     overflow: auto;
     padding: 0.5em 0.75em;
@@ -1709,6 +1708,7 @@ figcaption:not(.no-marker)::before {
     background: var(--dfnpanel-bg);
     color: var(--dfnpanel-text);
     border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
 }
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
@@ -1716,8 +1716,15 @@ figcaption:not(.no-marker)::before {
 .dfn-panel a { color: var(--dfnpanel-text); }
 .dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
 .dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .dfn-panel.activated {
     display: inline-block;
     position: fixed;
@@ -1728,10 +1735,9 @@ figcaption:not(.no-marker)::before {
     max-height: 30vh;
 }
 
-.dfn-paneled { cursor: pointer; }
+.dfn-paneled[role="button"] { cursor: pointer; }
 </style>
 <style>/* style-issues */
-
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -1741,7 +1747,6 @@ a[href].issue-return {
 }
 </style>
 <style>/* style-md-lists */
-
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -1749,7 +1754,8 @@ a[href].issue-return {
 }
 [data-md] > :last-child {
     margin-bottom: 0;
-}</style>
+}
+</style>
 <style>/* style-selflinks */
 
 :root {
@@ -1982,6 +1988,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        which is quite common in practice... */
     img { background: white; }
 }
+
 @media (prefers-color-scheme: dark) {
     :root {
         --selflink-text: black;
@@ -2057,7 +2064,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">The Update Framework Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content"> Version: 9.9.10 <br> Last modified: <time class="dt-updated" datetime="2022-09-09">9 September 2022</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content"> Version: 1.0.32 <br> Last modified: <time class="dt-updated" datetime="2023-03-02">2 March 2023</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Feedback:
@@ -2067,7 +2074,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Justin Cappos</span> (<span class="p-org org">NYU</span>)
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Trishank Karthik Kuppusamy</span> (<span class="p-org org">Datadog</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Joshua Lock</span> (<span class="p-org org">VMware</span>)
+     <dd class="editor p-author h-card vcard"><span class="p-name fn">Joshua Lock</span> (<span class="p-org org">Verizon</span>)
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Marina Moore</span> (<span class="p-org org">NYU</span>)
      <dd class="editor p-author h-card vcard"><span class="p-name fn">Lukas Pühringer</span> (<span class="p-org org">NYU</span>)
     </dl>
@@ -2128,7 +2135,13 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <a href="#document-formats"><span class="secno">4</span> <span class="content">Document formats</span></a>
      <ol class="toc">
       <li><a href="#metaformat"><span class="secno">4.1</span> <span class="content">Metaformat</span></a>
-      <li><a href="#file-formats-general-principles"><span class="secno">4.2</span> <span class="content">File formats: general principles</span></a>
+      <li>
+       <a href="#file-formats-general-principles"><span class="secno">4.2</span> <span class="content">File formats: general principles</span></a>
+       <ol class="toc">
+        <li><a href="#file-formats-object-format"><span class="secno">4.2.1</span> <span class="content">Object format</span></a>
+        <li><a href="#file-formats-keys"><span class="secno">4.2.2</span> <span class="content">Key objects</span></a>
+        <li><a href="#file-formats-date-time"><span class="secno">4.2.3</span> <span class="content">Date-time</span></a>
+       </ol>
       <li><a href="#file-formats-root"><span class="secno">4.3</span> <span class="content">File formats: root.json</span></a>
       <li><a href="#file-formats-snapshot"><span class="secno">4.4</span> <span class="content">File formats: snapshot.json</span></a>
       <li><a href="#file-formats-targets"><span class="secno">4.5</span> <span class="content">File formats: targets.json and delegated target roles</span></a>
@@ -2163,13 +2176,6 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
         <li><a href="#update-snapshot-metadata"><span class="secno">6.3.2</span> <span class="content">Update snapshot metadata</span></a>
         <li><a href="#update-timestamp-metadata"><span class="secno">6.3.3</span> <span class="content">Update timestamp metadata</span></a>
        </ol>
-      <li>
-       <a href="#metadata-retention-and-cleanup"><span class="secno">6.4</span> <span class="content">Metadata retention and cleanup</span></a>
-       <ol class="toc">
-        <li><a href="#root-metadata"><span class="secno">6.4.1</span> <span class="content">Root metadata</span></a>
-        <li><a href="#snapshot-and-targets-metadata"><span class="secno">6.4.2</span> <span class="content">Snapshot and Targets metadata</span></a>
-        <li><a href="#targets-top-level-and-delegated-metadata"><span class="secno">6.4.3</span> <span class="content">Targets (top-level and delegated) metadata</span></a>
-       </ol>
      </ol>
     <li>
      <a href="#future-directions-and-open-questions"><span class="secno">7</span> <span class="content">Future directions and open questions</span></a>
@@ -2184,7 +2190,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </ol>
   </nav>
   <main>
-   <p class="note" role="note"><span>Note:</span> We strive to make the specification easy to implement, so if you come
+   <p class="note" role="note"><span class="marker">Note:</span> We strive to make the specification easy to implement, so if you come
 across any inconsistencies or experience any difficulty, do let us know by
 sending an email to our <a href="https://groups.google.com/forum/?fromgroups#!forum/theupdateframework">mailing list</a>,
 or by reporting an issue in the <a href="https://github.com/theupdateframework/specification/issues">specification repo</a>.</p>
@@ -2280,7 +2286,7 @@ SSL (TLS).  This does not exclude the optional use of SSL when available,
 but the framework will be designed without it.</p>
    </ul>
    <h4 class="heading settled" data-level="1.5.2" id="goals-to-protect-against-specific-attacks"><span class="secno">1.5.2. </span><span class="content">Goals to protect against specific attacks</span><a class="self-link" href="#goals-to-protect-against-specific-attacks"></a></h4>
-   <p class="note" role="note"><span>Note:</span> When saying the framework protects against an attack, it means the
+   <p class="note" role="note"><span class="marker">Note:</span> When saying the framework protects against an attack, it means the
 attack will be unsuccessful.  It does not mean that a client will always
 successfully update during an attack.  Fundamentally, an attacker
 positioned to intercept and modify a client’s communication can always
@@ -2610,6 +2616,7 @@ The examples in this document use a subset of the JSON object format, with
 floating-point numbers omitted.  When calculating the digest of an
 object, we use the "canonical JSON" subdialect as described at <a href="http://wiki.laptop.org/go/Canonical_JSON">Canonical JSON</a>.</p>
    <h3 class="heading settled" data-level="4.2" id="file-formats-general-principles"><span class="secno">4.2. </span><span class="content">File formats: general principles</span><a class="self-link" href="#file-formats-general-principles"></a></h3>
+   <h4 class="heading settled" data-level="4.2.1" id="file-formats-object-format"><span class="secno">4.2.1. </span><span class="content">Object format</span><a class="self-link" href="#file-formats-object-format"></a></h4>
    <p>All signed metadata objects have the format:</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"signed"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#role-role" id="ref-for-role-role">ROLE</a><c- p>,</c->
@@ -2633,7 +2640,8 @@ signatures with the same keyid are not allowed.</p>
     <dd data-md>
      <p>A hex-encoded signature of the canonical form of the metadata for <a data-link-type="dfn" href="#role-role" id="ref-for-role-role②">ROLE</a>.</p>
    </dl>
-   <p>All <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="key">KEY</dfn>s have the format:</p>
+   <h4 class="heading settled" data-level="4.2.2" id="file-formats-keys"><span class="secno">4.2.2. </span><span class="content">Key objects</span><a class="self-link" href="#file-formats-keys"></a></h4>
+   <p>All <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="key">KEY</dfn> objects have the format:</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"keytype"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keytype" id="ref-for-keytype">KEYTYPE</a><c- p>,</c->
   <c- f>"scheme"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#scheme" id="ref-for-scheme">SCHEME</a><c- p>,</c->
@@ -2643,7 +2651,7 @@ signatures with the same keyid are not allowed.</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="keytype">KEYTYPE</dfn>
     <dd data-md>
-     <p>A string denoting a public key signature system, such as <a data-link-type="dfn" href="#keytype-rsa" id="ref-for-keytype-rsa">"rsa"</a>, <a data-link-type="dfn" href="#keytype-ed25519" id="ref-for-keytype-ed25519">"ed25519"</a>, and <a data-link-type="dfn" href="#keytype-ecdsa-sha2-nistp256" id="ref-for-keytype-ecdsa-sha2-nistp256">"ecdsa-sha2-nistp256"</a>.</p>
+     <p>A string denoting a public key signature system, such as <a data-link-type="dfn" href="#keytype-rsa" id="ref-for-keytype-rsa">"rsa"</a>, <a data-link-type="dfn" href="#keytype-ed25519" id="ref-for-keytype-ed25519">"ed25519"</a>, and <a data-link-type="dfn" href="#keytype-ecdsa" id="ref-for-keytype-ecdsa">"ecdsa"</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="scheme">SCHEME</dfn>
     <dd data-md>
      <p>A string denoting a corresponding signature scheme.  For example: <a data-link-type="dfn" href="#scheme-rsassa-pss-sha256" id="ref-for-scheme-rsassa-pss-sha256">"rsassa-pss-sha256"</a>, <a data-link-type="dfn" href="#scheme-ed25519" id="ref-for-scheme-ed25519">"ed25519"</a>, and <a data-link-type="dfn" href="#scheme-ecdsa-sha2-nistp256" id="ref-for-scheme-ecdsa-sha2-nistp256">"ecdsa-sha2-nistp256"</a>.</p>
@@ -2651,9 +2659,14 @@ signatures with the same keyid are not allowed.</p>
     <dd data-md>
      <p>A dictionary containing the public portion of the key.</p>
    </dl>
-   <p>The reference implementation defines three signature schemes, although TUF
-is not restricted to any particular signature scheme, key type, or
-cryptographic library:</p>
+   <p>The reference implementation defines three <a data-link-type="dfn" href="#keytype" id="ref-for-keytype①">KEYTYPE</a>s: <a data-link-type="dfn" href="#keytype-rsa" id="ref-for-keytype-rsa①">"rsa"</a>, <a data-link-type="dfn" href="#keytype-ed25519" id="ref-for-keytype-ed25519①">"ed25519"</a>, and <a data-link-type="dfn" href="#keytype-ecdsa" id="ref-for-keytype-ecdsa①">"ecdsa"</a>; and three signature <a data-link-type="dfn" href="#scheme" id="ref-for-scheme①">SCHEME</a>s: <a data-link-type="dfn" href="#scheme-rsassa-pss-sha256" id="ref-for-scheme-rsassa-pss-sha256①">"rsassa-pss-sha256"</a>, <a data-link-type="dfn" href="#scheme-ed25519" id="ref-for-scheme-ed25519①">"ed25519"</a>, and <a data-link-type="dfn" href="#scheme-ecdsa-sha2-nistp256" id="ref-for-scheme-ecdsa-sha2-nistp256①">"ecdsa-sha2-nistp256"</a>. These are documented below.</p>
+   <p>TUF is not restricted to any particular signature <a data-link-type="dfn" href="#scheme" id="ref-for-scheme②">SCHEME</a>s, <a data-link-type="dfn" href="#keytype" id="ref-for-keytype②">KEYTYPE</a>s, or cryptographic library. Adopters can define and use any
+particular <a data-link-type="dfn" href="#keytype" id="ref-for-keytype③">KEYTYPE</a>, signing <a data-link-type="dfn" href="#scheme" id="ref-for-scheme③">SCHEME</a>, and cryptographic library.</p>
+   <p>Implementing the <a data-link-type="dfn" href="#keytype" id="ref-for-keytype④">KEYTYPE</a>s and <a data-link-type="dfn" href="#scheme" id="ref-for-scheme④">SCHEME</a>s below is RECOMMENDED for
+all implementations, as this enables interoperability. Conversely,
+implementations SHOULD NOT implement the <a data-link-type="dfn" href="#keytype" id="ref-for-keytype⑤">KEYTYPE</a>s and <a data-link-type="dfn" href="#scheme" id="ref-for-scheme⑤">SCHEME</a>s
+that are defined in a different manner than specified, so as to avoid confusion
+across implementations.</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="scheme" data-dfn-type="dfn" data-noexport id="scheme-rsassa-pss-sha256">"rsassa-pss-sha256"</dfn>
     <dd data-md>
@@ -2667,13 +2680,10 @@ function is SHA256. <a href="https://tools.ietf.org/html/rfc3447#page-29">https:
      <p>Elliptic Curve Digital Signature Algorithm with NIST P-256 curve signing
 and SHA-256 hashing. <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm </a></p>
    </dl>
-   <p>We define three keytypes below: <a data-link-type="dfn" href="#keytype-rsa" id="ref-for-keytype-rsa①">"rsa"</a>, <a data-link-type="dfn" href="#keytype-ed25519" id="ref-for-keytype-ed25519①">"ed25519"</a>, and <a data-link-type="dfn" href="#keytype-ecdsa-sha2-nistp256" id="ref-for-keytype-ecdsa-sha2-nistp256①">"ecdsa-sha2-nistp256"</a>, but adopters
-can define and use any particular keytype, signing scheme, and cryptographic
-library.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-for="keytype" data-dfn-type="dfn" data-noexport id="keytype-rsa">"rsa"</dfn> format is:</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"keytype"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keytype-rsa" id="ref-for-keytype-rsa②"><c- u>"rsa"</c-></a><c- p>,</c->
-  <c- f>"scheme"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#scheme-rsassa-pss-sha256" id="ref-for-scheme-rsassa-pss-sha256①"><c- u>"rsassa-pss-sha256"</c-></a><c- p>,</c->
+  <c- f>"scheme"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#scheme-rsassa-pss-sha256" id="ref-for-scheme-rsassa-pss-sha256②"><c- u>"rsassa-pss-sha256"</c-></a><c- p>,</c->
   <c- f>"keyval"</c-> <c- p>:</c-> <c- p>{</c->
     <c- f>"public"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keyval-rsa-public" id="ref-for-keyval-rsa-public">PUBLIC</a>
   <c- p>}</c->
@@ -2687,7 +2697,7 @@ library.</p>
    <p>The <dfn class="dfn-paneled" data-dfn-for="keytype" data-dfn-type="dfn" data-noexport id="keytype-ed25519">"ed25519"</dfn> format is:</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"keytype"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keytype-ed25519" id="ref-for-keytype-ed25519②"><c- u>"ed25519"</c-></a><c- p>,</c->
-  <c- f>"scheme"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#scheme-ed25519" id="ref-for-scheme-ed25519①"><c- u>"ed25519"</c-></a><c- p>,</c->
+  <c- f>"scheme"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#scheme-ed25519" id="ref-for-scheme-ed25519②"><c- u>"ed25519"</c-></a><c- p>,</c->
   <c- f>"keyval"</c-> <c- p>:</c-> <c- p>{</c->
     <c- f>"public"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keyval-ed25519-public" id="ref-for-keyval-ed25519-public">PUBLIC</a>
   <c- p>}</c->
@@ -2698,10 +2708,10 @@ library.</p>
     <dd data-md>
      <p>64-byte hex encoded string.</p>
    </dl>
-   <p>The <dfn class="dfn-paneled" data-dfn-for="keytype" data-dfn-type="dfn" data-noexport id="keytype-ecdsa-sha2-nistp256">"ecdsa-sha2-nistp256"</dfn> format is:</p>
+   <p>The <dfn class="dfn-paneled" data-dfn-for="keytype" data-dfn-type="dfn" data-noexport id="keytype-ecdsa">"ecdsa"</dfn> format is:</p>
 <pre class="highlight"><c- p>{</c->
-  <c- f>"keytype"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keytype-ecdsa-sha2-nistp256" id="ref-for-keytype-ecdsa-sha2-nistp256②"><c- u>"ecdsa-sha2-nistp256"</c-></a><c- p>,</c->
-  <c- f>"scheme"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#scheme-ecdsa-sha2-nistp256" id="ref-for-scheme-ecdsa-sha2-nistp256①"><c- u>"ecdsa-sha2-nistp256"</c-></a><c- p>,</c->
+  <c- f>"keytype"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keytype-ecdsa" id="ref-for-keytype-ecdsa②"><c- u>"ecdsa"</c-></a><c- p>,</c->
+  <c- f>"scheme"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#scheme-ecdsa-sha2-nistp256" id="ref-for-scheme-ecdsa-sha2-nistp256②"><c- u>"ecdsa-sha2-nistp256"</c-></a><c- p>,</c->
   <c- f>"keyval"</c-> <c- p>:</c-> <c- p>{</c->
     <c- f>"public"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#keyval-ecdsa-public" id="ref-for-keyval-ecdsa-public">PUBLIC</a>
   <c- p>}</c->
@@ -2712,6 +2722,7 @@ library.</p>
     <dd data-md>
      <p>PEM format and a string.</p>
    </dl>
+   <h4 class="heading settled" data-level="4.2.3" id="file-formats-date-time"><span class="secno">4.2.3. </span><span class="content">Date-time</span><a class="self-link" href="#file-formats-date-time"></a></h4>
    <p>Metadata <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="date-time">date-time</dfn> follows the ISO 8601 standard.  The expected
 format of the combined date and time string is "YYYY-MM-DDTHH:MM:SSZ".  Time is
 always in UTC, and the "Z" time zone designator is attached to indicate a
@@ -2985,7 +2996,8 @@ separator and does not start with a directory separator. The recommendation
 for <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath③">TARGETPATH</a> aligns with the <a href="https://url.spec.whatwg.org/#path-relative-url-string">"path-relative-URL string"
 definition</a> in the
 WHATWG URL specification.</p>
-     <p>It is allowed to have a <a data-link-type="dfn" href="#targets-obj-targets" id="ref-for-targets-obj-targets③">TARGETS</a> object with no <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath④">TARGETPATH</a> elements.  This can be used to indicate that no target files are available.</p>
+     <p>It is allowed to have a <a data-link-type="dfn" href="#targets-obj-targets" id="ref-for-targets-obj-targets③">TARGETS</a> object with no <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath④">TARGETPATH</a> elements.  This can be used to indicate that no target
+files are available.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="targets-obj" data-dfn-type="dfn" data-noexport id="targets-obj-length">LENGTH</dfn>
     <dd data-md>
      <p>An integer length in bytes of the target file at <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑤">TARGETPATH</a>.</p>
@@ -3241,7 +3253,7 @@ matching paths will only be tried if downloading from earlier mirrors fails.
 This behavior can be modified by the client code that uses the framework to,
 for example, randomly select from the listed mirrors.</p>
    <h2 class="heading settled" data-level="5" id="detailed-client-workflow"><span class="secno">5. </span><span class="content">Detailed client workflow</span><a class="self-link" href="#detailed-client-workflow"></a></h2>
-   <p class="note" role="note"><span>Note:</span> If a step in the following workflow does not succeed (e.g., the update
+   <p class="note" role="note"><span class="marker">Note:</span> If a step in the following workflow does not succeed (e.g., the update
 is aborted because a new metadata file was not signed), the client should
 still be able to update again in the future. Errors raised during the update
 process should not leave clients in an unrecoverable state.</p>
@@ -3600,9 +3612,9 @@ when adding targets to the repository, or updating existing targets.</p>
    <h4 class="heading settled" data-level="6.3.1" id="update-targets-metadata"><span class="secno">6.3.1. </span><span class="content">Update targets metadata</span><a class="self-link" href="#update-targets-metadata"></a></h4>
    <ol>
     <li data-md>
-     <p>Add the new (or update an existing) <a data-link-type="dfn" href="#targets-obj-targets" id="ref-for-targets-obj-targets④">TARGETS</a> object in the relevant
- targets metadata (either the top-level targets metadata, or a delegated
- targets metadata).</p>
+     <p>Add the new (or update an existing) <a data-link-type="dfn" href="#targets-obj-targets" id="ref-for-targets-obj-targets④">TARGETS</a> object
+ in the relevant targets metadata (either the top-level targets metadata, or
+ a delegated targets metadata).</p>
     <li data-md>
      <p>Increment the <a data-link-type="dfn" href="#role-version" id="ref-for-role-version⑨">VERSION</a> number in the updated targets
  metadata.</p>
@@ -3646,14 +3658,6 @@ when adding targets to the repository, or updating existing targets.</p>
  filename is prefixed with the <a data-link-type="dfn" href="#role-version" id="ref-for-role-version①④">VERSION</a> number if consistent
  snapshots are enabled for the repository.</p>
    </ol>
-   <h3 class="heading settled" data-level="6.4" id="metadata-retention-and-cleanup"><span class="secno">6.4. </span><span class="content">Metadata retention and cleanup</span><a class="self-link" href="#metadata-retention-and-cleanup"></a></h3>
-   <p>Describe how long to retain and when it is safe to clean up</p>
-   <h4 class="heading settled" data-level="6.4.1" id="root-metadata"><span class="secno">6.4.1. </span><span class="content">Root metadata</span><a class="self-link" href="#root-metadata"></a></h4>
-   <p>Must be retained for as long as a client is shipping trusted metadata</p>
-   <h4 class="heading settled" data-level="6.4.2" id="snapshot-and-targets-metadata"><span class="secno">6.4.2. </span><span class="content">Snapshot and Targets metadata</span><a class="self-link" href="#snapshot-and-targets-metadata"></a></h4>
-   <p>Until keys are rotated</p>
-   <h4 class="heading settled" data-level="6.4.3" id="targets-top-level-and-delegated-metadata"><span class="secno">6.4.3. </span><span class="content">Targets (top-level and delegated) metadata</span><a class="self-link" href="#targets-top-level-and-delegated-metadata"></a></h4>
-   <p>???</p>
    <h2 class="heading settled" data-level="7" id="future-directions-and-open-questions"><span class="secno">7. </span><span class="content">Future directions and open questions</span><a class="self-link" href="#future-directions-and-open-questions"></a></h2>
    <h3 class="heading settled" data-level="7.1" id="support-for-bogus-clocks"><span class="secno">7.1. </span><span class="content">Support for bogus clocks</span><a class="self-link" href="#support-for-bogus-clocks"></a></h3>
    <p>The framework may need to offer an application-enablable "no, my clock is <em>supposed</em> to be wrong" mode, since others have noticed that many users seem
@@ -3793,19 +3797,15 @@ to have incorrect clocks.</p>
   <ul class="index">
    <li><a href="#consistent_snapshot">CONSISTENT_SNAPSHOT</a><span>, in § 4.3</span>
    <li><a href="#custom">CUSTOM</a><span>, in § 4.5</span>
-   <li><a href="#date-time">date-time</a><span>, in § 4.2</span>
+   <li><a href="#date-time">date-time</a><span>, in § 4.2.3</span>
    <li><a href="#delegations">DELEGATIONS</a><span>, in § 4.5</span>
-   <li>
-    "ecdsa-sha2-nistp256"
-    <ul>
-     <li><a href="#keytype-ecdsa-sha2-nistp256">dfn for keytype</a><span>, in § 4.2</span>
-     <li><a href="#scheme-ecdsa-sha2-nistp256">dfn for scheme</a><span>, in § 4.2</span>
-    </ul>
+   <li><a href="#keytype-ecdsa">"ecdsa"</a><span>, in § 4.2.2</span>
+   <li><a href="#scheme-ecdsa-sha2-nistp256">"ecdsa-sha2-nistp256"</a><span>, in § 4.2.2</span>
    <li>
     "ed25519"
     <ul>
-     <li><a href="#keytype-ed25519">dfn for keytype</a><span>, in § 4.2</span>
-     <li><a href="#scheme-ed25519">dfn for scheme</a><span>, in § 4.2</span>
+     <li><a href="#keytype-ed25519">dfn for keytype</a><span>, in § 4.2.2</span>
+     <li><a href="#scheme-ed25519">dfn for scheme</a><span>, in § 4.2.2</span>
     </ul>
    <li><a href="#expires">EXPIRES</a><span>, in § 4.3</span>
    <li><a href="#hash">HASH</a><span>, in § 4.4</span>
@@ -3816,15 +3816,15 @@ to have incorrect clocks.</p>
      <li><a href="#targets-obj-hashes">dfn for targets-obj</a><span>, in § 4.5</span>
     </ul>
    <li><a href="#hex_digest">HEX_DIGEST</a><span>, in § 4.5</span>
-   <li><a href="#key">KEY</a><span>, in § 4.2</span>
+   <li><a href="#key">KEY</a><span>, in § 4.2.2</span>
    <li>
     KEYID
     <ul>
-     <li><a href="#role-keyid">dfn for role</a><span>, in § 4.2</span>
+     <li><a href="#role-keyid">dfn for role</a><span>, in § 4.2.1</span>
      <li><a href="#root-keyid">dfn for root</a><span>, in § 4.3</span>
     </ul>
-   <li><a href="#keytype">KEYTYPE</a><span>, in § 4.2</span>
-   <li><a href="#keyval">KEYVAL</a><span>, in § 4.2</span>
+   <li><a href="#keytype">KEYTYPE</a><span>, in § 4.2.2</span>
+   <li><a href="#keyval">KEYVAL</a><span>, in § 4.2.2</span>
    <li>
     LENGTH
     <ul>
@@ -3845,22 +3845,22 @@ to have incorrect clocks.</p>
    <li>
     PUBLIC
     <ul>
-     <li><a href="#keyval-ecdsa-public">dfn for keyval-ecdsa</a><span>, in § 4.2</span>
-     <li><a href="#keyval-ed25519-public">dfn for keyval-ed25519</a><span>, in § 4.2</span>
-     <li><a href="#keyval-rsa-public">dfn for keyval-rsa</a><span>, in § 4.2</span>
+     <li><a href="#keyval-ecdsa-public">dfn for keyval-ecdsa</a><span>, in § 4.2.2</span>
+     <li><a href="#keyval-ed25519-public">dfn for keyval-ed25519</a><span>, in § 4.2.2</span>
+     <li><a href="#keyval-rsa-public">dfn for keyval-rsa</a><span>, in § 4.2.2</span>
     </ul>
    <li>
     ROLE
     <ul>
-     <li><a href="#role-role">dfn for role</a><span>, in § 4.2</span>
+     <li><a href="#role-role">dfn for role</a><span>, in § 4.2.1</span>
      <li><a href="#root-role">dfn for root</a><span>, in § 4.3</span>
     </ul>
    <li><a href="#rolename">ROLENAME</a><span>, in § 4.5</span>
    <li><a href="#rootjson">root.json</a><span>, in § 4.3</span>
-   <li><a href="#keytype-rsa">"rsa"</a><span>, in § 4.2</span>
-   <li><a href="#scheme-rsassa-pss-sha256">"rsassa-pss-sha256"</a><span>, in § 4.2</span>
-   <li><a href="#scheme">SCHEME</a><span>, in § 4.2</span>
-   <li><a href="#signature">SIGNATURE</a><span>, in § 4.2</span>
+   <li><a href="#keytype-rsa">"rsa"</a><span>, in § 4.2.2</span>
+   <li><a href="#scheme-rsassa-pss-sha256">"rsassa-pss-sha256"</a><span>, in § 4.2.2</span>
+   <li><a href="#scheme">SCHEME</a><span>, in § 4.2.2</span>
+   <li><a href="#signature">SIGNATURE</a><span>, in § 4.2.1</span>
    <li><a href="#snapshotjson">snapshot.json</a><span>, in § 4.4</span>
    <li><a href="#spec_version">SPEC_VERSION</a><span>, in § 4.3</span>
    <li><a href="#targetpath">TARGETPATH</a><span>, in § 4.5</span>
@@ -3878,402 +3878,403 @@ to have incorrect clocks.</p>
      <li><a href="#role-version">dfn for role</a><span>, in § 4.3</span>
     </ul>
   </ul>
-  <aside class="dfn-panel" data-for="role-role">
-   <b><a href="#role-role">#role-role</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-role-role">4.2. File formats: general principles</a> <a href="#ref-for-role-role①">(2)</a> <a href="#ref-for-role-role②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="role-keyid">
-   <b><a href="#role-keyid">#role-keyid</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-role-keyid">4.2. File formats: general principles</a>
-    <li><a href="#ref-for-role-keyid①">4.3. File formats: root.json</a> <a href="#ref-for-role-keyid②">(2)</a> <a href="#ref-for-role-keyid③">(3)</a> <a href="#ref-for-role-keyid④">(4)</a>
-    <li><a href="#ref-for-role-keyid⑤">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-role-keyid⑥">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="signature">
-   <b><a href="#signature">#signature</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-signature">4.2. File formats: general principles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="key">
-   <b><a href="#key">#key</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-key">4.3. File formats: root.json</a>
-    <li><a href="#ref-for-key①">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-key②">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keytype">
-   <b><a href="#keytype">#keytype</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keytype">4.2. File formats: general principles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="scheme">
-   <b><a href="#scheme">#scheme</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-scheme">4.2. File formats: general principles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keyval">
-   <b><a href="#keyval">#keyval</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keyval">4.2. File formats: general principles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="scheme-rsassa-pss-sha256">
-   <b><a href="#scheme-rsassa-pss-sha256">#scheme-rsassa-pss-sha256</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-scheme-rsassa-pss-sha256">4.2. File formats: general principles</a> <a href="#ref-for-scheme-rsassa-pss-sha256①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="scheme-ed25519">
-   <b><a href="#scheme-ed25519">#scheme-ed25519</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-scheme-ed25519">4.2. File formats: general principles</a> <a href="#ref-for-scheme-ed25519①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="scheme-ecdsa-sha2-nistp256">
-   <b><a href="#scheme-ecdsa-sha2-nistp256">#scheme-ecdsa-sha2-nistp256</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-scheme-ecdsa-sha2-nistp256">4.2. File formats: general principles</a> <a href="#ref-for-scheme-ecdsa-sha2-nistp256①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keytype-rsa">
-   <b><a href="#keytype-rsa">#keytype-rsa</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keytype-rsa">4.2. File formats: general principles</a> <a href="#ref-for-keytype-rsa①">(2)</a> <a href="#ref-for-keytype-rsa②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keyval-rsa-public">
-   <b><a href="#keyval-rsa-public">#keyval-rsa-public</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keyval-rsa-public">4.2. File formats: general principles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keytype-ed25519">
-   <b><a href="#keytype-ed25519">#keytype-ed25519</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keytype-ed25519">4.2. File formats: general principles</a> <a href="#ref-for-keytype-ed25519①">(2)</a> <a href="#ref-for-keytype-ed25519②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keyval-ed25519-public">
-   <b><a href="#keyval-ed25519-public">#keyval-ed25519-public</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keyval-ed25519-public">4.2. File formats: general principles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keytype-ecdsa-sha2-nistp256">
-   <b><a href="#keytype-ecdsa-sha2-nistp256">#keytype-ecdsa-sha2-nistp256</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keytype-ecdsa-sha2-nistp256">4.2. File formats: general principles</a> <a href="#ref-for-keytype-ecdsa-sha2-nistp256①">(2)</a> <a href="#ref-for-keytype-ecdsa-sha2-nistp256②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="keyval-ecdsa-public">
-   <b><a href="#keyval-ecdsa-public">#keyval-ecdsa-public</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-keyval-ecdsa-public">4.2. File formats: general principles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="date-time">
-   <b><a href="#date-time">#date-time</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-date-time">4.2. File formats: general principles</a>
-    <li><a href="#ref-for-date-time①">4.3. File formats: root.json</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="rootjson">
-   <b><a href="#rootjson">#rootjson</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-rootjson">4.3. File formats: root.json</a> <a href="#ref-for-rootjson①">(2)</a>
-    <li><a href="#ref-for-rootjson②">4.4. File formats: snapshot.json</a>
-    <li><a href="#ref-for-rootjson③">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-rootjson④">(2)</a>
-    <li><a href="#ref-for-rootjson⑤">4.6. File formats: timestamp.json</a>
-    <li><a href="#ref-for-rootjson⑥">4.7. File formats: mirrors.json</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="spec_version">
-   <b><a href="#spec_version">#spec_version</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-spec_version">4.3. File formats: root.json</a>
-    <li><a href="#ref-for-spec_version①">4.4. File formats: snapshot.json</a> <a href="#ref-for-spec_version②">(2)</a>
-    <li><a href="#ref-for-spec_version③">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-spec_version④">(2)</a>
-    <li><a href="#ref-for-spec_version⑤">4.6. File formats: timestamp.json</a> <a href="#ref-for-spec_version⑥">(2)</a>
-    <li><a href="#ref-for-spec_version⑦">4.7. File formats: mirrors.json</a> <a href="#ref-for-spec_version⑧">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="consistent_snapshot">
-   <b><a href="#consistent_snapshot">#consistent_snapshot</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-consistent_snapshot">3.1.1. Target files</a>
-    <li><a href="#ref-for-consistent_snapshot①">4.3. File formats: root.json</a>
-    <li><a href="#ref-for-consistent_snapshot②">6.2.1. Writing consistent snapshots</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="role-version">
-   <b><a href="#role-version">#role-version</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-role-version">4.3. File formats: root.json</a>
-    <li><a href="#ref-for-role-version①">4.4. File formats: snapshot.json</a> <a href="#ref-for-role-version②">(2)</a>
-    <li><a href="#ref-for-role-version③">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-role-version④">(2)</a>
-    <li><a href="#ref-for-role-version⑤">4.6. File formats: timestamp.json</a> <a href="#ref-for-role-version⑥">(2)</a>
-    <li><a href="#ref-for-role-version⑦">4.7. File formats: mirrors.json</a> <a href="#ref-for-role-version⑧">(2)</a>
-    <li><a href="#ref-for-role-version⑨">6.3.1. Update targets metadata</a> <a href="#ref-for-role-version①⓪">(2)</a>
-    <li><a href="#ref-for-role-version①①">6.3.2. Update snapshot metadata</a> <a href="#ref-for-role-version①②">(2)</a>
-    <li><a href="#ref-for-role-version①③">6.3.3. Update timestamp metadata</a> <a href="#ref-for-role-version①④">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="expires">
-   <b><a href="#expires">#expires</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-expires">4.3. File formats: root.json</a>
-    <li><a href="#ref-for-expires①">4.4. File formats: snapshot.json</a> <a href="#ref-for-expires②">(2)</a>
-    <li><a href="#ref-for-expires③">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-expires④">(2)</a>
-    <li><a href="#ref-for-expires⑤">4.6. File formats: timestamp.json</a> <a href="#ref-for-expires⑥">(2)</a>
-    <li><a href="#ref-for-expires⑦">4.7. File formats: mirrors.json</a> <a href="#ref-for-expires⑧">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="root-role">
-   <b><a href="#root-role">#root-role</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-root-role">4.3. File formats: root.json</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="root-keyid">
-   <b><a href="#root-keyid">#root-keyid</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-root-keyid">4.3. File formats: root.json</a> <a href="#ref-for-root-keyid①">(2)</a>
-    <li><a href="#ref-for-root-keyid②">4.5. File formats: targets.json and delegated target roles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="threshold">
-   <b><a href="#threshold">#threshold</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-threshold">4.3. File formats: root.json</a>
-    <li><a href="#ref-for-threshold①">4.5. File formats: targets.json and delegated target roles</a>
-    <li><a href="#ref-for-threshold②">6.3.1. Update targets metadata</a>
-    <li><a href="#ref-for-threshold③">6.3.2. Update snapshot metadata</a>
-    <li><a href="#ref-for-threshold④">6.3.3. Update timestamp metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="snapshotjson">
-   <b><a href="#snapshotjson">#snapshotjson</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-snapshotjson">4.4. File formats: snapshot.json</a> <a href="#ref-for-snapshotjson①">(2)</a> <a href="#ref-for-snapshotjson②">(3)</a>
-    <li><a href="#ref-for-snapshotjson③">4.6. File formats: timestamp.json</a> <a href="#ref-for-snapshotjson④">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="metafiles">
-   <b><a href="#metafiles">#metafiles</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-metafiles">4.4. File formats: snapshot.json</a>
-    <li><a href="#ref-for-metafiles①">4.5. File formats: targets.json and delegated target roles</a>
-    <li><a href="#ref-for-metafiles②">4.6. File formats: timestamp.json</a> <a href="#ref-for-metafiles③">(2)</a>
-    <li><a href="#ref-for-metafiles④">6.3.2. Update snapshot metadata</a>
-    <li><a href="#ref-for-metafiles⑤">6.3.3. Update timestamp metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="snapshot-metapath">
-   <b><a href="#snapshot-metapath">#snapshot-metapath</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-snapshot-metapath">4.4. File formats: snapshot.json</a> <a href="#ref-for-snapshot-metapath①">(2)</a> <a href="#ref-for-snapshot-metapath②">(3)</a> <a href="#ref-for-snapshot-metapath③">(4)</a> <a href="#ref-for-snapshot-metapath④">(5)</a> <a href="#ref-for-snapshot-metapath⑤">(6)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="metapath-version">
-   <b><a href="#metapath-version">#metapath-version</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-metapath-version">4.4. File formats: snapshot.json</a> <a href="#ref-for-metapath-version①">(2)</a>
-    <li><a href="#ref-for-metapath-version②">6.3.2. Update snapshot metadata</a>
-    <li><a href="#ref-for-metapath-version③">6.3.3. Update timestamp metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="metapath-length">
-   <b><a href="#metapath-length">#metapath-length</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-metapath-length">4.4. File formats: snapshot.json</a>
-    <li><a href="#ref-for-metapath-length①">6.3.2. Update snapshot metadata</a>
-    <li><a href="#ref-for-metapath-length②">6.3.3. Update timestamp metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="metapath-hashes">
-   <b><a href="#metapath-hashes">#metapath-hashes</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-metapath-hashes">4.4. File formats: snapshot.json</a> <a href="#ref-for-metapath-hashes①">(2)</a>
-    <li><a href="#ref-for-metapath-hashes②">6.3.2. Update snapshot metadata</a>
-    <li><a href="#ref-for-metapath-hashes③">6.3.3. Update timestamp metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="hash">
-   <b><a href="#hash">#hash</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-hash">4.5. File formats: targets.json and delegated target roles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="targetsjson">
-   <b><a href="#targetsjson">#targetsjson</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-targetsjson">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-targetsjson①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="targets-obj-targets">
-   <b><a href="#targets-obj-targets">#targets-obj-targets</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-targets-obj-targets">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-targets-obj-targets①">(2)</a> <a href="#ref-for-targets-obj-targets②">(3)</a> <a href="#ref-for-targets-obj-targets③">(4)</a>
-    <li><a href="#ref-for-targets-obj-targets④">6.3.1. Update targets metadata</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="targetpath">
-   <b><a href="#targetpath">#targetpath</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-targetpath">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-targetpath①">(2)</a> <a href="#ref-for-targetpath②">(3)</a> <a href="#ref-for-targetpath③">(4)</a> <a href="#ref-for-targetpath④">(5)</a> <a href="#ref-for-targetpath⑤">(6)</a> <a href="#ref-for-targetpath⑥">(7)</a> <a href="#ref-for-targetpath⑦">(8)</a> <a href="#ref-for-targetpath⑧">(9)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="targets-obj-length">
-   <b><a href="#targets-obj-length">#targets-obj-length</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-targets-obj-length">4.5. File formats: targets.json and delegated target roles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="targets-obj-hashes">
-   <b><a href="#targets-obj-hashes">#targets-obj-hashes</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-targets-obj-hashes">4.5. File formats: targets.json and delegated target roles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="custom">
-   <b><a href="#custom">#custom</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-custom">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-custom①">(2)</a> <a href="#ref-for-custom②">(3)</a> <a href="#ref-for-custom③">(4)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="delegations">
-   <b><a href="#delegations">#delegations</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-delegations">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-delegations①">(2)</a> <a href="#ref-for-delegations②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="rolename">
-   <b><a href="#rolename">#rolename</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-rolename">4.5. File formats: targets.json and delegated target roles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="terminating">
-   <b><a href="#terminating">#terminating</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-terminating">4.5. File formats: targets.json and delegated target roles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="path_hash_prefixes">
-   <b><a href="#path_hash_prefixes">#path_hash_prefixes</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-path_hash_prefixes">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-path_hash_prefixes①">(2)</a> <a href="#ref-for-path_hash_prefixes②">(3)</a> <a href="#ref-for-path_hash_prefixes③">(4)</a> <a href="#ref-for-path_hash_prefixes④">(5)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="hex_digest">
-   <b><a href="#hex_digest">#hex_digest</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-hex_digest">4.5. File formats: targets.json and delegated target roles</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="delegation-role-paths">
-   <b><a href="#delegation-role-paths">#delegation-role-paths</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-delegation-role-paths">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-delegation-role-paths①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="pathpattern">
-   <b><a href="#pathpattern">#pathpattern</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-pathpattern">4.5. File formats: targets.json and delegated target roles</a> <a href="#ref-for-pathpattern①">(2)</a> <a href="#ref-for-pathpattern②">(3)</a> <a href="#ref-for-pathpattern③">(4)</a> <a href="#ref-for-pathpattern④">(5)</a> <a href="#ref-for-pathpattern⑤">(6)</a> <a href="#ref-for-pathpattern⑥">(7)</a> <a href="#ref-for-pathpattern⑦">(8)</a> <a href="#ref-for-pathpattern⑧">(9)</a> <a href="#ref-for-pathpattern⑨">(10)</a>
-    <li><a href="#ref-for-pathpattern①⓪">4.7. File formats: mirrors.json</a> <a href="#ref-for-pathpattern①①">(2)</a> <a href="#ref-for-pathpattern①②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="timestampjson">
-   <b><a href="#timestampjson">#timestampjson</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-timestampjson">4.6. File formats: timestamp.json</a> <a href="#ref-for-timestampjson①">(2)</a> <a href="#ref-for-timestampjson②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="mirrorsjson">
-   <b><a href="#mirrorsjson">#mirrorsjson</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-mirrorsjson">4.7. File formats: mirrors.json</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="urlbase">
-   <b><a href="#urlbase">#urlbase</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-urlbase">4.7. File formats: mirrors.json</a> <a href="#ref-for-urlbase①">(2)</a> <a href="#ref-for-urlbase②">(3)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="mirrors-metapath">
-   <b><a href="#mirrors-metapath">#mirrors-metapath</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-mirrors-metapath">4.7. File formats: mirrors.json</a> <a href="#ref-for-mirrors-metapath①">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="targetspath">
-   <b><a href="#targetspath">#targetspath</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-targetspath">4.7. File formats: mirrors.json</a> <a href="#ref-for-targetspath①">(2)</a>
-   </ul>
-  </aside>
 <script>/* script-dfn-panel */
+"use strict";
+{
+    const dfnsJson = window.dfnsJson || {};
 
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
-    if(target != "dfn-panel") {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
+
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
             }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
         }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
     }
 
-});
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
+
+    function hideAllDfnPanels() {
+        // Turn off any currently "on" or "activated" panels.
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
+    }
+
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn, dfnPanel) {
+        // Find dfn panel
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        });
+
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
+                pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+                event.preventDefault();
+            }
+        })
+    }
+}
 </script>
+<script>/* script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['role-role'] = {"dfnID": "role-role", "url": "#role-role", "dfnText": "ROLE", "refSections": [{"refs": [{"id": "ref-for-role-role"}, {"id": "ref-for-role-role\u2460"}, {"id": "ref-for-role-role\u2461"}], "title": "4.2.1. Object format"}], "external": false};
+window.dfnpanelData['role-keyid'] = {"dfnID": "role-keyid", "url": "#role-keyid", "dfnText": "KEYID", "refSections": [{"refs": [{"id": "ref-for-role-keyid"}], "title": "4.2.1. Object format"}, {"refs": [{"id": "ref-for-role-keyid\u2460"}, {"id": "ref-for-role-keyid\u2461"}, {"id": "ref-for-role-keyid\u2462"}, {"id": "ref-for-role-keyid\u2463"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-role-keyid\u2464"}, {"id": "ref-for-role-keyid\u2465"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['signature'] = {"dfnID": "signature", "url": "#signature", "dfnText": "SIGNATURE", "refSections": [{"refs": [{"id": "ref-for-signature"}], "title": "4.2.1. Object format"}], "external": false};
+window.dfnpanelData['key'] = {"dfnID": "key", "url": "#key", "dfnText": "KEY", "refSections": [{"refs": [{"id": "ref-for-key"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-key\u2460"}, {"id": "ref-for-key\u2461"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['keytype'] = {"dfnID": "keytype", "url": "#keytype", "dfnText": "KEYTYPE", "refSections": [{"refs": [{"id": "ref-for-keytype"}, {"id": "ref-for-keytype\u2460"}, {"id": "ref-for-keytype\u2461"}, {"id": "ref-for-keytype\u2462"}, {"id": "ref-for-keytype\u2463"}, {"id": "ref-for-keytype\u2464"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['scheme'] = {"dfnID": "scheme", "url": "#scheme", "dfnText": "SCHEME", "refSections": [{"refs": [{"id": "ref-for-scheme"}, {"id": "ref-for-scheme\u2460"}, {"id": "ref-for-scheme\u2461"}, {"id": "ref-for-scheme\u2462"}, {"id": "ref-for-scheme\u2463"}, {"id": "ref-for-scheme\u2464"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['keyval'] = {"dfnID": "keyval", "url": "#keyval", "dfnText": "KEYVAL", "refSections": [{"refs": [{"id": "ref-for-keyval"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['scheme-rsassa-pss-sha256'] = {"dfnID": "scheme-rsassa-pss-sha256", "url": "#scheme-rsassa-pss-sha256", "dfnText": "\"rsassa-pss-sha256\"", "refSections": [{"refs": [{"id": "ref-for-scheme-rsassa-pss-sha256"}, {"id": "ref-for-scheme-rsassa-pss-sha256\u2460"}, {"id": "ref-for-scheme-rsassa-pss-sha256\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['scheme-ed25519'] = {"dfnID": "scheme-ed25519", "url": "#scheme-ed25519", "dfnText": "\"ed25519\"", "refSections": [{"refs": [{"id": "ref-for-scheme-ed25519"}, {"id": "ref-for-scheme-ed25519\u2460"}, {"id": "ref-for-scheme-ed25519\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['scheme-ecdsa-sha2-nistp256'] = {"dfnID": "scheme-ecdsa-sha2-nistp256", "url": "#scheme-ecdsa-sha2-nistp256", "dfnText": "\"ecdsa-sha2-nistp256\"", "refSections": [{"refs": [{"id": "ref-for-scheme-ecdsa-sha2-nistp256"}, {"id": "ref-for-scheme-ecdsa-sha2-nistp256\u2460"}, {"id": "ref-for-scheme-ecdsa-sha2-nistp256\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['keytype-rsa'] = {"dfnID": "keytype-rsa", "url": "#keytype-rsa", "dfnText": "\"rsa\"", "refSections": [{"refs": [{"id": "ref-for-keytype-rsa"}, {"id": "ref-for-keytype-rsa\u2460"}, {"id": "ref-for-keytype-rsa\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['keyval-rsa-public'] = {"dfnID": "keyval-rsa-public", "url": "#keyval-rsa-public", "dfnText": "PUBLIC", "refSections": [{"refs": [{"id": "ref-for-keyval-rsa-public"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['keytype-ed25519'] = {"dfnID": "keytype-ed25519", "url": "#keytype-ed25519", "dfnText": "\"ed25519\"", "refSections": [{"refs": [{"id": "ref-for-keytype-ed25519"}, {"id": "ref-for-keytype-ed25519\u2460"}, {"id": "ref-for-keytype-ed25519\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['keyval-ed25519-public'] = {"dfnID": "keyval-ed25519-public", "url": "#keyval-ed25519-public", "dfnText": "PUBLIC", "refSections": [{"refs": [{"id": "ref-for-keyval-ed25519-public"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['keytype-ecdsa'] = {"dfnID": "keytype-ecdsa", "url": "#keytype-ecdsa", "dfnText": "\"ecdsa\"", "refSections": [{"refs": [{"id": "ref-for-keytype-ecdsa"}, {"id": "ref-for-keytype-ecdsa\u2460"}, {"id": "ref-for-keytype-ecdsa\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['keyval-ecdsa-public'] = {"dfnID": "keyval-ecdsa-public", "url": "#keyval-ecdsa-public", "dfnText": "PUBLIC", "refSections": [{"refs": [{"id": "ref-for-keyval-ecdsa-public"}], "title": "4.2.2. Key objects"}], "external": false};
+window.dfnpanelData['date-time'] = {"dfnID": "date-time", "url": "#date-time", "dfnText": "date-time", "refSections": [{"refs": [{"id": "ref-for-date-time"}], "title": "4.2.3. Date-time"}, {"refs": [{"id": "ref-for-date-time\u2460"}], "title": "4.3. File formats: root.json"}], "external": false};
+window.dfnpanelData['rootjson'] = {"dfnID": "rootjson", "url": "#rootjson", "dfnText": "root.json", "refSections": [{"refs": [{"id": "ref-for-rootjson"}, {"id": "ref-for-rootjson\u2460"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-rootjson\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-rootjson\u2462"}, {"id": "ref-for-rootjson\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-rootjson\u2464"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-rootjson\u2465"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
+window.dfnpanelData['spec_version'] = {"dfnID": "spec_version", "url": "#spec_version", "dfnText": "SPEC_VERSION", "refSections": [{"refs": [{"id": "ref-for-spec_version"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-spec_version\u2460"}, {"id": "ref-for-spec_version\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-spec_version\u2462"}, {"id": "ref-for-spec_version\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-spec_version\u2464"}, {"id": "ref-for-spec_version\u2465"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-spec_version\u2466"}, {"id": "ref-for-spec_version\u2467"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
+window.dfnpanelData['consistent_snapshot'] = {"dfnID": "consistent_snapshot", "url": "#consistent_snapshot", "dfnText": "CONSISTENT_SNAPSHOT", "refSections": [{"refs": [{"id": "ref-for-consistent_snapshot"}], "title": "3.1.1. Target files"}, {"refs": [{"id": "ref-for-consistent_snapshot\u2460"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-consistent_snapshot\u2461"}], "title": "6.2.1. Writing consistent snapshots"}], "external": false};
+window.dfnpanelData['role-version'] = {"dfnID": "role-version", "url": "#role-version", "dfnText": "VERSION", "refSections": [{"refs": [{"id": "ref-for-role-version"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-role-version\u2460"}, {"id": "ref-for-role-version\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-role-version\u2462"}, {"id": "ref-for-role-version\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-role-version\u2464"}, {"id": "ref-for-role-version\u2465"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-role-version\u2466"}, {"id": "ref-for-role-version\u2467"}], "title": "4.7. File formats: mirrors.json"}, {"refs": [{"id": "ref-for-role-version\u2468"}, {"id": "ref-for-role-version\u2460\u24ea"}], "title": "6.3.1. Update targets metadata"}, {"refs": [{"id": "ref-for-role-version\u2460\u2460"}, {"id": "ref-for-role-version\u2460\u2461"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-role-version\u2460\u2462"}, {"id": "ref-for-role-version\u2460\u2463"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
+window.dfnpanelData['expires'] = {"dfnID": "expires", "url": "#expires", "dfnText": "EXPIRES", "refSections": [{"refs": [{"id": "ref-for-expires"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-expires\u2460"}, {"id": "ref-for-expires\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-expires\u2462"}, {"id": "ref-for-expires\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-expires\u2464"}, {"id": "ref-for-expires\u2465"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-expires\u2466"}, {"id": "ref-for-expires\u2467"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
+window.dfnpanelData['root-role'] = {"dfnID": "root-role", "url": "#root-role", "dfnText": "ROLE", "refSections": [{"refs": [{"id": "ref-for-root-role"}], "title": "4.3. File formats: root.json"}], "external": false};
+window.dfnpanelData['root-keyid'] = {"dfnID": "root-keyid", "url": "#root-keyid", "dfnText": "KEYID", "refSections": [{"refs": [{"id": "ref-for-root-keyid"}, {"id": "ref-for-root-keyid\u2460"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-root-keyid\u2461"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['threshold'] = {"dfnID": "threshold", "url": "#threshold", "dfnText": "THRESHOLD", "refSections": [{"refs": [{"id": "ref-for-threshold"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-threshold\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-threshold\u2461"}], "title": "6.3.1. Update targets metadata"}, {"refs": [{"id": "ref-for-threshold\u2462"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-threshold\u2463"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
+window.dfnpanelData['snapshotjson'] = {"dfnID": "snapshotjson", "url": "#snapshotjson", "dfnText": "snapshot.json", "refSections": [{"refs": [{"id": "ref-for-snapshotjson"}, {"id": "ref-for-snapshotjson\u2460"}, {"id": "ref-for-snapshotjson\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-snapshotjson\u2462"}, {"id": "ref-for-snapshotjson\u2463"}], "title": "4.6. File formats: timestamp.json"}], "external": false};
+window.dfnpanelData['metafiles'] = {"dfnID": "metafiles", "url": "#metafiles", "dfnText": "METAFILES", "refSections": [{"refs": [{"id": "ref-for-metafiles"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metafiles\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-metafiles\u2461"}, {"id": "ref-for-metafiles\u2462"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-metafiles\u2463"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metafiles\u2464"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
+window.dfnpanelData['snapshot-metapath'] = {"dfnID": "snapshot-metapath", "url": "#snapshot-metapath", "dfnText": "METAPATH", "refSections": [{"refs": [{"id": "ref-for-snapshot-metapath"}, {"id": "ref-for-snapshot-metapath\u2460"}, {"id": "ref-for-snapshot-metapath\u2461"}, {"id": "ref-for-snapshot-metapath\u2462"}, {"id": "ref-for-snapshot-metapath\u2463"}, {"id": "ref-for-snapshot-metapath\u2464"}], "title": "4.4. File formats: snapshot.json"}], "external": false};
+window.dfnpanelData['metapath-version'] = {"dfnID": "metapath-version", "url": "#metapath-version", "dfnText": "VERSION", "refSections": [{"refs": [{"id": "ref-for-metapath-version"}, {"id": "ref-for-metapath-version\u2460"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metapath-version\u2461"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metapath-version\u2462"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
+window.dfnpanelData['metapath-length'] = {"dfnID": "metapath-length", "url": "#metapath-length", "dfnText": "LENGTH", "refSections": [{"refs": [{"id": "ref-for-metapath-length"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metapath-length\u2460"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metapath-length\u2461"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
+window.dfnpanelData['metapath-hashes'] = {"dfnID": "metapath-hashes", "url": "#metapath-hashes", "dfnText": "HASHES", "refSections": [{"refs": [{"id": "ref-for-metapath-hashes"}, {"id": "ref-for-metapath-hashes\u2460"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metapath-hashes\u2461"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metapath-hashes\u2462"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
+window.dfnpanelData['hash'] = {"dfnID": "hash", "url": "#hash", "dfnText": "HASH", "refSections": [{"refs": [{"id": "ref-for-hash"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['targetsjson'] = {"dfnID": "targetsjson", "url": "#targetsjson", "dfnText": "targets.json", "refSections": [{"refs": [{"id": "ref-for-targetsjson"}, {"id": "ref-for-targetsjson\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['targets-obj-targets'] = {"dfnID": "targets-obj-targets", "url": "#targets-obj-targets", "dfnText": "TARGETS", "refSections": [{"refs": [{"id": "ref-for-targets-obj-targets"}, {"id": "ref-for-targets-obj-targets\u2460"}, {"id": "ref-for-targets-obj-targets\u2461"}, {"id": "ref-for-targets-obj-targets\u2462"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-targets-obj-targets\u2463"}], "title": "6.3.1. Update targets metadata"}], "external": false};
+window.dfnpanelData['targetpath'] = {"dfnID": "targetpath", "url": "#targetpath", "dfnText": "TARGETPATH", "refSections": [{"refs": [{"id": "ref-for-targetpath"}, {"id": "ref-for-targetpath\u2460"}, {"id": "ref-for-targetpath\u2461"}, {"id": "ref-for-targetpath\u2462"}, {"id": "ref-for-targetpath\u2463"}, {"id": "ref-for-targetpath\u2464"}, {"id": "ref-for-targetpath\u2465"}, {"id": "ref-for-targetpath\u2466"}, {"id": "ref-for-targetpath\u2467"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['targets-obj-length'] = {"dfnID": "targets-obj-length", "url": "#targets-obj-length", "dfnText": "LENGTH", "refSections": [{"refs": [{"id": "ref-for-targets-obj-length"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['targets-obj-hashes'] = {"dfnID": "targets-obj-hashes", "url": "#targets-obj-hashes", "dfnText": "HASHES", "refSections": [{"refs": [{"id": "ref-for-targets-obj-hashes"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['custom'] = {"dfnID": "custom", "url": "#custom", "dfnText": "CUSTOM", "refSections": [{"refs": [{"id": "ref-for-custom"}, {"id": "ref-for-custom\u2460"}, {"id": "ref-for-custom\u2461"}, {"id": "ref-for-custom\u2462"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['delegations'] = {"dfnID": "delegations", "url": "#delegations", "dfnText": "DELEGATIONS", "refSections": [{"refs": [{"id": "ref-for-delegations"}, {"id": "ref-for-delegations\u2460"}, {"id": "ref-for-delegations\u2461"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['rolename'] = {"dfnID": "rolename", "url": "#rolename", "dfnText": "ROLENAME", "refSections": [{"refs": [{"id": "ref-for-rolename"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['terminating'] = {"dfnID": "terminating", "url": "#terminating", "dfnText": "TERMINATING", "refSections": [{"refs": [{"id": "ref-for-terminating"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['path_hash_prefixes'] = {"dfnID": "path_hash_prefixes", "url": "#path_hash_prefixes", "dfnText": "\"path_hash_prefixes\"", "refSections": [{"refs": [{"id": "ref-for-path_hash_prefixes"}, {"id": "ref-for-path_hash_prefixes\u2460"}, {"id": "ref-for-path_hash_prefixes\u2461"}, {"id": "ref-for-path_hash_prefixes\u2462"}, {"id": "ref-for-path_hash_prefixes\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['hex_digest'] = {"dfnID": "hex_digest", "url": "#hex_digest", "dfnText": "HEX_DIGEST", "refSections": [{"refs": [{"id": "ref-for-hex_digest"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['delegation-role-paths'] = {"dfnID": "delegation-role-paths", "url": "#delegation-role-paths", "dfnText": "\"paths\"", "refSections": [{"refs": [{"id": "ref-for-delegation-role-paths"}, {"id": "ref-for-delegation-role-paths\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
+window.dfnpanelData['pathpattern'] = {"dfnID": "pathpattern", "url": "#pathpattern", "dfnText": "PATHPATTERN", "refSections": [{"refs": [{"id": "ref-for-pathpattern"}, {"id": "ref-for-pathpattern\u2460"}, {"id": "ref-for-pathpattern\u2461"}, {"id": "ref-for-pathpattern\u2462"}, {"id": "ref-for-pathpattern\u2463"}, {"id": "ref-for-pathpattern\u2464"}, {"id": "ref-for-pathpattern\u2465"}, {"id": "ref-for-pathpattern\u2466"}, {"id": "ref-for-pathpattern\u2467"}, {"id": "ref-for-pathpattern\u2468"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-pathpattern\u2460\u24ea"}, {"id": "ref-for-pathpattern\u2460\u2460"}, {"id": "ref-for-pathpattern\u2460\u2461"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
+window.dfnpanelData['timestampjson'] = {"dfnID": "timestampjson", "url": "#timestampjson", "dfnText": "timestamp.json", "refSections": [{"refs": [{"id": "ref-for-timestampjson"}, {"id": "ref-for-timestampjson\u2460"}, {"id": "ref-for-timestampjson\u2461"}], "title": "4.6. File formats: timestamp.json"}], "external": false};
+window.dfnpanelData['mirrorsjson'] = {"dfnID": "mirrorsjson", "url": "#mirrorsjson", "dfnText": "mirrors.json", "refSections": [{"refs": [{"id": "ref-for-mirrorsjson"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
+window.dfnpanelData['urlbase'] = {"dfnID": "urlbase", "url": "#urlbase", "dfnText": "URLBASE", "refSections": [{"refs": [{"id": "ref-for-urlbase"}, {"id": "ref-for-urlbase\u2460"}, {"id": "ref-for-urlbase\u2461"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
+window.dfnpanelData['mirrors-metapath'] = {"dfnID": "mirrors-metapath", "url": "#mirrors-metapath", "dfnText": "METAPATH", "refSections": [{"refs": [{"id": "ref-for-mirrors-metapath"}, {"id": "ref-for-mirrors-metapath\u2460"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
+window.dfnpanelData['targetspath'] = {"dfnID": "targetspath", "url": "#targetspath", "dfnText": "TARGETSPATH", "refSections": [{"refs": [{"id": "ref-for-targetspath"}, {"id": "ref-for-targetspath\u2460"}], "title": "4.7. File formats: mirrors.json"}], "external": false};</script>
+<script>/* script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
+}</script>
