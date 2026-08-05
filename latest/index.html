@@ -1238,14 +1238,15 @@ Possible extra rowspan handling
 			grid-column: 2;
 			width: auto;
 			margin-right: 1rem;
+			border-bottom: 3px solid transparent;
+			margin-bottom: -3px;
 		}
 		#toc .content:hover,
 		#toc .content:focus {
 			background: rgba(75%, 75%, 75%, .25);
 			background: var(--a-hover-bg);
-			border-bottom: 3px solid #054572;
-			border-bottom: 3px solid var(--toclink-underline);
-			margin-bottom: -3px;
+			border-bottom-color: #054572;
+			border-bottom-color: var(--toclink-underline);
 		}
 		#toc li li li .content {
 			margin-left: 1rem;
@@ -1487,9 +1488,10 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 3383f409d, updated Fri Apr 28 15:49:22 2023 -0700" name="generator">
-  <meta content="e76054b9c81477d016ad7bbf0ce8c70469af0f8f" name="document-revision">
-<style>/* style-autolinks */
+  <meta content="Bikeshed version d113b2e81, updated Tue Jun 9 14:57:55 2026 -0700" name="generator">
+  <meta content="743c8a026b6edeaa5e64d247c68a31dc9786b5b2" name="revision">
+  <meta content="dark light" name="color-scheme">
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -1550,9 +1552,16 @@ pre .property::before, pre .property::after {
 [data-link-type=biblio] {
     white-space: pre;
 }
-</style>
-<style>/* style-colors */
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
+</style>
+<style>/* Boilerplate: style-colors */
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
     color-scheme: light dark;
@@ -1660,222 +1669,6 @@ pre .property::before, pre .property::after {
 
     --editedrec-bg: darkorange;
 }
-</style>
-<style>/* style-counters */
-body {
-    counter-reset: example figure issue;
-}
-.issue {
-    counter-increment: issue;
-}
-.issue:not(.no-marker)::before {
-    content: "Issue " counter(issue);
-}
-
-.example {
-    counter-increment: example;
-}
-.example:not(.no-marker)::before {
-    content: "Example " counter(example);
-}
-.invalid.example:not(.no-marker)::before,
-.illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
-}
-
-figcaption {
-    counter-increment: figure;
-}
-figcaption:not(.no-marker)::before {
-    content: "Figure " counter(figure) " ";
-}
-</style>
-<style>/* style-dfn-panel */
-:root {
-    --dfnpanel-bg: #ddd;
-    --dfnpanel-text: var(--text);
-}
-.dfn-panel {
-    position: absolute;
-    z-index: 35;
-    width: 20em;
-    width: 300px;
-    height: auto;
-    max-height: 500px;
-    overflow: auto;
-    padding: 0.5em 0.75em;
-    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
-    background: var(--dfnpanel-bg);
-    color: var(--dfnpanel-text);
-    border: outset 0.2em;
-    white-space: normal; /* in case it's moved into a pre */
-}
-.dfn-panel:not(.on) { display: none; }
-.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
-.dfn-panel > b { display: block; }
-.dfn-panel a { color: var(--dfnpanel-text); }
-.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
-.dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
-.dfn-panel li a {
-    white-space: pre;
-    display: inline-block;
-    max-width: calc(300px - 1.5em - 1em);
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.dfn-panel.activated {
-    display: inline-block;
-    position: fixed;
-    left: .5em;
-    bottom: 2em;
-    margin: 0 auto;
-    max-width: calc(100vw - 1.5em - .4em - .5em);
-    max-height: 30vh;
-}
-
-.dfn-paneled[role="button"] { cursor: pointer; }
-</style>
-<style>/* style-issues */
-a[href].issue-return {
-    float: right;
-    float: inline-end;
-    color: var(--issueheading-text);
-    font-weight: bold;
-    text-decoration: none;
-}
-</style>
-<style>/* style-md-lists */
-/* This is a weird hack for me not yet following the commonmark spec
-   regarding paragraph and lists. */
-[data-md] > :first-child {
-    margin-top: 0;
-}
-[data-md] > :last-child {
-    margin-bottom: 0;
-}
-</style>
-<style>/* style-selflinks */
-
-:root {
-    --selflink-text: white;
-    --selflink-bg: gray;
-    --selflink-hover-text: black;
-}
-.heading, .issue, .note, .example, li, dt {
-    position: relative;
-}
-a.self-link {
-    position: absolute;
-    top: 0;
-    left: calc(-1 * (3.5rem - 26px));
-    width: calc(3.5rem - 26px);
-    height: 2em;
-    text-align: center;
-    border: none;
-    transition: opacity .2s;
-    opacity: .5;
-}
-a.self-link:hover {
-    opacity: 1;
-}
-.heading > a.self-link {
-    font-size: 83%;
-}
-.example > a.self-link,
-.note > a.self-link,
-.issue > a.self-link {
-    /* These blocks are overflow:auto, so positioning outside
-       doesn't work. */
-    left: auto;
-    right: 0;
-}
-li > a.self-link {
-    left: calc(-1 * (3.5rem - 26px) - 2em);
-}
-dfn > a.self-link {
-    top: auto;
-    left: auto;
-    opacity: 0;
-    width: 1.5em;
-    height: 1.5em;
-    background: var(--selflink-bg);
-    color: var(--selflink-text);
-    font-style: normal;
-    transition: opacity .2s, background-color .2s, color .2s;
-}
-dfn:hover > a.self-link {
-    opacity: 1;
-}
-dfn > a.self-link:hover {
-    color: var(--selflink-hover-text);
-}
-
-a.self-link::before            { content: "¶"; }
-.heading > a.self-link::before { content: "§"; }
-dfn > a.self-link::before      { content: "#"; }
-</style>
-<style>/* style-syntax-highlighting */
-
-code.highlight { padding: .1em; border-radius: .3em; }
-pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
-
-.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
-c-[a] { color: #990055 } /* Keyword.Declaration */
-c-[b] { color: #990055 } /* Keyword.Type */
-c-[c] { color: #708090 } /* Comment */
-c-[d] { color: #708090 } /* Comment.Multiline */
-c-[e] { color: #0077aa } /* Name.Attribute */
-c-[f] { color: #669900 } /* Name.Tag */
-c-[g] { color: #222222 } /* Name.Variable */
-c-[k] { color: #990055 } /* Keyword */
-c-[l] { color: #000000 } /* Literal */
-c-[m] { color: #000000 } /* Literal.Number */
-c-[n] { color: #0077aa } /* Name */
-c-[o] { color: #999999 } /* Operator */
-c-[p] { color: #999999 } /* Punctuation */
-c-[s] { color: #a67f59 } /* Literal.String */
-c-[t] { color: #a67f59 } /* Literal.String.Single */
-c-[u] { color: #a67f59 } /* Literal.String.Double */
-c-[cp] { color: #708090 } /* Comment.Preproc */
-c-[c1] { color: #708090 } /* Comment.Single */
-c-[cs] { color: #708090 } /* Comment.Special */
-c-[kc] { color: #990055 } /* Keyword.Constant */
-c-[kn] { color: #990055 } /* Keyword.Namespace */
-c-[kp] { color: #990055 } /* Keyword.Pseudo */
-c-[kr] { color: #990055 } /* Keyword.Reserved */
-c-[ld] { color: #000000 } /* Literal.Date */
-c-[nc] { color: #0077aa } /* Name.Class */
-c-[no] { color: #0077aa } /* Name.Constant */
-c-[nd] { color: #0077aa } /* Name.Decorator */
-c-[ni] { color: #0077aa } /* Name.Entity */
-c-[ne] { color: #0077aa } /* Name.Exception */
-c-[nf] { color: #0077aa } /* Name.Function */
-c-[nl] { color: #0077aa } /* Name.Label */
-c-[nn] { color: #0077aa } /* Name.Namespace */
-c-[py] { color: #0077aa } /* Name.Property */
-c-[ow] { color: #999999 } /* Operator.Word */
-c-[mb] { color: #000000 } /* Literal.Number.Bin */
-c-[mf] { color: #000000 } /* Literal.Number.Float */
-c-[mh] { color: #000000 } /* Literal.Number.Hex */
-c-[mi] { color: #000000 } /* Literal.Number.Integer */
-c-[mo] { color: #000000 } /* Literal.Number.Oct */
-c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
-c-[sc] { color: #a67f59 } /* Literal.String.Char */
-c-[sd] { color: #a67f59 } /* Literal.String.Doc */
-c-[se] { color: #a67f59 } /* Literal.String.Escape */
-c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
-c-[si] { color: #a67f59 } /* Literal.String.Interpol */
-c-[sx] { color: #a67f59 } /* Literal.String.Other */
-c-[sr] { color: #a67f59 } /* Literal.String.Regex */
-c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
-c-[vc] { color: #0077aa } /* Name.Variable.Class */
-c-[vg] { color: #0077aa } /* Name.Variable.Global */
-c-[vi] { color: #0077aa } /* Name.Variable.Instance */
-c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
-</style>
-<style>/* style-darkmode */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -1988,14 +1781,335 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
        which is quite common in practice... */
     img { background: white; }
 }
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue table;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
+}
 
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example " counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+
+figure.table figcaption {
+    counter-increment: table;
+}
+figure.table figcaption:not(.no-marker)::before {
+    content: "Table " counter(table) " ";
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+    --dfnpanel-target-bg: #ffc;
+    --dfnpanel-target-outline: orange;
+}
 @media (prefers-color-scheme: dark) {
     :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
+        --dfnpanel-bg: #222;
+        --dfnpanel-text: var(--text);
+        --dfnpanel-target-bg: #333;
+        --dfnpanel-target-outline: silver;
     }
 }
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel a:focus {
+    outline: 5px auto Highlight;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: 8px;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+    transition: left 1s ease-out, bottom 1s ease-out;
+}
+
+.dfn-panel .link-item:hover {
+    text-decoration: underline;
+}
+.dfn-panel .link-item .copy-icon {
+    opacity: 0;
+}
+.dfn-panel .link-item:hover .copy-icon,
+.dfn-panel .link-item .copy-icon:focus {
+    opacity: 1;
+}
+
+.dfn-panel .copy-icon {
+    display: inline-block;
+    margin-right: 0.5em;
+    width: 0.85em;
+    height: 1em;
+    border-radius: 3px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.dfn-panel .copy-icon .icon {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dfn-panel .copy-icon .icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    background-color: #ccc;
+    opacity: 0.25;
+    transform: translate(3px, -3px);
+}
+
+.dfn-panel .copy-icon:active .icon::before {
+    opacity: 1;
+}
+
+.dfn-paneled[role="button"] { cursor: help; }
+
+.highlighted {
+    animation: target-fade 3s;
+}
+
+@keyframes target-fade {
+    from {
+        background-color: var(--dfnpanel-target-bg);
+        outline: 5px solid var(--dfnpanel-target-outline);
+    }
+    to {
+        color: var(--a-normal-text);
+        background-color: transparent;
+        outline: transparent;
+    }
+}
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-ref-hints */
+:root {
+    --ref-hint-bg: #ddd;
+    --ref-hint-text: var(--text);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ref-hint-bg: #222;
+        --ref-hint-text: var(--text);
+    }
+}
+
+.ref-hint {
+    display: inline-block;
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.5em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--ref-hint-bg);
+    color: var(--ref-hint-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+
+.ref-hint * { margin: 0; padding: 0; text-indent: 0; }
+
+.ref-hint ul { padding: 0 0 0 1em; list-style: none; }
+</style>
+<style>/* Boilerplate: style-selflinks */
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
+</style>
+<style>/* Boilerplate: style-syntax-highlighting */
+code.highlight { padding: .1em; border-radius: .3em; }
+pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em 0; overflow: auto; border-radius: 0; }
+
+.highlight:not(.idl) { background: rgba(0, 0, 0, .03); }
+c-[a] { color: #990055 } /* Keyword.Declaration */
+c-[b] { color: #990055 } /* Keyword.Type */
+c-[c] { color: #708090 } /* Comment */
+c-[d] { color: #708090 } /* Comment.Multiline */
+c-[e] { color: #0077aa } /* Name.Attribute */
+c-[f] { color: #669900 } /* Name.Tag */
+c-[g] { color: #222222 } /* Name.Variable */
+c-[k] { color: #990055 } /* Keyword */
+c-[l] { color: #000000 } /* Literal */
+c-[m] { color: #000000 } /* Literal.Number */
+c-[n] { color: #0077aa } /* Name */
+c-[o] { color: #999999 } /* Operator */
+c-[p] { color: #999999 } /* Punctuation */
+c-[s] { color: #a67f59 } /* Literal.String */
+c-[t] { color: #a67f59 } /* Literal.String.Single */
+c-[u] { color: #a67f59 } /* Literal.String.Double */
+c-[cp] { color: #708090 } /* Comment.Preproc */
+c-[c1] { color: #708090 } /* Comment.Single */
+c-[cs] { color: #708090 } /* Comment.Special */
+c-[kc] { color: #990055 } /* Keyword.Constant */
+c-[kn] { color: #990055 } /* Keyword.Namespace */
+c-[kp] { color: #990055 } /* Keyword.Pseudo */
+c-[kr] { color: #990055 } /* Keyword.Reserved */
+c-[ld] { color: #000000 } /* Literal.Date */
+c-[nc] { color: #0077aa } /* Name.Class */
+c-[no] { color: #0077aa } /* Name.Constant */
+c-[nd] { color: #0077aa } /* Name.Decorator */
+c-[ni] { color: #0077aa } /* Name.Entity */
+c-[ne] { color: #0077aa } /* Name.Exception */
+c-[nf] { color: #0077aa } /* Name.Function */
+c-[nl] { color: #0077aa } /* Name.Label */
+c-[nn] { color: #0077aa } /* Name.Namespace */
+c-[py] { color: #0077aa } /* Name.Property */
+c-[ow] { color: #999999 } /* Operator.Word */
+c-[mb] { color: #000000 } /* Literal.Number.Bin */
+c-[mf] { color: #000000 } /* Literal.Number.Float */
+c-[mh] { color: #000000 } /* Literal.Number.Hex */
+c-[mi] { color: #000000 } /* Literal.Number.Integer */
+c-[mo] { color: #000000 } /* Literal.Number.Oct */
+c-[sb] { color: #a67f59 } /* Literal.String.Backtick */
+c-[sc] { color: #a67f59 } /* Literal.String.Char */
+c-[sd] { color: #a67f59 } /* Literal.String.Doc */
+c-[se] { color: #a67f59 } /* Literal.String.Escape */
+c-[sh] { color: #a67f59 } /* Literal.String.Heredoc */
+c-[si] { color: #a67f59 } /* Literal.String.Interpol */
+c-[sx] { color: #a67f59 } /* Literal.String.Other */
+c-[sr] { color: #a67f59 } /* Literal.String.Regex */
+c-[ss] { color: #a67f59 } /* Literal.String.Symbol */
+c-[vc] { color: #0077aa } /* Name.Variable.Class */
+c-[vg] { color: #0077aa } /* Name.Variable.Global */
+c-[vi] { color: #0077aa } /* Name.Variable.Instance */
+c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
 
 @media (prefers-color-scheme: dark) {
     .highlight:not(.idl) { background: rgba(255, 255, 255, .05); }
@@ -2059,12 +2173,37 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     c-[vm] { color: #cb4b16 } /* Name.Variable.Magic */
     c-[il] { color: #657b83 } /* Literal.Number.Integer.Long */
 }
+
+@media print {
+    /* Darken colors for print that would otherwise print too faintly */
+    c-[c]  { color: #555555 } /* Comment */
+    c-[d]  { color: #555555 } /* Comment.Multiline */
+    c-[cp] { color: #555555 } /* Comment.Preproc */
+    c-[c1] { color: #555555 } /* Comment.Single */
+    c-[cs] { color: #555555 } /* Comment.Special */
+    c-[o]  { color: #222222 } /* Operator */
+    c-[p]  { color: #222222 } /* Punctuation */
+    c-[ow] { color: #222222 } /* Operator.Word */
+    c-[s]  { color: #664400 } /* Literal.String */
+    c-[t]  { color: #664400 } /* Literal.String.Single */
+    c-[u]  { color: #664400 } /* Literal.String.Double */
+    c-[sb] { color: #664400 } /* Literal.String.Backtick */
+    c-[sc] { color: #664400 } /* Literal.String.Char */
+    c-[sd] { color: #664400 } /* Literal.String.Doc */
+    c-[se] { color: #664400 } /* Literal.String.Escape */
+    c-[sh] { color: #664400 } /* Literal.String.Heredoc */
+    c-[si] { color: #664400 } /* Literal.String.Interpol */
+    c-[sx] { color: #664400 } /* Literal.String.Other */
+    c-[sr] { color: #664400 } /* Literal.String.Regex */
+    c-[ss] { color: #664400 } /* Literal.String.Symbol */
+}
 </style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"></p>
-   <h1 class="p-name no-ref" id="title">The Update Framework Specification</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content"> Version: 1.0.32 <br> Last modified: <time class="dt-updated" datetime="2023-03-02">2 March 2023</time></span></h2>
+   <h1 class="no-ref p-name" id="title">The Update Framework Specification</h1>
+   <h2 class="heading no-num no-ref no-toc settled" id="subtitle"><span class="content"> Version: 1.0.35 <br>
+    Last modified: <time class="dt-updated" datetime="2026-07-15">15 July 2026</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>Feedback:
@@ -2072,11 +2211,11 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <dt>Issue Tracking:
      <dd><a href="https://github.com/theupdateframework/specification/issues/">GitHub</a>
      <dt class="editor">Editors:
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Justin Cappos</span> (<span class="p-org org">NYU</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Trishank Karthik Kuppusamy</span> (<span class="p-org org">Datadog</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Joshua Lock</span> (<span class="p-org org">Verizon</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Marina Moore</span> (<span class="p-org org">NYU</span>)
-     <dd class="editor p-author h-card vcard"><span class="p-name fn">Lukas Pühringer</span> (<span class="p-org org">NYU</span>)
+     <dd class="editor h-card p-author vcard"><span class="fn p-name">Justin Cappos</span> (<span class="org p-org">NYU</span>)
+     <dd class="editor h-card p-author vcard"><span class="fn p-name">Trishank Karthik Kuppusamy</span> (<span class="org p-org">Apple</span>)
+     <dd class="editor h-card p-author vcard"><span class="fn p-name">Joshua Lock</span> (<span class="org p-org">Verizon</span>)
+     <dd class="editor h-card p-author vcard"><span class="fn p-name">Marina Moore</span> (<span class="org p-org">Edera</span>)
+     <dd class="editor h-card p-author vcard"><span class="fn p-name">Lukas Pühringer</span> (<span class="org p-org">Eclipse</span>)
     </dl>
    </div>
    <div data-fill-with="warning"></div>
@@ -2084,8 +2223,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
-   <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
-   <ol class="toc" role="directory">
+   <h2 class="no-num no-ref no-toc" id="contents">Table of Contents</h2>
+   <ol class="toc">
     <li>
      <a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
      <ol class="toc">
@@ -2192,7 +2331,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <main>
    <p class="note" role="note"><span class="marker">Note:</span> We strive to make the specification easy to implement, so if you come
 across any inconsistencies or experience any difficulty, do let us know by
-sending an email to our <a href="https://groups.google.com/forum/?fromgroups#!forum/theupdateframework">mailing list</a>,
+messaging us on the <a href="https://communityinviter.com/apps/cloud-native/cncf">CNCF slack</a> channel #tuf,
 or by reporting an issue in the <a href="https://github.com/theupdateframework/specification/issues">specification repo</a>.</p>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
    <h3 class="heading settled" data-level="1.1" id="scope"><span class="secno">1.1. </span><span class="content">Scope</span><a class="self-link" href="#scope"></a></h3>
@@ -2218,14 +2357,18 @@ is generally true even for implementations that have tried to be secure.</p>
    <p>Work on TUF began in late 2009.  The core ideas are based off of previous
 work done by Justin Cappos and Justin Samuel that <a href="https://theupdateframework.io/papers/attacks-on-package-managers-ccs2008.pdf">identified security flaws
 in all popular Linux package managers</a>.
-More information and current versions of this document can be found at <a href="https://theupdateframework.io/">https://theupdateframework.io/</a></p>
+More information and current versions of this document can be found at
+<a href="https://theupdateframework.io/">https://theupdateframework.io/</a></p>
    <p>The <a href="https://www.geni.net/">Global Environment for Network Innovations</a> (GENI)
 and the <a href="https://www.nsf.gov/">National Science Foundation</a> (NSF) have
 provided support for the development of TUF.</p>
-   <p>TUF’s reference implementation is based on prior work on <a href="https://www.torproject.org/">Thandy</a>, the application
+   <p>TUF’s reference implementation is based on prior work on
+<a href="https://www.torproject.org/">Thandy</a>, the application
 updater for Tor. Its design and this spec
 also came from ideas jointly developed in discussion with Thandy’s authors.
-The Thandy spec can be found at <a href="https://gitweb.torproject.org/thandy.git/tree/specs/thandy-spec.txt">https://gitweb.torproject.org/thandy.git/tree/specs/thandy-spec.txt </a></p>
+The Thandy spec can be found at
+<a href="https://gitweb.torproject.org/thandy.git/tree/specs/thandy-spec.txt">https://gitweb.torproject.org/thandy.git/tree/specs/thandy-spec.txt
+</a></p>
    <p>Whereas Thandy is an application updater for an individual software project,
 TUF aims to provide a way to secure any software update system. We’re very
 grateful to the Tor Project and the Thandy developers for the early discussion
@@ -2298,15 +2441,15 @@ when a client is unable to update.</p>
 they want on the client system. That is, an attacker cannot provide
 arbitrary files in response to download requests.</p>
     <li data-md>
-     <p><strong>Endless data attacks.</strong> An attacker cannot respond to client
+     <p><strong>Endless data attacks.</strong>  An attacker cannot respond to client
 requests with huge amounts of data (extremely large files) that interfere
 with the client’s system.</p>
     <li data-md>
-     <p><strong>Extraneous dependencies attacks.</strong> An attacker cannot cause clients
+     <p><strong>Extraneous dependencies attacks.</strong>  An attacker cannot cause clients
 to download or install software dependencies that are not the intended
 dependencies.</p>
     <li data-md>
-     <p><strong>Fast-forward attacks.</strong> An attacker cannot arbitrarily increase the
+     <p><strong>Fast-forward attacks.</strong>  An attacker cannot arbitrarily increase the
 version numbers of metadata files, listed in the snapshot metadata, well
 beyond the current value and thus tricking a software update system into
 thinking any subsequent updates are trying to rollback the package to a
@@ -2316,18 +2459,18 @@ number so high that the system would never be able to match it with the
 one in the snapshot metadata, and thus new updates could never be
 downloaded.</p>
     <li data-md>
-     <p><strong>Indefinite freeze attacks.</strong> An attacker cannot respond to client
+     <p><strong>Indefinite freeze attacks.</strong>  An attacker cannot respond to client
 requests with the same, outdated metadata without the client being aware
 of the problem.</p>
     <li data-md>
-     <p><strong>Malicious mirrors preventing updates.</strong> A repository mirror cannot
+     <p><strong>Malicious mirrors preventing updates.</strong>  A repository mirror cannot
 prevent updates from good mirrors.</p>
     <li data-md>
-     <p><strong>Mix-and-match attacks.</strong> An attacker cannot trick clients into using
+     <p><strong>Mix-and-match attacks.</strong>  An attacker cannot trick clients into using
 a combination of metadata that never existed together on the repository
 at the same time.</p>
     <li data-md>
-     <p><strong>Rollback attacks.</strong> An attacker cannot trick clients into installing
+     <p><strong>Rollback attacks.</strong>  An attacker cannot trick clients into installing
 software that is older than that which the client previously knew to be
 available.</p>
     <li data-md>
@@ -2337,7 +2480,7 @@ compromise clients.  This includes compromising a single online key (such
 as only being protected by SSL) or a single offline key (such as most
 software update systems use to sign files).</p>
     <li data-md>
-     <p><strong>Wrong software installation.</strong> An attacker cannot provide a file
+     <p><strong>Wrong software installation.</strong>  An attacker cannot provide a file
 (trusted or untrusted) that is not the one the client wanted.</p>
    </ul>
    <h4 class="heading settled" data-level="1.5.3" id="goals-for-pki"><span class="secno">1.5.3. </span><span class="content">Goals for PKI (Public key infrastructure)</span><a class="self-link" href="#goals-for-pki"></a></h4>
@@ -2444,7 +2587,8 @@ configured repository.</p>
    <p>The root role’s private keys MUST be kept very secure and thus should be
 kept offline.  If less than a threshold of Root keys are compromised, the
 repository should revoke trust on the compromised keys.  This can be
-accomplished with a normal rotation of root keys, covered in section <a href="#key-management-and-migration">§ 6.1 Key management and migration</a>. If a threshold of root keys is compromised,
+accomplished with a normal rotation of root keys, covered in section
+<a href="#key-management-and-migration">§ 6.1 Key management and migration</a>. If a threshold of root keys is compromised,
 the Root keys should be updated out-of-band, however, the threshold should
 be chosen so that this is extremely unlikely.  In the unfortunate event that
 a threshold of keys are compromised, it is safest to assume that attackers
@@ -2509,7 +2653,8 @@ implementations. These details do not affect the security of an
 implementation, and so leaving them out of the specification allows this
 document to support a greater variety of users. TUF implementers are
 encouraged to document the wireline format and design decisions used in
-their implementation as a POUF document. POUFs, as described in <a href="https://github.com/theupdateframework/taps/blob/master/tap11.md">TAP 11</a>,
+their implementation as a POUF document. POUFs, as described in
+<a href="https://github.com/theupdateframework/taps/blob/master/tap11.md">TAP 11</a>,
 allow different adopters to create interoperable implementations of TUF.
 POUFs should follow the layout described in TAP 11 and may be made
 publicly available in the <a href="https://github.com/theupdateframework/taps/tree/master/POUFs">TAP directory</a>.</p>
@@ -2545,7 +2690,8 @@ a repository are not specified by the framework.  The names of these files
 and directories are completely at the discretion of the application using
 the framework.</p>
    <p>However, when <a data-link-type="dfn" href="#consistent_snapshot" id="ref-for-consistent_snapshot">CONSISTENT_SNAPSHOT</a>s are in use, there is a RECOMMENDED
-mechanism for naming target files on the repository (see <a href="#consistent-snapshots">§ 6.2 Consistent snapshots</a>). If an application using the framework does not
+mechanism for naming target files on the repository (see
+<a href="#consistent-snapshots">§ 6.2 Consistent snapshots</a>). If an application using the framework does not
 follow these recommendations, but wishes to support self-contained consistent
 snapshots the application MUST ensure that target files are persisted in a way
 where each target file can be uniquely and consistently addressed.</p>
@@ -2614,7 +2760,7 @@ deterministically by default so that signatures can be accurately verified.
 The chosen data format should be documented in the POUF of the implementation.
 The examples in this document use a subset of the JSON object format, with
 floating-point numbers omitted.  When calculating the digest of an
-object, we use the "canonical JSON" subdialect as described at <a href="http://wiki.laptop.org/go/Canonical_JSON">Canonical JSON</a>.</p>
+object, we use the "canonical JSON" subdialect as described at <a href="https://web.archive.org/web/20251209150702/http://wiki.laptop.org/go/Canonical_JSON">Canonical JSON</a>.</p>
    <h3 class="heading settled" data-level="4.2" id="file-formats-general-principles"><span class="secno">4.2. </span><span class="content">File formats: general principles</span><a class="self-link" href="#file-formats-general-principles"></a></h3>
    <h4 class="heading settled" data-level="4.2.1" id="file-formats-object-format"><span class="secno">4.2.1. </span><span class="content">Object format</span><a class="self-link" href="#file-formats-object-format"></a></h4>
    <p>All signed metadata objects have the format:</p>
@@ -2640,6 +2786,11 @@ signatures with the same keyid are not allowed.</p>
     <dd data-md>
      <p>A hex-encoded signature of the canonical form of the metadata for <a data-link-type="dfn" href="#role-role" id="ref-for-role-role②">ROLE</a>.</p>
    </dl>
+   <p class="note" role="note"><span class="marker">Note:</span> The "signatures" list SHOULD only contain one <a data-link-type="dfn" href="#signature" id="ref-for-signature①">SIGNATURE</a> per
+<a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid①">KEYID</a>. This helps prevent multiple signatures by the same key
+being counted erroneously towards the minimum <a data-link-type="dfn" href="#threshold" id="ref-for-threshold">THRESHOLD</a> indicating valid
+metadata. <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①">THRESHOLD</a> counting is further described in the relevant steps
+of <a href="#detailed-client-workflow">§ 5 Detailed client workflow</a>.</p>
    <h4 class="heading settled" data-level="4.2.2" id="file-formats-keys"><span class="secno">4.2.2. </span><span class="content">Key objects</span><a class="self-link" href="#file-formats-keys"></a></h4>
    <p>All <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="key">KEY</dfn> objects have the format:</p>
 <pre class="highlight"><c- p>{</c->
@@ -2659,8 +2810,13 @@ signatures with the same keyid are not allowed.</p>
     <dd data-md>
      <p>A dictionary containing the public portion of the key.</p>
    </dl>
-   <p>The reference implementation defines three <a data-link-type="dfn" href="#keytype" id="ref-for-keytype①">KEYTYPE</a>s: <a data-link-type="dfn" href="#keytype-rsa" id="ref-for-keytype-rsa①">"rsa"</a>, <a data-link-type="dfn" href="#keytype-ed25519" id="ref-for-keytype-ed25519①">"ed25519"</a>, and <a data-link-type="dfn" href="#keytype-ecdsa" id="ref-for-keytype-ecdsa①">"ecdsa"</a>; and three signature <a data-link-type="dfn" href="#scheme" id="ref-for-scheme①">SCHEME</a>s: <a data-link-type="dfn" href="#scheme-rsassa-pss-sha256" id="ref-for-scheme-rsassa-pss-sha256①">"rsassa-pss-sha256"</a>, <a data-link-type="dfn" href="#scheme-ed25519" id="ref-for-scheme-ed25519①">"ed25519"</a>, and <a data-link-type="dfn" href="#scheme-ecdsa-sha2-nistp256" id="ref-for-scheme-ecdsa-sha2-nistp256①">"ecdsa-sha2-nistp256"</a>. These are documented below.</p>
-   <p>TUF is not restricted to any particular signature <a data-link-type="dfn" href="#scheme" id="ref-for-scheme②">SCHEME</a>s, <a data-link-type="dfn" href="#keytype" id="ref-for-keytype②">KEYTYPE</a>s, or cryptographic library. Adopters can define and use any
+   <p>The reference implementation defines three <a data-link-type="dfn" href="#keytype" id="ref-for-keytype①">KEYTYPE</a>s:
+<a data-link-type="dfn" href="#keytype-rsa" id="ref-for-keytype-rsa①">"rsa"</a>, <a data-link-type="dfn" href="#keytype-ed25519" id="ref-for-keytype-ed25519①">"ed25519"</a>, and
+<a data-link-type="dfn" href="#keytype-ecdsa" id="ref-for-keytype-ecdsa①">"ecdsa"</a>; and three signature <a data-link-type="dfn" href="#scheme" id="ref-for-scheme①">SCHEME</a>s:
+<a data-link-type="dfn" href="#scheme-rsassa-pss-sha256" id="ref-for-scheme-rsassa-pss-sha256①">"rsassa-pss-sha256"</a>, <a data-link-type="dfn" href="#scheme-ed25519" id="ref-for-scheme-ed25519①">"ed25519"</a>, and
+<a data-link-type="dfn" href="#scheme-ecdsa-sha2-nistp256" id="ref-for-scheme-ecdsa-sha2-nistp256①">"ecdsa-sha2-nistp256"</a>. These are documented below.</p>
+   <p>TUF is not restricted to any particular signature <a data-link-type="dfn" href="#scheme" id="ref-for-scheme②">SCHEME</a>s,
+<a data-link-type="dfn" href="#keytype" id="ref-for-keytype②">KEYTYPE</a>s, or cryptographic library. Adopters can define and use any
 particular <a data-link-type="dfn" href="#keytype" id="ref-for-keytype③">KEYTYPE</a>, signing <a data-link-type="dfn" href="#scheme" id="ref-for-scheme③">SCHEME</a>, and cryptographic library.</p>
    <p>Implementing the <a data-link-type="dfn" href="#keytype" id="ref-for-keytype④">KEYTYPE</a>s and <a data-link-type="dfn" href="#scheme" id="ref-for-scheme④">SCHEME</a>s below is RECOMMENDED for
 all implementations, as this enables interoperability. Conversely,
@@ -2671,14 +2827,18 @@ across implementations.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="scheme" data-dfn-type="dfn" data-noexport id="scheme-rsassa-pss-sha256">"rsassa-pss-sha256"</dfn>
     <dd data-md>
      <p>RSA Probabilistic signature scheme with appendix. The underlying hash
-function is SHA256. <a href="https://tools.ietf.org/html/rfc3447#page-29">https://tools.ietf.org/html/rfc3447#page-29 </a></p>
+function is SHA256. <a href="https://tools.ietf.org/html/rfc3447#page-29">https://tools.ietf.org/html/rfc3447#page-29
+</a></p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="scheme" data-dfn-type="dfn" data-noexport id="scheme-ed25519">"ed25519"</dfn>
     <dd data-md>
-     <p>Elliptic curve digital signature algorithm based on Twisted Edwards curves. <a href="https://ed25519.cr.yp.to/">https://ed25519.cr.yp.to/</a></p>
+     <p>Elliptic curve digital signature algorithm based on Twisted Edwards curves.
+<a href="https://ed25519.cr.yp.to/">https://ed25519.cr.yp.to/</a></p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="scheme" data-dfn-type="dfn" data-noexport id="scheme-ecdsa-sha2-nistp256">"ecdsa-sha2-nistp256"</dfn>
     <dd data-md>
      <p>Elliptic Curve Digital Signature Algorithm with NIST P-256 curve signing
-and SHA-256 hashing. <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm </a></p>
+and SHA-256 hashing.
+<a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm">https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
+</a></p>
    </dl>
    <p>The <dfn class="dfn-paneled" data-dfn-for="keytype" data-dfn-type="dfn" data-noexport id="keytype-rsa">"rsa"</dfn> format is:</p>
 <pre class="highlight"><c- p>{</c->
@@ -2750,7 +2910,7 @@ this file.</p>
         <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid①">KEYID</a><c- p>,</c->
         ...
       <c- p>]</c-> <c- p>,</c->
-      <c- f>"threshold"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#threshold" id="ref-for-threshold">THRESHOLD</a>
+      <c- f>"threshold"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②">THRESHOLD</a>
     <c- p>},</c->
     ...
   <c- p>}</c->
@@ -2770,7 +2930,8 @@ number exactly, or perhaps only the major version number (major.minor.fix).</p>
     <dd data-md>
      <p>An OPTIONAL boolean indicating whether the repository supports
 consistent snapshots. This field is OPTIONAL for backwards compatibility with
-old metadata. New implementations SHOULD include it. Section <a href="#consistent-snapshots">§ 6.2 Consistent snapshots</a> goes into more detail on the consequences of
+old metadata. New implementations SHOULD include it. Section
+<a href="#consistent-snapshots">§ 6.2 Consistent snapshots</a> goes into more detail on the consequences of
 enabling this setting on a repository.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="role" data-dfn-type="dfn" data-noexport id="role-version">VERSION</dfn>
     <dd data-md>
@@ -2790,17 +2951,20 @@ specified, the mirror list will not need to be signed if mirror lists are
 being used.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="root" data-dfn-type="dfn" data-noexport id="root-keyid">KEYID</dfn>
     <dd data-md>
-     <p>A <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid①">KEYID</a>, which MUST be correct for the specified KEY.
-Clients MUST calculate each <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid②">KEYID</a> to verify this is
-correct for the associated key.  Clients MUST ensure that for any <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid③">KEYID</a> represented in this key list and in other files,
-only one unique key has that <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid④">KEYID</a>.</p>
-    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="threshold">THRESHOLD</dfn>
-    <dd data-md>
-     <p>An integer number of keys of that role whose signatures are required in
-order to consider a file as being properly signed by that role.</p>
+     <p>A <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid②">KEYID</a>, which MUST be correct for the specified KEY.
+Clients MUST calculate each <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid③">KEYID</a> to verify this is
+correct for the associated key.  Clients MUST ensure that for any
+<a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid④">KEYID</a> represented in this key list and in other files,
+only one unique key has that <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑤">KEYID</a>.</p>
+     <p>As before the THRESHOLD must be a positive integer number of keys (>=1) of
+that role whose signatures are required in order to consider a file as being 
+properly signed by that role.</p>
    </dl>
    <div class="example" id="example-root.json">
-    <a class="self-link" href="#example-root.json"></a> A <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson①">root.json</a> example file: 
+    <a class="self-link" href="#example-root.json"></a>
+A <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson①">root.json</a> example file:
+
+
 <pre class="highlight"><c- p>{</c->
   <c- f>"signatures"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
@@ -2908,10 +3072,12 @@ the metadata base URL.  For <a data-link-type="dfn" href="#snapshotjson" id="ref
 metadata and delegated targets metadata.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="metapath" data-dfn-type="dfn" data-noexport id="metapath-version">VERSION</dfn>
     <dd data-md>
-     <p>An integer version number as shown in the metadata file at <a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath①">METAPATH</a>.</p>
+     <p>An integer version number as shown in the metadata file at
+<a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath①">METAPATH</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="metapath" data-dfn-type="dfn" data-noexport id="metapath-length">LENGTH</dfn>
     <dd data-md>
-     <p>An integer length in bytes of the metadata file at <a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath②">METAPATH</a>. It is OPTIONAL and can be omitted to reduce
+     <p>An integer length in bytes of the metadata file at
+<a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath②">METAPATH</a>. It is OPTIONAL and can be omitted to reduce
 the snapshot metadata file size.  In that case the client MUST use a custom
 download limit for the listed metadata.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="metapath" data-dfn-type="dfn" data-noexport id="metapath-hashes">HASHES</dfn>
@@ -2919,13 +3085,18 @@ download limit for the listed metadata.</p>
      <p>A dictionary that specifies one or more hashes of the metadata
 file at <a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath③">METAPATH</a>, with the cryptographic hash
 function as key and the value as <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="hash">HASH</dfn>, the hexdigest of the
-cryptographic function computed on the metadata file at <a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath④">METAPATH</a>.  For example: <code>{ "sha256": HASH, ... }</code>. <a data-link-type="dfn" href="#metapath-hashes" id="ref-for-metapath-hashes①">HASHES</a> is OPTIONAL and can be omitted to reduce the
+cryptographic function computed on the metadata file at
+<a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath④">METAPATH</a>.  For example: <code>{ "sha256": HASH, ... }</code>.
+<a data-link-type="dfn" href="#metapath-hashes" id="ref-for-metapath-hashes①">HASHES</a> is OPTIONAL and can be omitted to reduce the
 snapshot metadata file size.  In that case the repository MUST guarantee
 that <a data-link-type="dfn" href="#metapath-version" id="ref-for-metapath-version①">VERSION</a> alone unambiguously identifies
 the metadata at <a data-link-type="dfn" href="#snapshot-metapath" id="ref-for-snapshot-metapath⑤">METAPATH</a>.</p>
    </dl>
    <div class="example" id="example-snapshot.json">
-    <a class="self-link" href="#example-snapshot.json"></a> A <a data-link-type="dfn" href="#snapshotjson" id="ref-for-snapshotjson②">snapshot.json</a> example file: 
+    <a class="self-link" href="#example-snapshot.json"></a>
+A <a data-link-type="dfn" href="#snapshotjson" id="ref-for-snapshotjson②">snapshot.json</a> example file:
+
+
 <pre class="highlight"><c- p>{</c->
   <c- f>"signatures"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
@@ -2996,36 +3167,41 @@ separator and does not start with a directory separator. The recommendation
 for <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath③">TARGETPATH</a> aligns with the <a href="https://url.spec.whatwg.org/#path-relative-url-string">"path-relative-URL string"
 definition</a> in the
 WHATWG URL specification.</p>
-     <p>It is allowed to have a <a data-link-type="dfn" href="#targets-obj-targets" id="ref-for-targets-obj-targets③">TARGETS</a> object with no <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath④">TARGETPATH</a> elements.  This can be used to indicate that no target
+     <p>It is allowed to have a <a data-link-type="dfn" href="#targets-obj-targets" id="ref-for-targets-obj-targets③">TARGETS</a> object with no
+<a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath④">TARGETPATH</a> elements.  This can be used to indicate that no target
 files are available.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="targets-obj" data-dfn-type="dfn" data-noexport id="targets-obj-length">LENGTH</dfn>
     <dd data-md>
      <p>An integer length in bytes of the target file at <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑤">TARGETPATH</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="targets-obj" data-dfn-type="dfn" data-noexport id="targets-obj-hashes">HASHES</dfn>
     <dd data-md>
-     <p>A dictionary that specifies one or more hashes of the target file at <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑥">TARGETPATH</a>, with a string describing the cryptographic hash function
-as key and <a data-link-type="dfn" href="#hash" id="ref-for-hash">HASH</a> as defined for <a data-link-type="dfn" href="#metafiles" id="ref-for-metafiles①">METAFILES</a>.  For example: <code>{ "sha256": HASH, ... }</code>.</p>
+     <p>A dictionary that specifies one or more hashes of the target file at
+<a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑥">TARGETPATH</a>, with a string describing the cryptographic hash function
+as key and <a data-link-type="dfn" href="#hash" id="ref-for-hash">HASH</a> as defined for <a data-link-type="dfn" href="#metafiles" id="ref-for-metafiles①">METAFILES</a>.  For example:
+<code>{ "sha256": HASH, ... }</code>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="custom">CUSTOM</dfn>
     <dd data-md>
      <p>An object.  If defined, the elements and values of the <a data-link-type="dfn" href="#custom" id="ref-for-custom①">CUSTOM</a> object
-will be made available to the client application.  The format of the <a data-link-type="dfn" href="#custom" id="ref-for-custom②">CUSTOM</a> object is opaque to the framework, which only needs to know
+will be made available to the client application.  The format of the
+<a data-link-type="dfn" href="#custom" id="ref-for-custom②">CUSTOM</a> object is opaque to the framework, which only needs to know
 that the "custom" attribute maps to an object.  The <a data-link-type="dfn" href="#custom" id="ref-for-custom③">CUSTOM</a> object
 may include version numbers, dependencies, requirements, or any other data
-that the application wants to include to describe the file at <a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑦">TARGETPATH</a>.  The application may use this information to guide
+that the application wants to include to describe the file at
+<a data-link-type="dfn" href="#targetpath" id="ref-for-targetpath⑦">TARGETPATH</a>.  The application may use this information to guide
 download decisions.</p>
    </dl>
    <p><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="delegations">DELEGATIONS</dfn> is an OPTIONAL object and if defined it has the following
 format:</p>
 <pre class="highlight"><c- p>{</c->
   <c- f>"keys"</c-> <c- p>:</c-> <c- p>{</c->
-      <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑤">KEYID</a> <c- p>:</c-> <a data-link-type="dfn" href="#key" id="ref-for-key①">KEY</a><c- p>,</c->
+      <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑥">KEYID</a> <c- p>:</c-> <a data-link-type="dfn" href="#key" id="ref-for-key①">KEY</a><c- p>,</c->
       ...
   <c- p>},</c->
   <c- f>"roles"</c-> <c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
       <c- f>"name"</c-><c- p>:</c-> <a data-link-type="dfn" href="#rolename" id="ref-for-rolename">ROLENAME</a><c- p>,</c->
-      <c- f>"keyids"</c-> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑥">KEYID</a><c- p>,</c-> ... <c- p>]</c-> <c- p>,</c->
-      <c- f>"threshold"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①">THRESHOLD</a><c- p>,</c->
+      <c- f>"keyids"</c-> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑦">KEYID</a><c- p>,</c-> ... <c- p>]</c-> <c- p>,</c->
+      <c- f>"threshold"</c-> <c- p>:</c-> <a data-link-type="dfn" href="#threshold" id="ref-for-threshold③">THRESHOLD</a><c- p>,</c->
       (<a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes"><c- f>"path_hash_prefixes"</c-></a> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#hex_digest" id="ref-for-hex_digest">HEX_DIGEST</a><c- p>,</c-> ... <c- p>]</c-> |
       <a data-link-type="dfn" href="#delegation-role-paths" id="ref-for-delegation-role-paths"><c- f>"paths"</c-></a> <c- p>:</c-> <c- p>[</c-> <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern">PATHPATTERN</a><c- p>,</c-> ... <c- p>]</c->)<c- p>,</c->
       <c- f>"terminating"</c-><c- p>:</c-> <a data-link-type="dfn" href="#terminating" id="ref-for-terminating">TERMINATING</a><c- p>,</c->
@@ -3034,18 +3210,25 @@ format:</p>
   <c- p>]</c->
 <c- p>}</c->
 </pre>
-   <p><a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid②">KEYID</a> and <a data-link-type="dfn" href="#key" id="ref-for-key②">KEY</a> are the same as is described for the <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson④">root.json</a> file.</p>
+   <p><a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid②">KEYID</a> and <a data-link-type="dfn" href="#key" id="ref-for-key②">KEY</a> are the same as is described for the
+  <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson④">root.json</a> file.</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="rolename">ROLENAME</dfn>
     <dd data-md>
      <p>A string giving the name of the delegated role.  For example, "projects".
 The rolename MUST be unique in the delegations object: multiple roles with
 the same rolename are not allowed within a <a data-link-type="dfn" href="#delegations" id="ref-for-delegations①">DELEGATIONS</a>.</p>
+    <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="threshold">THRESHOLD</dfn>
+    <dd data-md>
+     <p>A positive integer number of keys (>=1) of that role whose signatures are required in
+order to consider a file as being properly signed by that role.  See the notes on 
+<a data-link-type="dfn" href="#threshold" id="ref-for-threshold④">THRESHOLD</a> counting in the relevant steps of <a href="#detailed-client-workflow">§ 5 Detailed client workflow</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="terminating">TERMINATING</dfn>
     <dd data-md>
      <p>A boolean indicating whether subsequent delegations should be considered
 if a matching target is not found in this delegation.</p>
-     <p>As explained in the <a href="https://theupdateframework.io/papers/protect-community-repositories-nsdi2016.pdf">Diplomat paper </a>,
+     <p>As explained in the <a href="https://theupdateframework.io/papers/protect-community-repositories-nsdi2016.pdf">Diplomat paper
+</a>,
 terminating delegations instruct the client not to consider future trust
 statements that match this delegation’s pattern, which stops the delegation
 processing once this delegation (and its descendants) have been processed.
@@ -3053,12 +3236,14 @@ A terminating delegation for a package causes any further statements about a
 package that are not made by the delegated party or its descendants to be
 ignored.</p>
    </dl>
-   <p>The <a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes①">"path_hash_prefixes"</a> and <a data-link-type="dfn" href="#delegation-role-paths" id="ref-for-delegation-role-paths①">"paths"</a> attributes are OPTIONAL, if used, exactly one of them should be set.</p>
+   <p>The <a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes①">"path_hash_prefixes"</a> and <a data-link-type="dfn" href="#delegation-role-paths" id="ref-for-delegation-role-paths①">"paths"</a>
+attributes are OPTIONAL, if used, exactly one of them should be set.</p>
    <dl>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="path_hash_prefixes">"path_hash_prefixes"</dfn>
     <dd data-md>
      <p>A list of <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="hex_digest">HEX_DIGEST</dfn>s used to succinctly describe a set of target
-paths. Specifically, each HEX_DIGEST in <a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes②">"path_hash_prefixes"</a> describes a set of target paths; therefore, <a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes③">"path_hash_prefixes"</a> is
+paths. Specifically, each HEX_DIGEST in <a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes②">"path_hash_prefixes"</a>
+describes a set of target paths; therefore, <a data-link-type="dfn" href="#path_hash_prefixes" id="ref-for-path_hash_prefixes③">"path_hash_prefixes"</a> is
 the union over each prefix of its set of target paths.  The target paths
 must meet this condition: each target path, when hashed with the SHA-256
 hash function to produce a 64-byte hexadecimal digest
@@ -3083,9 +3268,12 @@ NOT be matched by a wildcard in the <a data-link-type="dfn" href="#pathpattern" 
      <p>Some example <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern⑤">PATHPATTERN</a>s and expected matches:</p>
      <ul>
       <li data-md>
-       <p>a <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern⑥">PATHPATTERN</a> of <code>"targets/*.tgz"</code> would match file paths <code>"targets/foo.tgz"</code> and <code>"targets/bar.tgz"</code>, but not <code>"targets/foo.txt"</code>.</p>
+       <p>a <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern⑥">PATHPATTERN</a> of <code>"targets/*.tgz"</code> would match file paths
+<code>"targets/foo.tgz"</code> and <code>"targets/bar.tgz"</code>, but not <code>"targets/foo.txt"</code>.</p>
       <li data-md>
-       <p>a <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern⑦">PATHPATTERN</a> of <code>"foo-version-?.tgz"</code> matches <code>"foo-version-2.tgz"</code> and <code>"foo-version-a.tgz"</code>, but not <code>"foo-version-alpha.tgz"</code>.</p>
+       <p>a <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern⑦">PATHPATTERN</a> of <code>"foo-version-?.tgz"</code> matches
+<code>"foo-version-2.tgz"</code> and <code>"foo-version-a.tgz"</code>, but not
+<code>"foo-version-alpha.tgz"</code>.</p>
       <li data-md>
        <p>a <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern⑧">PATHPATTERN</a> of <code>"*.tgz"</code> would match <code>"foo.tgz"</code> and <code>"bar.tgz"</code>,
 but not <code>"targets/foo.tgz"</code></p>
@@ -3106,7 +3294,10 @@ of delegated roles, rather than to a hash table.</p>
    <p>The metadata files for delegated target roles has the same format as the
 top-level <a data-link-type="dfn" href="#targetsjson" id="ref-for-targetsjson">targets.json</a> metadata file.</p>
    <div class="example" id="example-targets.json">
-    <a class="self-link" href="#example-targets.json"></a> A <a data-link-type="dfn" href="#targetsjson" id="ref-for-targetsjson①">targets.json</a> example file: 
+    <a class="self-link" href="#example-targets.json"></a>
+A <a data-link-type="dfn" href="#targetsjson" id="ref-for-targetsjson①">targets.json</a> example file:
+
+
 <pre class="highlight"><c- p>{</c->
   <c- f>"signatures"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
@@ -3179,9 +3370,12 @@ information in them will be avoided.</p>
 </pre>
    <p><a data-link-type="dfn" href="#spec_version" id="ref-for-spec_version⑥">SPEC_VERSION</a>, <a data-link-type="dfn" href="#role-version" id="ref-for-role-version⑥">VERSION</a> and <a data-link-type="dfn" href="#expires" id="ref-for-expires⑥">EXPIRES</a> are the same as is described for the <a data-link-type="dfn" href="#rootjson" id="ref-for-rootjson⑤">root.json</a> file.</p>
    <p><a data-link-type="dfn" href="#metafiles" id="ref-for-metafiles③">METAFILES</a> is the same as described for the <a data-link-type="dfn" href="#snapshotjson" id="ref-for-snapshotjson③">snapshot.json</a> file.  In the case
-of the <a data-link-type="dfn" href="#timestampjson" id="ref-for-timestampjson①">timestamp.json</a> file, this MUST only include a description of the <a data-link-type="dfn" href="#snapshotjson" id="ref-for-snapshotjson④">snapshot.json</a> file.</p>
+of the <a data-link-type="dfn" href="#timestampjson" id="ref-for-timestampjson①">timestamp.json</a> file, this MUST only include a description of the
+<a data-link-type="dfn" href="#snapshotjson" id="ref-for-snapshotjson④">snapshot.json</a> file.</p>
    <div class="example" id="example-timestamp.json">
-    <a class="self-link" href="#example-timestamp.json"></a> A signed <a data-link-type="dfn" href="#timestampjson" id="ref-for-timestampjson②">timestamp.json</a> example file: 
+    <a class="self-link" href="#example-timestamp.json"></a>
+A signed <a data-link-type="dfn" href="#timestampjson" id="ref-for-timestampjson②">timestamp.json</a> example file:
+
 <pre class="highlight"><c- p>{</c->
   <c- f>"signatures"</c-><c- p>:</c-> <c- p>[</c->
     <c- p>{</c->
@@ -3236,10 +3430,12 @@ as is described for the <a data-link-type="dfn" href="#rootjson" id="ref-for-roo
      <p>A string giving the URL of the mirror.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-for="mirrors" data-dfn-type="dfn" data-noexport id="mirrors-metapath">METAPATH</dfn>
     <dd data-md>
-     <p>A string giving the location from which to retrieve metadata files. <a data-link-type="dfn" href="#mirrors-metapath" id="ref-for-mirrors-metapath①">METAPATH</a> will be a relative path to <a data-link-type="dfn" href="#urlbase" id="ref-for-urlbase①">URLBASE</a>.</p>
+     <p>A string giving the location from which to retrieve metadata files.
+<a data-link-type="dfn" href="#mirrors-metapath" id="ref-for-mirrors-metapath①">METAPATH</a> will be a relative path to <a data-link-type="dfn" href="#urlbase" id="ref-for-urlbase①">URLBASE</a>.</p>
     <dt data-md><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="targetspath">TARGETSPATH</dfn>
     <dd data-md>
-     <p>A string giving the location from which to retrieve target files. <a data-link-type="dfn" href="#targetspath" id="ref-for-targetspath①">TARGETSPATH</a> will be a relative path to <a data-link-type="dfn" href="#urlbase" id="ref-for-urlbase②">URLBASE</a>.</p>
+     <p>A string giving the location from which to retrieve target files.
+<a data-link-type="dfn" href="#targetspath" id="ref-for-targetspath①">TARGETSPATH</a> will be a relative path to <a data-link-type="dfn" href="#urlbase" id="ref-for-urlbase②">URLBASE</a>.</p>
    </dl>
    <p>The lists of <a data-link-type="dfn" href="#pathpattern" id="ref-for-pathpattern①②">PATHPATTERN</a> for "metacontent" and "targetscontent" describe the
 metadata files and target files available from the mirror.</p>
@@ -3292,11 +3488,18 @@ The value for Y is set by the authors of the application using TUF. For
 example, Y may be 2^10.</p>
     <li data-md>
      <p><strong>Check for an arbitrary software attack.</strong> Version N+1 of the root
-metadata file MUST have been signed by: (1) a threshold of keys specified in
-the trusted root metadata file (version N), and (2) a threshold of keys
-specified in the new root metadata file being validated (version N+1).  If
-version N+1 is not signed as required, discard it, abort the update cycle,
-and report the signature failure.</p>
+metadata file MUST have been signed by: (1) a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold⑤">THRESHOLD</a> of keys
+specified in the trusted root metadata file (version N), and (2) a
+<a data-link-type="dfn" href="#threshold" id="ref-for-threshold⑥">THRESHOLD</a> of keys specified in the new root metadata file being
+validated (version N+1).  When computing the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold⑦">THRESHOLD</a> each
+<a data-link-type="dfn" href="#key" id="ref-for-key③">KEY</a> MUST only contribute one <a data-link-type="dfn" href="#signature" id="ref-for-signature②">SIGNATURE</a>. That is, each
+<a data-link-type="dfn" href="#signature" id="ref-for-signature③">SIGNATURE</a> which is counted towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold⑧">THRESHOLD</a> MUST have
+a unique <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑧">KEYID</a>. Even if a <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid⑨">KEYID</a> is listed more than once in the
+"signatures" list a client MUST NOT count more than one verified
+<a data-link-type="dfn" href="#signature" id="ref-for-signature④">SIGNATURE</a> from that <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid③">KEYID</a> towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold⑨">THRESHOLD</a>.
+If version N+1 is not signed as required, discard it, abort the update cycle,
+and report the signature failure.  On the next update cycle, begin at step
+<a href="#update-root">§ 5.3 Update the root role</a> and version N of the root metadata file.</p>
     <li data-md>
      <p><strong>Check for a rollback attack.</strong> The version number of the new root
 metadata (version N+1) MUST be exactly the version in the trusted root
@@ -3327,9 +3530,11 @@ compromised and recovered. A <em>fast-forward attack</em> happens when attackers
 arbitrarily increase the version numbers of: (1) the timestamp metadata, (2)
 the snapshot metadata, and / or (3) the targets, or a delegated targets,
 metadata file in the snapshot metadata. Please see <a href="https://theupdateframework.io/papers/prevention-rollback-attacks-atc2017.pdf">the Mercury
-paper</a> for more details.</p>
+paper</a>
+for more details.</p>
     <li data-md>
-     <p><strong>Set whether consistent snapshots are used as per the trusted</strong> root metadata file (see <a href="#file-formats-root">§ 4.3 File formats: root.json</a>).</p>
+     <p><strong>Set whether consistent snapshots are used as per the trusted</strong>
+  root metadata file (see <a href="#file-formats-root">§ 4.3 File formats: root.json</a>).</p>
    </ol>
    <h3 class="heading settled" data-level="5.4" id="update-timestamp"><span class="secno">5.4. </span><span class="content">Update the timestamp role</span><a class="self-link" href="#update-timestamp"></a></h3>
    <ol>
@@ -3341,10 +3546,15 @@ used to download the timestamp metadata file is of the fixed form FILENAME.EXT
 (e.g., timestamp.json).</p>
     <li data-md>
      <p><strong>Check for an arbitrary software attack.</strong> The new timestamp
-metadata file MUST have been signed by a threshold of keys specified in the
-trusted root metadata file. If the new timestamp metadata file is not
-properly signed, discard it, abort the update cycle, and report the signature
-failure.</p>
+metadata file MUST have been signed by a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①⓪">THRESHOLD</a> of keys specified
+in the trusted root metadata file.  When computing the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①①">THRESHOLD</a> each
+<a data-link-type="dfn" href="#key" id="ref-for-key④">KEY</a> MUST only contribute one <a data-link-type="dfn" href="#signature" id="ref-for-signature⑤">SIGNATURE</a>. That is, each
+<a data-link-type="dfn" href="#signature" id="ref-for-signature⑥">SIGNATURE</a> which is counted towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①②">THRESHOLD</a> MUST have
+a unique <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid①⓪">KEYID</a>. Even if a <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid④">KEYID</a> is listed more than once in the
+"signatures" list a client MUST NOT count more than one verified
+<a data-link-type="dfn" href="#signature" id="ref-for-signature⑦">SIGNATURE</a> from that <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid⑤">KEYID</a> towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①③">THRESHOLD</a>.  If the
+new timestamp metadata file is not properly signed, discard it, abort the
+update cycle, and report the signature failure.</p>
     <li data-md>
      <p><strong>Check for a rollback attack.</strong></p>
      <ol>
@@ -3398,10 +3608,15 @@ way to reject bad metadata. If the hashes do not match, discard the
 new snapshot metadata, abort the update cycle, and report the failure.</p>
     <li data-md>
      <p><strong>Check for an arbitrary software attack</strong>. The new snapshot
-metadata file MUST have been signed by a threshold of keys specified in the
-trusted root metadata file.  If the new snapshot metadata file is not signed
-as required, discard it, abort the update cycle, and report the signature
-failure.</p>
+metadata file MUST have been signed by a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①④">THRESHOLD</a> of keys specified in
+the trusted root metadata file.  When computing the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①⑤">THRESHOLD</a> each
+<a data-link-type="dfn" href="#key" id="ref-for-key⑤">KEY</a> MUST only contribute one <a data-link-type="dfn" href="#signature" id="ref-for-signature⑧">SIGNATURE</a>. That is, each
+<a data-link-type="dfn" href="#signature" id="ref-for-signature⑨">SIGNATURE</a> which is counted towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①⑥">THRESHOLD</a> MUST have
+a unique <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid⑥">KEYID</a>. Even if a <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid①①">KEYID</a> is listed more than once in the
+"signatures" list a client MUST NOT count more than one verified
+<a data-link-type="dfn" href="#signature" id="ref-for-signature①⓪">SIGNATURE</a> from that <a data-link-type="dfn" href="#role-keyid" id="ref-for-role-keyid①②">KEYID</a> towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①⑦">THRESHOLD</a>.  If the
+new snapshot metadata file is not signed as required, discard it, abort the
+update cycle, and report the signature failure.</p>
     <li data-md>
      <p><strong>Check against timestamp role’s snapshot version</strong>. The version
 number of the new snapshot metadata file MUST match the version number listed
@@ -3432,7 +3647,8 @@ non-volatile storage as FILENAME.EXT (e.g. snapshot.json).</p>
      <p><strong>Download the top-level targets metadata file</strong>, up to either the
 number of bytes specified in the snapshot metadata file, or some Z number of
 bytes. The value for Z is set by the authors of the application using TUF. For
-example, Z may be tens of kilobytes.  If consistent snapshots are not used (see <a href="#consistent-snapshots">§ 6.2 Consistent snapshots</a>), then the filename used to download the targets
+example, Z may be tens of kilobytes.  If consistent snapshots are not used (see
+<a href="#consistent-snapshots">§ 6.2 Consistent snapshots</a>), then the filename used to download the targets
 metadata file is of the fixed form FILENAME.EXT (e.g., targets.json).
 Otherwise, the filename is of the form VERSION_NUMBER.FILENAME.EXT (e.g.,
 42.targets.json), where VERSION_NUMBER is the version number of the targets
@@ -3448,9 +3664,15 @@ metadata. If the new targets metadata file does not match, discard the new
 target metadata, abort the update cycle, and report the failure.</p>
     <li data-md>
      <p><strong>Check for an arbitrary software attack</strong>. The new targets
-metadata file MUST have been signed by a threshold of keys specified in the
-trusted root metadata file.  If the new targets metadata file is not signed
-as required, discard it, abort the update cycle, and report the failure.</p>
+metadata file MUST have been signed by a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①⑧">THRESHOLD</a> of keys specified
+in the trusted root metadata file.  When computing the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold①⑨">THRESHOLD</a> each
+<a data-link-type="dfn" href="#key" id="ref-for-key⑥">KEY</a> MUST only contribute one <a data-link-type="dfn" href="#signature" id="ref-for-signature①①">SIGNATURE</a>. That is, each
+<a data-link-type="dfn" href="#signature" id="ref-for-signature①②">SIGNATURE</a> which is counted towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②⓪">THRESHOLD</a> MUST have a
+unique <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid⑦">KEYID</a>. Even if a <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid⑧">KEYID</a> is listed more than once in the
+"signatures" list a client MUST NOT count more than one verified
+<a data-link-type="dfn" href="#signature" id="ref-for-signature①③">SIGNATURE</a> from that <a data-link-type="dfn" href="#root-keyid" id="ref-for-root-keyid⑨">KEYID</a> towards the <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②①">THRESHOLD</a>.  If the
+new targets metadata file is not signed as required, discard it, abort the
+update cycle, and report the failure.</p>
     <li data-md>
      <p><strong>Check against snapshot role’s targets version</strong>. The version
 number of the new targets metadata file MUST match the version number listed
@@ -3545,7 +3767,7 @@ the latest trusted version) of the root metadata is available from the
 repository. This ensures that an outdated client can always correctly
 re-trace the chain of trust across multiple root key updates, even if the
 latest set of root keys on the client dates back multiple root metadata
-versions. See step <a href="#update-root">§ 5.3 Update the root role</a> of the client application workflow for more details.</p>
+versions. See step <a href="#update-root">§ 5.3 Update the root role</a>  of the client application workflow for more details.</p>
    <p>Note that an attacker, who controls the repository, can launch freeze
 attacks by withholding new root metadata. The attacker does not need to
 compromise root keys to do so. However, these freeze attacks are limited by
@@ -3619,7 +3841,7 @@ when adding targets to the repository, or updating existing targets.</p>
      <p>Increment the <a data-link-type="dfn" href="#role-version" id="ref-for-role-version⑨">VERSION</a> number in the updated targets
  metadata.</p>
     <li data-md>
-     <p>Sign the updated targets metadata with at least a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②">THRESHOLD</a> of keys
+     <p>Sign the updated targets metadata with at least a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②②">THRESHOLD</a> of keys
  for the associated targets role (either the top-level targets role, or a
  delegated targets role).</p>
     <li data-md>
@@ -3630,12 +3852,14 @@ when adding targets to the repository, or updating existing targets.</p>
    <h4 class="heading settled" data-level="6.3.2" id="update-snapshot-metadata"><span class="secno">6.3.2. </span><span class="content">Update snapshot metadata</span><a class="self-link" href="#update-snapshot-metadata"></a></h4>
    <ol>
     <li data-md>
-     <p>Update the <a data-link-type="dfn" href="#metapath-version" id="ref-for-metapath-version②">VERSION</a> number and, when in use, <a data-link-type="dfn" href="#metapath-length" id="ref-for-metapath-length①">LENGTH</a> and <a data-link-type="dfn" href="#metapath-hashes" id="ref-for-metapath-hashes②">HASHES</a> for any targets
- metadata modified during <a href="#update-targets-metadata">§ 6.3.1 Update targets metadata</a> within the <a data-link-type="dfn" href="#metafiles" id="ref-for-metafiles④">METAFILES</a> object of the snapshot metadata.</p>
+     <p>Update the <a data-link-type="dfn" href="#metapath-version" id="ref-for-metapath-version②">VERSION</a> number and, when in use,
+ <a data-link-type="dfn" href="#metapath-length" id="ref-for-metapath-length①">LENGTH</a> and <a data-link-type="dfn" href="#metapath-hashes" id="ref-for-metapath-hashes②">HASHES</a> for any targets
+ metadata modified during <a href="#update-targets-metadata">§ 6.3.1 Update targets metadata</a> within the
+ <a data-link-type="dfn" href="#metafiles" id="ref-for-metafiles④">METAFILES</a> object of the snapshot metadata.</p>
     <li data-md>
      <p>Increment the <a data-link-type="dfn" href="#role-version" id="ref-for-role-version①①">VERSION</a> number of the snapshot metadata.</p>
     <li data-md>
-     <p>Sign the snapshot metadata with at least a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold③">THRESHOLD</a> of keys for the
+     <p>Sign the snapshot metadata with at least a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②③">THRESHOLD</a> of keys for the
  snapshot role.</p>
     <li data-md>
      <p>Write the updated snapshot metadata, ensuring the snapshot metadata filename
@@ -3645,13 +3869,14 @@ when adding targets to the repository, or updating existing targets.</p>
    <h4 class="heading settled" data-level="6.3.3" id="update-timestamp-metadata"><span class="secno">6.3.3. </span><span class="content">Update timestamp metadata</span><a class="self-link" href="#update-timestamp-metadata"></a></h4>
    <ol>
     <li data-md>
-     <p>Update the <a data-link-type="dfn" href="#metapath-version" id="ref-for-metapath-version③">VERSION</a> and, when in use, the <a data-link-type="dfn" href="#metapath-length" id="ref-for-metapath-length②">LENGTH</a> and <a data-link-type="dfn" href="#metapath-hashes" id="ref-for-metapath-hashes③">HASHES</a> for the
+     <p>Update the <a data-link-type="dfn" href="#metapath-version" id="ref-for-metapath-version③">VERSION</a> and, when in use, the
+ <a data-link-type="dfn" href="#metapath-length" id="ref-for-metapath-length②">LENGTH</a> and <a data-link-type="dfn" href="#metapath-hashes" id="ref-for-metapath-hashes③">HASHES</a> for the
  snapshot metadata within the <a data-link-type="dfn" href="#metafiles" id="ref-for-metafiles⑤">METAFILES</a> object of the timestamp
  metadata.</p>
     <li data-md>
      <p>Increment the <a data-link-type="dfn" href="#role-version" id="ref-for-role-version①③">VERSION</a> number of the timestamp metadata.</p>
     <li data-md>
-     <p>Sign the timestamp metadata with at least a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold④">THRESHOLD</a> of keys for the
+     <p>Sign the timestamp metadata with at least a <a data-link-type="dfn" href="#threshold" id="ref-for-threshold②④">THRESHOLD</a> of keys for the
  timestamp role.</p>
     <li data-md>
      <p>Write the updated timestamp metadata, ensuring the timestamp metadata
@@ -3660,7 +3885,8 @@ when adding targets to the repository, or updating existing targets.</p>
    </ol>
    <h2 class="heading settled" data-level="7" id="future-directions-and-open-questions"><span class="secno">7. </span><span class="content">Future directions and open questions</span><a class="self-link" href="#future-directions-and-open-questions"></a></h2>
    <h3 class="heading settled" data-level="7.1" id="support-for-bogus-clocks"><span class="secno">7.1. </span><span class="content">Support for bogus clocks</span><a class="self-link" href="#support-for-bogus-clocks"></a></h3>
-   <p>The framework may need to offer an application-enablable "no, my clock is <em>supposed</em> to be wrong" mode, since others have noticed that many users seem
+   <p>The framework may need to offer an application-enablable "no, my clock is
+<em>supposed</em> to be wrong" mode, since others have noticed that many users seem
 to have incorrect clocks.</p>
   </main>
 <script>
@@ -3684,7 +3910,7 @@ to have incorrect clocks.</p>
       on = !document.body.classList.contains('toc-sidebar');
     }
 
-    /* Don’t scroll to compensate for the ToC if we’re above it already. */
+    /* Don't scroll to compensate for the ToC if we're above it already. */
     var headY = 0;
     var head = document.querySelector('.head');
     if (head) {
@@ -3715,16 +3941,16 @@ to have incorrect clocks.</p>
       }
       if (toggle.matches(':hover')) {
         /* Unfocus button when not using keyboard navigation,
-           because I don’t know where else to send the focus. */
+           because I don't know where else to send the focus. */
         toggle.blur();
       }
     }
   }
 
   function createSidebarToggle() {
-    /* Create the sidebar toggle in JS; it shouldn’t exist when JS is off. */
+    /* Create the sidebar toggle in JS; it shouldn't exist when JS is off. */
     var toggle = document.createElement('a');
-      /* This should probably be a button, but appearance isn’t standards-track.*/
+      /* This should probably be a button, but appearance isn't standards-track.*/
     toggle.id = 'toc-toggle';
     toggle.class = 'toc-toggle';
     toggle.href = '#toc';
@@ -3740,7 +3966,7 @@ to have incorrect clocks.</p>
     toggle.addEventListener('click', toggler, false);
 
 
-    /* Get <nav id=toc-nav>, or make it if we don’t have one. */
+    /* Get <nav id=toc-nav>, or make it if we don't have one. */
     var tocNav = document.getElementById('toc-nav');
     if (!tocNav) {
       tocNav = document.createElement('p');
@@ -3748,7 +3974,7 @@ to have incorrect clocks.</p>
       /* Prepend for better keyboard navigation */
       document.body.insertBefore(tocNav, document.body.firstChild);
     }
-    /* While we’re at it, make sure we have a Jump to Toc link. */
+    /* While we're at it, make sure we have a Jump to Toc link. */
     var tocJump = document.getElementById('toc-jump');
     if (!tocJump) {
       tocJump = document.createElement('a');
@@ -3776,7 +4002,7 @@ to have incorrect clocks.</p>
     }, false);
   }
   else {
-    console.warn("Can’t find Table of Contents. Please use <nav id='toc'> around the ToC.");
+    console.warn("Can't find Table of Contents. Please use <nav id='toc'> around the ToC.");
   }
 
   /* Wrap tables in case they overflow */
@@ -3792,8 +4018,8 @@ to have incorrect clocks.</p>
 
 })();
 </script>
-  <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
-  <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
+  <h2 class="heading no-num no-ref settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
+  <h3 class="heading no-num no-ref settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#consistent_snapshot">CONSISTENT_SNAPSHOT</a><span>, in § 4.3</span>
    <li><a href="#custom">CUSTOM</a><span>, in § 4.5</span>
@@ -3868,7 +4094,7 @@ to have incorrect clocks.</p>
    <li><a href="#targetsjson">targets.json</a><span>, in § 4.5</span>
    <li><a href="#targetspath">TARGETSPATH</a><span>, in § 4.7</span>
    <li><a href="#terminating">TERMINATING</a><span>, in § 4.5</span>
-   <li><a href="#threshold">THRESHOLD</a><span>, in § 4.3</span>
+   <li><a href="#threshold">THRESHOLD</a><span>, in § 4.5</span>
    <li><a href="#timestampjson">timestamp.json</a><span>, in § 4.6</span>
    <li><a href="#urlbase">URLBASE</a><span>, in § 4.7</span>
    <li>
@@ -3878,212 +4104,8 @@ to have incorrect clocks.</p>
      <li><a href="#role-version">dfn for role</a><span>, in § 4.3</span>
     </ul>
   </ul>
-<script>/* script-dfn-panel */
+<script>/* Boilerplate: script-dom-helper */
 "use strict";
-{
-    const dfnsJson = window.dfnsJson || {};
-
-    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
-        return mk.aside({
-            class: "dfn-panel",
-            id: `infopanel-for-${dfnID}`,
-            "data-for": dfnID,
-            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
-            },
-            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
-                `Info about the '${dfnText}' ${external?"external":""} reference.`),
-            mk.a({href:url}, url),
-            mk.b({}, "Referenced in:"),
-            mk.ul({},
-                ...refSections.map(section=>
-                    mk.li({},
-                        ...section.refs.map((ref, refI)=>
-                            [
-                                mk.a({
-                                    href: `#${ref.id}`
-                                    },
-                                    (refI == 0) ? section.title : `(${refI + 1})`
-                                ),
-                                " ",
-                            ]
-                        ),
-                    ),
-                ),
-            ),
-        );
-    }
-
-    function genAllDfnPanels() {
-        for(const panelData of Object.values(window.dfnpanelData)) {
-            const dfnID = panelData.dfnID;
-            const dfn = document.getElementById(dfnID);
-            if(!dfn) {
-                console.log(`Can't find dfn#${dfnID}.`, panelData);
-            } else {
-                const panel = genDfnPanel(panelData);
-                append(document.body, panel);
-                insertDfnPopupAction(dfn, panel)
-            }
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", ()=>{
-        genAllDfnPanels();
-
-        // Add popup behavior to all dfns to show the corresponding dfn-panel.
-        var dfns = queryAll('.dfn-paneled');
-        for(let dfn of dfns) { ; }
-
-        document.body.addEventListener("click", (e) => {
-            // If not handled already, just hide all dfn panels.
-            hideAllDfnPanels();
-        });
-    })
-
-
-    function hideAllDfnPanels() {
-        // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
-    }
-
-    function showDfnPanel(dfnPanel, dfn) {
-        hideAllDfnPanels(); // Only display one at this time.
-        dfn.setAttribute("aria-expanded", "true");
-        dfnPanel.classList.add("on");
-        dfnPanel.style.left = "5px";
-        dfnPanel.style.top = "0px";
-        const panelRect = dfnPanel.getBoundingClientRect();
-        const panelWidth = panelRect.right - panelRect.left;
-        if (panelRect.right > document.body.scrollWidth) {
-            // Panel's overflowing the screen.
-            // Just drop it below the dfn and flip it rightward instead.
-            // This still wont' fix things if the screen is *really* wide,
-            // but fixing that's a lot harder without 'anchor()'.
-            dfnPanel.style.top = "1.5em";
-            dfnPanel.style.left = "auto";
-            dfnPanel.style.right = "0px";
-        }
-    }
-
-    function pinDfnPanel(dfnPanel) {
-        // Switch it to "activated" state, which pins it.
-        dfnPanel.classList.add("activated");
-        dfnPanel.style.left = null;
-        dfnPanel.style.top = null;
-    }
-
-    function hideDfnPanel(dfnPanel, dfn) {
-        if(!dfn) {
-            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
-        }
-        dfn.setAttribute("aria-expanded", "false")
-        dfnPanel.classList.remove("on");
-        dfnPanel.classList.remove("activated");
-    }
-
-    function toggleDfnPanel(dfnPanel, dfn) {
-        if(dfnPanel.classList.contains("on")) {
-            hideDfnPanel(dfnPanel, dfn);
-        } else {
-            showDfnPanel(dfnPanel, dfn);
-        }
-    }
-
-    function insertDfnPopupAction(dfn, dfnPanel) {
-        // Find dfn panel
-        const panelWrapper = document.createElement('span');
-        panelWrapper.appendChild(dfnPanel);
-        panelWrapper.style.position = "relative";
-        panelWrapper.style.height = "0px";
-        dfn.insertAdjacentElement("afterend", panelWrapper);
-        dfn.setAttribute('role', 'button');
-        dfn.setAttribute('aria-expanded', 'false')
-        dfn.tabIndex = 0;
-        dfn.classList.add('has-dfn-panel');
-        dfn.addEventListener('click', (event) => {
-            showDfnPanel(dfnPanel, dfn);
-            event.stopPropagation();
-        });
-        dfn.addEventListener('keypress', (event) => {
-            const kc = event.keyCode;
-            // 32->Space, 13->Enter
-            if(kc == 32 || kc == 13) {
-                toggleDfnPanel(dfnPanel, dfn);
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        });
-
-        dfnPanel.addEventListener('click', (event) => {
-            if (event.target.nodeName == 'A') {
-                pinDfnPanel(dfnPanel);
-            }
-            event.stopPropagation();
-        });
-
-        dfnPanel.addEventListener('keydown', (event) => {
-            if(event.keyCode == 27) { // Escape key
-                hideDfnPanel(dfnPanel, dfn);
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        })
-    }
-}
-</script>
-<script>/* script-dfn-panel-json */
-window.dfnpanelData = {};
-window.dfnpanelData['role-role'] = {"dfnID": "role-role", "url": "#role-role", "dfnText": "ROLE", "refSections": [{"refs": [{"id": "ref-for-role-role"}, {"id": "ref-for-role-role\u2460"}, {"id": "ref-for-role-role\u2461"}], "title": "4.2.1. Object format"}], "external": false};
-window.dfnpanelData['role-keyid'] = {"dfnID": "role-keyid", "url": "#role-keyid", "dfnText": "KEYID", "refSections": [{"refs": [{"id": "ref-for-role-keyid"}], "title": "4.2.1. Object format"}, {"refs": [{"id": "ref-for-role-keyid\u2460"}, {"id": "ref-for-role-keyid\u2461"}, {"id": "ref-for-role-keyid\u2462"}, {"id": "ref-for-role-keyid\u2463"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-role-keyid\u2464"}, {"id": "ref-for-role-keyid\u2465"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['signature'] = {"dfnID": "signature", "url": "#signature", "dfnText": "SIGNATURE", "refSections": [{"refs": [{"id": "ref-for-signature"}], "title": "4.2.1. Object format"}], "external": false};
-window.dfnpanelData['key'] = {"dfnID": "key", "url": "#key", "dfnText": "KEY", "refSections": [{"refs": [{"id": "ref-for-key"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-key\u2460"}, {"id": "ref-for-key\u2461"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['keytype'] = {"dfnID": "keytype", "url": "#keytype", "dfnText": "KEYTYPE", "refSections": [{"refs": [{"id": "ref-for-keytype"}, {"id": "ref-for-keytype\u2460"}, {"id": "ref-for-keytype\u2461"}, {"id": "ref-for-keytype\u2462"}, {"id": "ref-for-keytype\u2463"}, {"id": "ref-for-keytype\u2464"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['scheme'] = {"dfnID": "scheme", "url": "#scheme", "dfnText": "SCHEME", "refSections": [{"refs": [{"id": "ref-for-scheme"}, {"id": "ref-for-scheme\u2460"}, {"id": "ref-for-scheme\u2461"}, {"id": "ref-for-scheme\u2462"}, {"id": "ref-for-scheme\u2463"}, {"id": "ref-for-scheme\u2464"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['keyval'] = {"dfnID": "keyval", "url": "#keyval", "dfnText": "KEYVAL", "refSections": [{"refs": [{"id": "ref-for-keyval"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['scheme-rsassa-pss-sha256'] = {"dfnID": "scheme-rsassa-pss-sha256", "url": "#scheme-rsassa-pss-sha256", "dfnText": "\"rsassa-pss-sha256\"", "refSections": [{"refs": [{"id": "ref-for-scheme-rsassa-pss-sha256"}, {"id": "ref-for-scheme-rsassa-pss-sha256\u2460"}, {"id": "ref-for-scheme-rsassa-pss-sha256\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['scheme-ed25519'] = {"dfnID": "scheme-ed25519", "url": "#scheme-ed25519", "dfnText": "\"ed25519\"", "refSections": [{"refs": [{"id": "ref-for-scheme-ed25519"}, {"id": "ref-for-scheme-ed25519\u2460"}, {"id": "ref-for-scheme-ed25519\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['scheme-ecdsa-sha2-nistp256'] = {"dfnID": "scheme-ecdsa-sha2-nistp256", "url": "#scheme-ecdsa-sha2-nistp256", "dfnText": "\"ecdsa-sha2-nistp256\"", "refSections": [{"refs": [{"id": "ref-for-scheme-ecdsa-sha2-nistp256"}, {"id": "ref-for-scheme-ecdsa-sha2-nistp256\u2460"}, {"id": "ref-for-scheme-ecdsa-sha2-nistp256\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['keytype-rsa'] = {"dfnID": "keytype-rsa", "url": "#keytype-rsa", "dfnText": "\"rsa\"", "refSections": [{"refs": [{"id": "ref-for-keytype-rsa"}, {"id": "ref-for-keytype-rsa\u2460"}, {"id": "ref-for-keytype-rsa\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['keyval-rsa-public'] = {"dfnID": "keyval-rsa-public", "url": "#keyval-rsa-public", "dfnText": "PUBLIC", "refSections": [{"refs": [{"id": "ref-for-keyval-rsa-public"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['keytype-ed25519'] = {"dfnID": "keytype-ed25519", "url": "#keytype-ed25519", "dfnText": "\"ed25519\"", "refSections": [{"refs": [{"id": "ref-for-keytype-ed25519"}, {"id": "ref-for-keytype-ed25519\u2460"}, {"id": "ref-for-keytype-ed25519\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['keyval-ed25519-public'] = {"dfnID": "keyval-ed25519-public", "url": "#keyval-ed25519-public", "dfnText": "PUBLIC", "refSections": [{"refs": [{"id": "ref-for-keyval-ed25519-public"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['keytype-ecdsa'] = {"dfnID": "keytype-ecdsa", "url": "#keytype-ecdsa", "dfnText": "\"ecdsa\"", "refSections": [{"refs": [{"id": "ref-for-keytype-ecdsa"}, {"id": "ref-for-keytype-ecdsa\u2460"}, {"id": "ref-for-keytype-ecdsa\u2461"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['keyval-ecdsa-public'] = {"dfnID": "keyval-ecdsa-public", "url": "#keyval-ecdsa-public", "dfnText": "PUBLIC", "refSections": [{"refs": [{"id": "ref-for-keyval-ecdsa-public"}], "title": "4.2.2. Key objects"}], "external": false};
-window.dfnpanelData['date-time'] = {"dfnID": "date-time", "url": "#date-time", "dfnText": "date-time", "refSections": [{"refs": [{"id": "ref-for-date-time"}], "title": "4.2.3. Date-time"}, {"refs": [{"id": "ref-for-date-time\u2460"}], "title": "4.3. File formats: root.json"}], "external": false};
-window.dfnpanelData['rootjson'] = {"dfnID": "rootjson", "url": "#rootjson", "dfnText": "root.json", "refSections": [{"refs": [{"id": "ref-for-rootjson"}, {"id": "ref-for-rootjson\u2460"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-rootjson\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-rootjson\u2462"}, {"id": "ref-for-rootjson\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-rootjson\u2464"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-rootjson\u2465"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
-window.dfnpanelData['spec_version'] = {"dfnID": "spec_version", "url": "#spec_version", "dfnText": "SPEC_VERSION", "refSections": [{"refs": [{"id": "ref-for-spec_version"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-spec_version\u2460"}, {"id": "ref-for-spec_version\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-spec_version\u2462"}, {"id": "ref-for-spec_version\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-spec_version\u2464"}, {"id": "ref-for-spec_version\u2465"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-spec_version\u2466"}, {"id": "ref-for-spec_version\u2467"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
-window.dfnpanelData['consistent_snapshot'] = {"dfnID": "consistent_snapshot", "url": "#consistent_snapshot", "dfnText": "CONSISTENT_SNAPSHOT", "refSections": [{"refs": [{"id": "ref-for-consistent_snapshot"}], "title": "3.1.1. Target files"}, {"refs": [{"id": "ref-for-consistent_snapshot\u2460"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-consistent_snapshot\u2461"}], "title": "6.2.1. Writing consistent snapshots"}], "external": false};
-window.dfnpanelData['role-version'] = {"dfnID": "role-version", "url": "#role-version", "dfnText": "VERSION", "refSections": [{"refs": [{"id": "ref-for-role-version"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-role-version\u2460"}, {"id": "ref-for-role-version\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-role-version\u2462"}, {"id": "ref-for-role-version\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-role-version\u2464"}, {"id": "ref-for-role-version\u2465"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-role-version\u2466"}, {"id": "ref-for-role-version\u2467"}], "title": "4.7. File formats: mirrors.json"}, {"refs": [{"id": "ref-for-role-version\u2468"}, {"id": "ref-for-role-version\u2460\u24ea"}], "title": "6.3.1. Update targets metadata"}, {"refs": [{"id": "ref-for-role-version\u2460\u2460"}, {"id": "ref-for-role-version\u2460\u2461"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-role-version\u2460\u2462"}, {"id": "ref-for-role-version\u2460\u2463"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
-window.dfnpanelData['expires'] = {"dfnID": "expires", "url": "#expires", "dfnText": "EXPIRES", "refSections": [{"refs": [{"id": "ref-for-expires"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-expires\u2460"}, {"id": "ref-for-expires\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-expires\u2462"}, {"id": "ref-for-expires\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-expires\u2464"}, {"id": "ref-for-expires\u2465"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-expires\u2466"}, {"id": "ref-for-expires\u2467"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
-window.dfnpanelData['root-role'] = {"dfnID": "root-role", "url": "#root-role", "dfnText": "ROLE", "refSections": [{"refs": [{"id": "ref-for-root-role"}], "title": "4.3. File formats: root.json"}], "external": false};
-window.dfnpanelData['root-keyid'] = {"dfnID": "root-keyid", "url": "#root-keyid", "dfnText": "KEYID", "refSections": [{"refs": [{"id": "ref-for-root-keyid"}, {"id": "ref-for-root-keyid\u2460"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-root-keyid\u2461"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['threshold'] = {"dfnID": "threshold", "url": "#threshold", "dfnText": "THRESHOLD", "refSections": [{"refs": [{"id": "ref-for-threshold"}], "title": "4.3. File formats: root.json"}, {"refs": [{"id": "ref-for-threshold\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-threshold\u2461"}], "title": "6.3.1. Update targets metadata"}, {"refs": [{"id": "ref-for-threshold\u2462"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-threshold\u2463"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
-window.dfnpanelData['snapshotjson'] = {"dfnID": "snapshotjson", "url": "#snapshotjson", "dfnText": "snapshot.json", "refSections": [{"refs": [{"id": "ref-for-snapshotjson"}, {"id": "ref-for-snapshotjson\u2460"}, {"id": "ref-for-snapshotjson\u2461"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-snapshotjson\u2462"}, {"id": "ref-for-snapshotjson\u2463"}], "title": "4.6. File formats: timestamp.json"}], "external": false};
-window.dfnpanelData['metafiles'] = {"dfnID": "metafiles", "url": "#metafiles", "dfnText": "METAFILES", "refSections": [{"refs": [{"id": "ref-for-metafiles"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metafiles\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-metafiles\u2461"}, {"id": "ref-for-metafiles\u2462"}], "title": "4.6. File formats: timestamp.json"}, {"refs": [{"id": "ref-for-metafiles\u2463"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metafiles\u2464"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
-window.dfnpanelData['snapshot-metapath'] = {"dfnID": "snapshot-metapath", "url": "#snapshot-metapath", "dfnText": "METAPATH", "refSections": [{"refs": [{"id": "ref-for-snapshot-metapath"}, {"id": "ref-for-snapshot-metapath\u2460"}, {"id": "ref-for-snapshot-metapath\u2461"}, {"id": "ref-for-snapshot-metapath\u2462"}, {"id": "ref-for-snapshot-metapath\u2463"}, {"id": "ref-for-snapshot-metapath\u2464"}], "title": "4.4. File formats: snapshot.json"}], "external": false};
-window.dfnpanelData['metapath-version'] = {"dfnID": "metapath-version", "url": "#metapath-version", "dfnText": "VERSION", "refSections": [{"refs": [{"id": "ref-for-metapath-version"}, {"id": "ref-for-metapath-version\u2460"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metapath-version\u2461"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metapath-version\u2462"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
-window.dfnpanelData['metapath-length'] = {"dfnID": "metapath-length", "url": "#metapath-length", "dfnText": "LENGTH", "refSections": [{"refs": [{"id": "ref-for-metapath-length"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metapath-length\u2460"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metapath-length\u2461"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
-window.dfnpanelData['metapath-hashes'] = {"dfnID": "metapath-hashes", "url": "#metapath-hashes", "dfnText": "HASHES", "refSections": [{"refs": [{"id": "ref-for-metapath-hashes"}, {"id": "ref-for-metapath-hashes\u2460"}], "title": "4.4. File formats: snapshot.json"}, {"refs": [{"id": "ref-for-metapath-hashes\u2461"}], "title": "6.3.2. Update snapshot metadata"}, {"refs": [{"id": "ref-for-metapath-hashes\u2462"}], "title": "6.3.3. Update timestamp metadata"}], "external": false};
-window.dfnpanelData['hash'] = {"dfnID": "hash", "url": "#hash", "dfnText": "HASH", "refSections": [{"refs": [{"id": "ref-for-hash"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['targetsjson'] = {"dfnID": "targetsjson", "url": "#targetsjson", "dfnText": "targets.json", "refSections": [{"refs": [{"id": "ref-for-targetsjson"}, {"id": "ref-for-targetsjson\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['targets-obj-targets'] = {"dfnID": "targets-obj-targets", "url": "#targets-obj-targets", "dfnText": "TARGETS", "refSections": [{"refs": [{"id": "ref-for-targets-obj-targets"}, {"id": "ref-for-targets-obj-targets\u2460"}, {"id": "ref-for-targets-obj-targets\u2461"}, {"id": "ref-for-targets-obj-targets\u2462"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-targets-obj-targets\u2463"}], "title": "6.3.1. Update targets metadata"}], "external": false};
-window.dfnpanelData['targetpath'] = {"dfnID": "targetpath", "url": "#targetpath", "dfnText": "TARGETPATH", "refSections": [{"refs": [{"id": "ref-for-targetpath"}, {"id": "ref-for-targetpath\u2460"}, {"id": "ref-for-targetpath\u2461"}, {"id": "ref-for-targetpath\u2462"}, {"id": "ref-for-targetpath\u2463"}, {"id": "ref-for-targetpath\u2464"}, {"id": "ref-for-targetpath\u2465"}, {"id": "ref-for-targetpath\u2466"}, {"id": "ref-for-targetpath\u2467"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['targets-obj-length'] = {"dfnID": "targets-obj-length", "url": "#targets-obj-length", "dfnText": "LENGTH", "refSections": [{"refs": [{"id": "ref-for-targets-obj-length"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['targets-obj-hashes'] = {"dfnID": "targets-obj-hashes", "url": "#targets-obj-hashes", "dfnText": "HASHES", "refSections": [{"refs": [{"id": "ref-for-targets-obj-hashes"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['custom'] = {"dfnID": "custom", "url": "#custom", "dfnText": "CUSTOM", "refSections": [{"refs": [{"id": "ref-for-custom"}, {"id": "ref-for-custom\u2460"}, {"id": "ref-for-custom\u2461"}, {"id": "ref-for-custom\u2462"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['delegations'] = {"dfnID": "delegations", "url": "#delegations", "dfnText": "DELEGATIONS", "refSections": [{"refs": [{"id": "ref-for-delegations"}, {"id": "ref-for-delegations\u2460"}, {"id": "ref-for-delegations\u2461"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['rolename'] = {"dfnID": "rolename", "url": "#rolename", "dfnText": "ROLENAME", "refSections": [{"refs": [{"id": "ref-for-rolename"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['terminating'] = {"dfnID": "terminating", "url": "#terminating", "dfnText": "TERMINATING", "refSections": [{"refs": [{"id": "ref-for-terminating"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['path_hash_prefixes'] = {"dfnID": "path_hash_prefixes", "url": "#path_hash_prefixes", "dfnText": "\"path_hash_prefixes\"", "refSections": [{"refs": [{"id": "ref-for-path_hash_prefixes"}, {"id": "ref-for-path_hash_prefixes\u2460"}, {"id": "ref-for-path_hash_prefixes\u2461"}, {"id": "ref-for-path_hash_prefixes\u2462"}, {"id": "ref-for-path_hash_prefixes\u2463"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['hex_digest'] = {"dfnID": "hex_digest", "url": "#hex_digest", "dfnText": "HEX_DIGEST", "refSections": [{"refs": [{"id": "ref-for-hex_digest"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['delegation-role-paths'] = {"dfnID": "delegation-role-paths", "url": "#delegation-role-paths", "dfnText": "\"paths\"", "refSections": [{"refs": [{"id": "ref-for-delegation-role-paths"}, {"id": "ref-for-delegation-role-paths\u2460"}], "title": "4.5. File formats: targets.json and delegated target roles"}], "external": false};
-window.dfnpanelData['pathpattern'] = {"dfnID": "pathpattern", "url": "#pathpattern", "dfnText": "PATHPATTERN", "refSections": [{"refs": [{"id": "ref-for-pathpattern"}, {"id": "ref-for-pathpattern\u2460"}, {"id": "ref-for-pathpattern\u2461"}, {"id": "ref-for-pathpattern\u2462"}, {"id": "ref-for-pathpattern\u2463"}, {"id": "ref-for-pathpattern\u2464"}, {"id": "ref-for-pathpattern\u2465"}, {"id": "ref-for-pathpattern\u2466"}, {"id": "ref-for-pathpattern\u2467"}, {"id": "ref-for-pathpattern\u2468"}], "title": "4.5. File formats: targets.json and delegated target roles"}, {"refs": [{"id": "ref-for-pathpattern\u2460\u24ea"}, {"id": "ref-for-pathpattern\u2460\u2460"}, {"id": "ref-for-pathpattern\u2460\u2461"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
-window.dfnpanelData['timestampjson'] = {"dfnID": "timestampjson", "url": "#timestampjson", "dfnText": "timestamp.json", "refSections": [{"refs": [{"id": "ref-for-timestampjson"}, {"id": "ref-for-timestampjson\u2460"}, {"id": "ref-for-timestampjson\u2461"}], "title": "4.6. File formats: timestamp.json"}], "external": false};
-window.dfnpanelData['mirrorsjson'] = {"dfnID": "mirrorsjson", "url": "#mirrorsjson", "dfnText": "mirrors.json", "refSections": [{"refs": [{"id": "ref-for-mirrorsjson"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
-window.dfnpanelData['urlbase'] = {"dfnID": "urlbase", "url": "#urlbase", "dfnText": "URLBASE", "refSections": [{"refs": [{"id": "ref-for-urlbase"}, {"id": "ref-for-urlbase\u2460"}, {"id": "ref-for-urlbase\u2461"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
-window.dfnpanelData['mirrors-metapath'] = {"dfnID": "mirrors-metapath", "url": "#mirrors-metapath", "dfnText": "METAPATH", "refSections": [{"refs": [{"id": "ref-for-mirrors-metapath"}, {"id": "ref-for-mirrors-metapath\u2460"}], "title": "4.7. File formats: mirrors.json"}], "external": false};
-window.dfnpanelData['targetspath'] = {"dfnID": "targetspath", "url": "#targetspath", "dfnText": "TARGETSPATH", "refSections": [{"refs": [{"id": "ref-for-targetspath"}, {"id": "ref-for-targetspath\u2460"}], "title": "4.7. File formats: mirrors.json"}], "external": false};</script>
-<script>/* script-dom-helper */
 function query(sel) { return document.querySelector(sel); }
 
 function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
@@ -4278,3 +4300,698 @@ function parseHTML(markup) {
 		return el.content;
 	}
 }</script>
+<script>/* Boilerplate: script-dfn-panel */
+"use strict";
+{
+let dfnPanelData = {
+"consistent_snapshot": {"dfnID":"consistent_snapshot","dfnText":"CONSISTENT_SNAPSHOT","external":false,"refSections":[{"refs":[{"id":"ref-for-consistent_snapshot"}],"title":"3.1.1. Target files"},{"refs":[{"id":"ref-for-consistent_snapshot\u2460"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-consistent_snapshot\u2461"}],"title":"6.2.1. Writing consistent snapshots"}],"url":"#consistent_snapshot"},
+"custom": {"dfnID":"custom","dfnText":"CUSTOM","external":false,"refSections":[{"refs":[{"id":"ref-for-custom"},{"id":"ref-for-custom\u2460"},{"id":"ref-for-custom\u2461"},{"id":"ref-for-custom\u2462"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#custom"},
+"date-time": {"dfnID":"date-time","dfnText":"date-time","external":false,"refSections":[{"refs":[{"id":"ref-for-date-time"}],"title":"4.2.3. Date-time"},{"refs":[{"id":"ref-for-date-time\u2460"}],"title":"4.3. File formats: root.json"}],"url":"#date-time"},
+"delegation-role-paths": {"dfnID":"delegation-role-paths","dfnText":"\"paths\"","external":false,"refSections":[{"refs":[{"id":"ref-for-delegation-role-paths"},{"id":"ref-for-delegation-role-paths\u2460"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#delegation-role-paths"},
+"delegations": {"dfnID":"delegations","dfnText":"DELEGATIONS","external":false,"refSections":[{"refs":[{"id":"ref-for-delegations"},{"id":"ref-for-delegations\u2460"},{"id":"ref-for-delegations\u2461"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#delegations"},
+"expires": {"dfnID":"expires","dfnText":"EXPIRES","external":false,"refSections":[{"refs":[{"id":"ref-for-expires"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-expires\u2460"},{"id":"ref-for-expires\u2461"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-expires\u2462"},{"id":"ref-for-expires\u2463"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-expires\u2464"},{"id":"ref-for-expires\u2465"}],"title":"4.6. File formats: timestamp.json"},{"refs":[{"id":"ref-for-expires\u2466"},{"id":"ref-for-expires\u2467"}],"title":"4.7. File formats: mirrors.json"}],"url":"#expires"},
+"hash": {"dfnID":"hash","dfnText":"HASH","external":false,"refSections":[{"refs":[{"id":"ref-for-hash"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#hash"},
+"hex_digest": {"dfnID":"hex_digest","dfnText":"HEX_DIGEST","external":false,"refSections":[{"refs":[{"id":"ref-for-hex_digest"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#hex_digest"},
+"key": {"dfnID":"key","dfnText":"KEY","external":false,"refSections":[{"refs":[{"id":"ref-for-key"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-key\u2460"},{"id":"ref-for-key\u2461"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-key\u2462"}],"title":"5.3. Update the root role"},{"refs":[{"id":"ref-for-key\u2463"}],"title":"5.4. Update the timestamp role"},{"refs":[{"id":"ref-for-key\u2464"}],"title":"5.5. Update the snapshot role"},{"refs":[{"id":"ref-for-key\u2465"}],"title":"5.6. Update the targets role"}],"url":"#key"},
+"keytype": {"dfnID":"keytype","dfnText":"KEYTYPE","external":false,"refSections":[{"refs":[{"id":"ref-for-keytype"},{"id":"ref-for-keytype\u2460"},{"id":"ref-for-keytype\u2461"},{"id":"ref-for-keytype\u2462"},{"id":"ref-for-keytype\u2463"},{"id":"ref-for-keytype\u2464"}],"title":"4.2.2. Key objects"}],"url":"#keytype"},
+"keytype-ecdsa": {"dfnID":"keytype-ecdsa","dfnText":"\"ecdsa\"","external":false,"refSections":[{"refs":[{"id":"ref-for-keytype-ecdsa"},{"id":"ref-for-keytype-ecdsa\u2460"},{"id":"ref-for-keytype-ecdsa\u2461"}],"title":"4.2.2. Key objects"}],"url":"#keytype-ecdsa"},
+"keytype-ed25519": {"dfnID":"keytype-ed25519","dfnText":"\"ed25519\"","external":false,"refSections":[{"refs":[{"id":"ref-for-keytype-ed25519"},{"id":"ref-for-keytype-ed25519\u2460"},{"id":"ref-for-keytype-ed25519\u2461"}],"title":"4.2.2. Key objects"}],"url":"#keytype-ed25519"},
+"keytype-rsa": {"dfnID":"keytype-rsa","dfnText":"\"rsa\"","external":false,"refSections":[{"refs":[{"id":"ref-for-keytype-rsa"},{"id":"ref-for-keytype-rsa\u2460"},{"id":"ref-for-keytype-rsa\u2461"}],"title":"4.2.2. Key objects"}],"url":"#keytype-rsa"},
+"keyval": {"dfnID":"keyval","dfnText":"KEYVAL","external":false,"refSections":[{"refs":[{"id":"ref-for-keyval"}],"title":"4.2.2. Key objects"}],"url":"#keyval"},
+"keyval-ecdsa-public": {"dfnID":"keyval-ecdsa-public","dfnText":"PUBLIC","external":false,"refSections":[{"refs":[{"id":"ref-for-keyval-ecdsa-public"}],"title":"4.2.2. Key objects"}],"url":"#keyval-ecdsa-public"},
+"keyval-ed25519-public": {"dfnID":"keyval-ed25519-public","dfnText":"PUBLIC","external":false,"refSections":[{"refs":[{"id":"ref-for-keyval-ed25519-public"}],"title":"4.2.2. Key objects"}],"url":"#keyval-ed25519-public"},
+"keyval-rsa-public": {"dfnID":"keyval-rsa-public","dfnText":"PUBLIC","external":false,"refSections":[{"refs":[{"id":"ref-for-keyval-rsa-public"}],"title":"4.2.2. Key objects"}],"url":"#keyval-rsa-public"},
+"metafiles": {"dfnID":"metafiles","dfnText":"METAFILES","external":false,"refSections":[{"refs":[{"id":"ref-for-metafiles"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-metafiles\u2460"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-metafiles\u2461"},{"id":"ref-for-metafiles\u2462"}],"title":"4.6. File formats: timestamp.json"},{"refs":[{"id":"ref-for-metafiles\u2463"}],"title":"6.3.2. Update snapshot metadata"},{"refs":[{"id":"ref-for-metafiles\u2464"}],"title":"6.3.3. Update timestamp metadata"}],"url":"#metafiles"},
+"metapath-hashes": {"dfnID":"metapath-hashes","dfnText":"HASHES","external":false,"refSections":[{"refs":[{"id":"ref-for-metapath-hashes"},{"id":"ref-for-metapath-hashes\u2460"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-metapath-hashes\u2461"}],"title":"6.3.2. Update snapshot metadata"},{"refs":[{"id":"ref-for-metapath-hashes\u2462"}],"title":"6.3.3. Update timestamp metadata"}],"url":"#metapath-hashes"},
+"metapath-length": {"dfnID":"metapath-length","dfnText":"LENGTH","external":false,"refSections":[{"refs":[{"id":"ref-for-metapath-length"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-metapath-length\u2460"}],"title":"6.3.2. Update snapshot metadata"},{"refs":[{"id":"ref-for-metapath-length\u2461"}],"title":"6.3.3. Update timestamp metadata"}],"url":"#metapath-length"},
+"metapath-version": {"dfnID":"metapath-version","dfnText":"VERSION","external":false,"refSections":[{"refs":[{"id":"ref-for-metapath-version"},{"id":"ref-for-metapath-version\u2460"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-metapath-version\u2461"}],"title":"6.3.2. Update snapshot metadata"},{"refs":[{"id":"ref-for-metapath-version\u2462"}],"title":"6.3.3. Update timestamp metadata"}],"url":"#metapath-version"},
+"mirrors-metapath": {"dfnID":"mirrors-metapath","dfnText":"METAPATH","external":false,"refSections":[{"refs":[{"id":"ref-for-mirrors-metapath"},{"id":"ref-for-mirrors-metapath\u2460"}],"title":"4.7. File formats: mirrors.json"}],"url":"#mirrors-metapath"},
+"mirrorsjson": {"dfnID":"mirrorsjson","dfnText":"mirrors.json","external":false,"refSections":[{"refs":[{"id":"ref-for-mirrorsjson"}],"title":"4.7. File formats: mirrors.json"}],"url":"#mirrorsjson"},
+"path_hash_prefixes": {"dfnID":"path_hash_prefixes","dfnText":"\"path_hash_prefixes\"","external":false,"refSections":[{"refs":[{"id":"ref-for-path_hash_prefixes"},{"id":"ref-for-path_hash_prefixes\u2460"},{"id":"ref-for-path_hash_prefixes\u2461"},{"id":"ref-for-path_hash_prefixes\u2462"},{"id":"ref-for-path_hash_prefixes\u2463"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#path_hash_prefixes"},
+"pathpattern": {"dfnID":"pathpattern","dfnText":"PATHPATTERN","external":false,"refSections":[{"refs":[{"id":"ref-for-pathpattern"},{"id":"ref-for-pathpattern\u2460"},{"id":"ref-for-pathpattern\u2461"},{"id":"ref-for-pathpattern\u2462"},{"id":"ref-for-pathpattern\u2463"},{"id":"ref-for-pathpattern\u2464"},{"id":"ref-for-pathpattern\u2465"},{"id":"ref-for-pathpattern\u2466"},{"id":"ref-for-pathpattern\u2467"},{"id":"ref-for-pathpattern\u2468"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-pathpattern\u2460\u24ea"},{"id":"ref-for-pathpattern\u2460\u2460"},{"id":"ref-for-pathpattern\u2460\u2461"}],"title":"4.7. File formats: mirrors.json"}],"url":"#pathpattern"},
+"role-keyid": {"dfnID":"role-keyid","dfnText":"KEYID","external":false,"refSections":[{"refs":[{"id":"ref-for-role-keyid"},{"id":"ref-for-role-keyid\u2460"}],"title":"4.2.1. Object format"},{"refs":[{"id":"ref-for-role-keyid\u2461"},{"id":"ref-for-role-keyid\u2462"},{"id":"ref-for-role-keyid\u2463"},{"id":"ref-for-role-keyid\u2464"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-role-keyid\u2465"},{"id":"ref-for-role-keyid\u2466"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-role-keyid\u2467"},{"id":"ref-for-role-keyid\u2468"}],"title":"5.3. Update the root role"},{"refs":[{"id":"ref-for-role-keyid\u2460\u24ea"}],"title":"5.4. Update the timestamp role"},{"refs":[{"id":"ref-for-role-keyid\u2460\u2460"},{"id":"ref-for-role-keyid\u2460\u2461"}],"title":"5.5. Update the snapshot role"}],"url":"#role-keyid"},
+"role-role": {"dfnID":"role-role","dfnText":"ROLE","external":false,"refSections":[{"refs":[{"id":"ref-for-role-role"},{"id":"ref-for-role-role\u2460"},{"id":"ref-for-role-role\u2461"}],"title":"4.2.1. Object format"}],"url":"#role-role"},
+"role-version": {"dfnID":"role-version","dfnText":"VERSION","external":false,"refSections":[{"refs":[{"id":"ref-for-role-version"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-role-version\u2460"},{"id":"ref-for-role-version\u2461"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-role-version\u2462"},{"id":"ref-for-role-version\u2463"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-role-version\u2464"},{"id":"ref-for-role-version\u2465"}],"title":"4.6. File formats: timestamp.json"},{"refs":[{"id":"ref-for-role-version\u2466"},{"id":"ref-for-role-version\u2467"}],"title":"4.7. File formats: mirrors.json"},{"refs":[{"id":"ref-for-role-version\u2468"},{"id":"ref-for-role-version\u2460\u24ea"}],"title":"6.3.1. Update targets metadata"},{"refs":[{"id":"ref-for-role-version\u2460\u2460"},{"id":"ref-for-role-version\u2460\u2461"}],"title":"6.3.2. Update snapshot metadata"},{"refs":[{"id":"ref-for-role-version\u2460\u2462"},{"id":"ref-for-role-version\u2460\u2463"}],"title":"6.3.3. Update timestamp metadata"}],"url":"#role-version"},
+"rolename": {"dfnID":"rolename","dfnText":"ROLENAME","external":false,"refSections":[{"refs":[{"id":"ref-for-rolename"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#rolename"},
+"root-keyid": {"dfnID":"root-keyid","dfnText":"KEYID","external":false,"refSections":[{"refs":[{"id":"ref-for-root-keyid"},{"id":"ref-for-root-keyid\u2460"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-root-keyid\u2461"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-root-keyid\u2462"}],"title":"5.3. Update the root role"},{"refs":[{"id":"ref-for-root-keyid\u2463"},{"id":"ref-for-root-keyid\u2464"}],"title":"5.4. Update the timestamp role"},{"refs":[{"id":"ref-for-root-keyid\u2465"}],"title":"5.5. Update the snapshot role"},{"refs":[{"id":"ref-for-root-keyid\u2466"},{"id":"ref-for-root-keyid\u2467"},{"id":"ref-for-root-keyid\u2468"}],"title":"5.6. Update the targets role"}],"url":"#root-keyid"},
+"root-role": {"dfnID":"root-role","dfnText":"ROLE","external":false,"refSections":[{"refs":[{"id":"ref-for-root-role"}],"title":"4.3. File formats: root.json"}],"url":"#root-role"},
+"rootjson": {"dfnID":"rootjson","dfnText":"root.json","external":false,"refSections":[{"refs":[{"id":"ref-for-rootjson"},{"id":"ref-for-rootjson\u2460"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-rootjson\u2461"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-rootjson\u2462"},{"id":"ref-for-rootjson\u2463"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-rootjson\u2464"}],"title":"4.6. File formats: timestamp.json"},{"refs":[{"id":"ref-for-rootjson\u2465"}],"title":"4.7. File formats: mirrors.json"}],"url":"#rootjson"},
+"scheme": {"dfnID":"scheme","dfnText":"SCHEME","external":false,"refSections":[{"refs":[{"id":"ref-for-scheme"},{"id":"ref-for-scheme\u2460"},{"id":"ref-for-scheme\u2461"},{"id":"ref-for-scheme\u2462"},{"id":"ref-for-scheme\u2463"},{"id":"ref-for-scheme\u2464"}],"title":"4.2.2. Key objects"}],"url":"#scheme"},
+"scheme-ecdsa-sha2-nistp256": {"dfnID":"scheme-ecdsa-sha2-nistp256","dfnText":"\"ecdsa-sha2-nistp256\"","external":false,"refSections":[{"refs":[{"id":"ref-for-scheme-ecdsa-sha2-nistp256"},{"id":"ref-for-scheme-ecdsa-sha2-nistp256\u2460"},{"id":"ref-for-scheme-ecdsa-sha2-nistp256\u2461"}],"title":"4.2.2. Key objects"}],"url":"#scheme-ecdsa-sha2-nistp256"},
+"scheme-ed25519": {"dfnID":"scheme-ed25519","dfnText":"\"ed25519\"","external":false,"refSections":[{"refs":[{"id":"ref-for-scheme-ed25519"},{"id":"ref-for-scheme-ed25519\u2460"},{"id":"ref-for-scheme-ed25519\u2461"}],"title":"4.2.2. Key objects"}],"url":"#scheme-ed25519"},
+"scheme-rsassa-pss-sha256": {"dfnID":"scheme-rsassa-pss-sha256","dfnText":"\"rsassa-pss-sha256\"","external":false,"refSections":[{"refs":[{"id":"ref-for-scheme-rsassa-pss-sha256"},{"id":"ref-for-scheme-rsassa-pss-sha256\u2460"},{"id":"ref-for-scheme-rsassa-pss-sha256\u2461"}],"title":"4.2.2. Key objects"}],"url":"#scheme-rsassa-pss-sha256"},
+"signature": {"dfnID":"signature","dfnText":"SIGNATURE","external":false,"refSections":[{"refs":[{"id":"ref-for-signature"},{"id":"ref-for-signature\u2460"}],"title":"4.2.1. Object format"},{"refs":[{"id":"ref-for-signature\u2461"},{"id":"ref-for-signature\u2462"},{"id":"ref-for-signature\u2463"}],"title":"5.3. Update the root role"},{"refs":[{"id":"ref-for-signature\u2464"},{"id":"ref-for-signature\u2465"},{"id":"ref-for-signature\u2466"}],"title":"5.4. Update the timestamp role"},{"refs":[{"id":"ref-for-signature\u2467"},{"id":"ref-for-signature\u2468"},{"id":"ref-for-signature\u2460\u24ea"}],"title":"5.5. Update the snapshot role"},{"refs":[{"id":"ref-for-signature\u2460\u2460"},{"id":"ref-for-signature\u2460\u2461"},{"id":"ref-for-signature\u2460\u2462"}],"title":"5.6. Update the targets role"}],"url":"#signature"},
+"snapshot-metapath": {"dfnID":"snapshot-metapath","dfnText":"METAPATH","external":false,"refSections":[{"refs":[{"id":"ref-for-snapshot-metapath"},{"id":"ref-for-snapshot-metapath\u2460"},{"id":"ref-for-snapshot-metapath\u2461"},{"id":"ref-for-snapshot-metapath\u2462"},{"id":"ref-for-snapshot-metapath\u2463"},{"id":"ref-for-snapshot-metapath\u2464"}],"title":"4.4. File formats: snapshot.json"}],"url":"#snapshot-metapath"},
+"snapshotjson": {"dfnID":"snapshotjson","dfnText":"snapshot.json","external":false,"refSections":[{"refs":[{"id":"ref-for-snapshotjson"},{"id":"ref-for-snapshotjson\u2460"},{"id":"ref-for-snapshotjson\u2461"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-snapshotjson\u2462"},{"id":"ref-for-snapshotjson\u2463"}],"title":"4.6. File formats: timestamp.json"}],"url":"#snapshotjson"},
+"spec_version": {"dfnID":"spec_version","dfnText":"SPEC_VERSION","external":false,"refSections":[{"refs":[{"id":"ref-for-spec_version"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-spec_version\u2460"},{"id":"ref-for-spec_version\u2461"}],"title":"4.4. File formats: snapshot.json"},{"refs":[{"id":"ref-for-spec_version\u2462"},{"id":"ref-for-spec_version\u2463"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-spec_version\u2464"},{"id":"ref-for-spec_version\u2465"}],"title":"4.6. File formats: timestamp.json"},{"refs":[{"id":"ref-for-spec_version\u2466"},{"id":"ref-for-spec_version\u2467"}],"title":"4.7. File formats: mirrors.json"}],"url":"#spec_version"},
+"targetpath": {"dfnID":"targetpath","dfnText":"TARGETPATH","external":false,"refSections":[{"refs":[{"id":"ref-for-targetpath"},{"id":"ref-for-targetpath\u2460"},{"id":"ref-for-targetpath\u2461"},{"id":"ref-for-targetpath\u2462"},{"id":"ref-for-targetpath\u2463"},{"id":"ref-for-targetpath\u2464"},{"id":"ref-for-targetpath\u2465"},{"id":"ref-for-targetpath\u2466"},{"id":"ref-for-targetpath\u2467"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#targetpath"},
+"targets-obj-hashes": {"dfnID":"targets-obj-hashes","dfnText":"HASHES","external":false,"refSections":[{"refs":[{"id":"ref-for-targets-obj-hashes"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#targets-obj-hashes"},
+"targets-obj-length": {"dfnID":"targets-obj-length","dfnText":"LENGTH","external":false,"refSections":[{"refs":[{"id":"ref-for-targets-obj-length"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#targets-obj-length"},
+"targets-obj-targets": {"dfnID":"targets-obj-targets","dfnText":"TARGETS","external":false,"refSections":[{"refs":[{"id":"ref-for-targets-obj-targets"},{"id":"ref-for-targets-obj-targets\u2460"},{"id":"ref-for-targets-obj-targets\u2461"},{"id":"ref-for-targets-obj-targets\u2462"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-targets-obj-targets\u2463"}],"title":"6.3.1. Update targets metadata"}],"url":"#targets-obj-targets"},
+"targetsjson": {"dfnID":"targetsjson","dfnText":"targets.json","external":false,"refSections":[{"refs":[{"id":"ref-for-targetsjson"},{"id":"ref-for-targetsjson\u2460"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#targetsjson"},
+"targetspath": {"dfnID":"targetspath","dfnText":"TARGETSPATH","external":false,"refSections":[{"refs":[{"id":"ref-for-targetspath"},{"id":"ref-for-targetspath\u2460"}],"title":"4.7. File formats: mirrors.json"}],"url":"#targetspath"},
+"terminating": {"dfnID":"terminating","dfnText":"TERMINATING","external":false,"refSections":[{"refs":[{"id":"ref-for-terminating"}],"title":"4.5. File formats: targets.json and delegated target roles"}],"url":"#terminating"},
+"threshold": {"dfnID":"threshold","dfnText":"THRESHOLD","external":false,"refSections":[{"refs":[{"id":"ref-for-threshold"},{"id":"ref-for-threshold\u2460"}],"title":"4.2.1. Object format"},{"refs":[{"id":"ref-for-threshold\u2461"}],"title":"4.3. File formats: root.json"},{"refs":[{"id":"ref-for-threshold\u2462"},{"id":"ref-for-threshold\u2463"}],"title":"4.5. File formats: targets.json and delegated target roles"},{"refs":[{"id":"ref-for-threshold\u2464"},{"id":"ref-for-threshold\u2465"},{"id":"ref-for-threshold\u2466"},{"id":"ref-for-threshold\u2467"},{"id":"ref-for-threshold\u2468"}],"title":"5.3. Update the root role"},{"refs":[{"id":"ref-for-threshold\u2460\u24ea"},{"id":"ref-for-threshold\u2460\u2460"},{"id":"ref-for-threshold\u2460\u2461"},{"id":"ref-for-threshold\u2460\u2462"}],"title":"5.4. Update the timestamp role"},{"refs":[{"id":"ref-for-threshold\u2460\u2463"},{"id":"ref-for-threshold\u2460\u2464"},{"id":"ref-for-threshold\u2460\u2465"},{"id":"ref-for-threshold\u2460\u2466"}],"title":"5.5. Update the snapshot role"},{"refs":[{"id":"ref-for-threshold\u2460\u2467"},{"id":"ref-for-threshold\u2460\u2468"},{"id":"ref-for-threshold\u2461\u24ea"},{"id":"ref-for-threshold\u2461\u2460"}],"title":"5.6. Update the targets role"},{"refs":[{"id":"ref-for-threshold\u2461\u2461"}],"title":"6.3.1. Update targets metadata"},{"refs":[{"id":"ref-for-threshold\u2461\u2462"}],"title":"6.3.2. Update snapshot metadata"},{"refs":[{"id":"ref-for-threshold\u2461\u2463"}],"title":"6.3.3. Update timestamp metadata"}],"url":"#threshold"},
+"timestampjson": {"dfnID":"timestampjson","dfnText":"timestamp.json","external":false,"refSections":[{"refs":[{"id":"ref-for-timestampjson"},{"id":"ref-for-timestampjson\u2460"},{"id":"ref-for-timestampjson\u2461"}],"title":"4.6. File formats: timestamp.json"}],"url":"#timestampjson"},
+"urlbase": {"dfnID":"urlbase","dfnText":"URLBASE","external":false,"refSections":[{"refs":[{"id":"ref-for-urlbase"},{"id":"ref-for-urlbase\u2460"},{"id":"ref-for-urlbase\u2461"}],"title":"4.7. File formats: mirrors.json"}],"url":"#urlbase"},
+};
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    genAllDfnPanels();
+
+    document.body.addEventListener("click", (e) => {
+        // If not handled already, just hide all dfn panels.
+        hideAllDfnPanels();
+    });
+});
+
+window.addEventListener("resize", () => {
+    // Pin any visible dfn panel
+    queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>positionDfnPanel(el));
+});
+
+function genAllDfnPanels() {
+    for(const panelData of Object.values(dfnPanelData)) {
+        const dfnID = panelData.dfnID;
+        const dfn = document.getElementById(dfnID);
+        if(!dfn) {
+            console.log(`Can't find dfn#${dfnID}.`, panelData);
+            continue;
+        }
+        dfn.panelData = panelData;
+        insertDfnPopupAction(dfn);
+    }
+}
+
+function genDfnPanel(dfn, { dfnID, url, dfnText, refSections, external }) {
+    const dfnPanel = mk.aside({
+        class: "dfn-panel on",
+        id: `infopanel-for-${dfnID}`,
+        "data-for": dfnID,
+        "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+        },
+        mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+            `Info about the '${dfnText}' ${external?"external":""} reference.`),
+        mk.a({href:url, class:"dfn-link"}, url),
+        refSections.length == 0 ? [] :
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({ href: `#${ref.id}` },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        genLinkingSyntaxes(dfn),
+    );
+
+    dfnPanel.addEventListener('click', (event) => {
+        if (event.target.nodeName == 'A') {
+            scrollToTargetAndHighlight(event);
+            pinDfnPanel(dfnPanel);
+        }
+        event.stopPropagation();
+        refocusOnTarget(event);
+    });
+    dfnPanel.addEventListener('keydown', (event) => {
+        if(event.keyCode == 27) { // Escape key
+            hideDfnPanel({dfnPanel});
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    });
+
+    dfnPanel.dfn = dfn;
+    dfn.dfnPanel = dfnPanel;
+    return dfnPanel;
+}
+
+
+
+function hideAllDfnPanels() {
+    // Delete the currently-active dfn panel.
+    queryAll(".dfn-panel").forEach(dfnPanel=>hideDfnPanel({dfnPanel}));
+}
+
+function showDfnPanel(dfn) {
+    hideAllDfnPanels(); // Only display one at a time.
+
+    dfn.setAttribute("aria-expanded", "true");
+
+    const dfnPanel = genDfnPanel(dfn, dfn.panelData);
+
+    // Give the dfn a unique tabindex, and then
+    // give all the tabbable panel bits successive indexes.
+    let tabIndex = 100;
+    dfn.tabIndex = tabIndex++;
+    const tabbable = dfnPanel.querySelectorAll(":is(a, button)");
+    for (const el of tabbable) {
+        el.tabIndex = tabIndex++;
+    }
+
+    append(document.body, dfnPanel);
+    positionDfnPanel(dfnPanel);
+}
+
+function positionDfnPanel(dfnPanel) {
+    const dfn = dfnPanel.dfn;
+    const dfnPos = getBounds(dfn);
+    dfnPanel.style.top = dfnPos.bottom + "px";
+    dfnPanel.style.left = dfnPos.left + "px";
+
+    const panelPos = dfnPanel.getBoundingClientRect();
+    const panelMargin = 8;
+    const maxRight = document.body.parentNode.clientWidth - panelMargin;
+    if (panelPos.right > maxRight) {
+        const overflowAmount = panelPos.right - maxRight;
+        const newLeft = Math.max(panelMargin, dfnPos.left - overflowAmount);
+        dfnPanel.style.left = newLeft + "px";
+    }
+}
+
+function pinDfnPanel(dfnPanel) {
+    // Switch it to "activated" state, which pins it.
+    dfnPanel.classList.add("activated");
+    dfnPanel.style.position = "fixed";
+    dfnPanel.style.left = null;
+    dfnPanel.style.top = null;
+}
+
+function hideDfnPanel({dfn, dfnPanel}) {
+    if(!dfnPanel) dfnPanel = dfn.dfnPanel;
+    if(!dfn) dfn = dfnPanel.dfn;
+    dfn.dfnPanel = undefined;
+    dfnPanel.dfn = undefined;
+    dfn.setAttribute("aria-expanded", "false");
+    dfn.tabIndex = undefined;
+    dfnPanel.remove()
+}
+
+function toggleDfnPanel(dfn) {
+    if(dfn.dfnPanel) {
+        hideDfnPanel(dfn);
+    } else {
+        showDfnPanel(dfn);
+    }
+}
+
+function insertDfnPopupAction(dfn) {
+    dfn.setAttribute('role', 'button');
+    dfn.setAttribute('aria-expanded', 'false')
+    dfn.tabIndex = 0;
+    dfn.classList.add('has-dfn-panel');
+    dfn.addEventListener('click', (event) => {
+        toggleDfnPanel(dfn);
+        event.stopPropagation();
+    });
+    dfn.addEventListener('keypress', (event) => {
+        const kc = event.keyCode;
+        // 32->Space, 13->Enter
+        if(kc == 32 || kc == 13) {
+            toggleDfnPanel(dfn);
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    });
+}
+
+function refocusOnTarget(event) {
+    const target = event.target;
+    setTimeout(() => {
+        // Refocus on the event.target element.
+        // This is needed after browser scrolls to the destination.
+        target.focus();
+    });
+}
+
+// TODO: shared util
+// Returns the root-level absolute position {left and top} of element.
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
+    return {
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
+}
+
+function scrollToTargetAndHighlight(event) {
+    let hash = event.target.hash;
+    if (hash) {
+        hash = decodeURIComponent(hash.substring(1));
+        const dest = document.getElementById(hash);
+        if (dest) {
+            dest.classList.add('highlighted');
+            setTimeout(() => dest.classList.remove('highlighted'), 1000);
+        }
+    }
+}
+
+// Functions, divided by link type, that wrap an autolink's
+// contents with the appropriate outer syntax.
+// Alternately, a string naming another type they format
+// the same as.
+function needsFor(type) {
+    switch(type) {
+        case "descriptor":
+        case "value":
+        case "element-attr":
+        case "attr-value":
+        case "element-state":
+        case "method":
+        case "constructor":
+        case "argument":
+        case "attribute":
+        case "const":
+        case "dict-member":
+        case "event":
+        case "enum-value":
+        case "stringifier":
+        case "serializer":
+        case "iterator":
+        case "maplike":
+        case "setlike":
+        case "state":
+        case "mode":
+        case "context":
+        case "facet": return true;
+
+        default: return false;
+    }
+}
+function refusesFor(type) {
+    switch(type) {
+        case "property":
+        case "element":
+        case "interface":
+        case "namespace":
+        case "callback":
+        case "dictionary":
+        case "enum":
+        case "exception":
+        case "typedef":
+        case "http-header":
+        case "permission": return true;
+
+        default: return false;
+    }
+}
+function linkFormatterFromType(type) {
+    switch(type) {
+        case 'scheme':
+        case 'permission':
+        case 'dfn': return (text) => `[=${text}=]`;
+
+        case 'abstract-op': return (text) => `[\$${text}\$]`;
+
+        case 'function':
+        case 'at-rule':
+        case 'selector':
+        case 'value': return (text) => `''${text}''`;
+
+        case 'http-header': return (text) => `[:${text}:]`;
+
+        case 'interface':
+        case 'constructor':
+        case 'method':
+        case 'argument':
+        case 'attribute':
+        case 'callback':
+        case 'dictionary':
+        case 'dict-member':
+        case 'enum':
+        case 'enum-value':
+        case 'exception':
+        case 'const':
+        case 'typedef':
+        case 'stringifier':
+        case 'serializer':
+        case 'iterator':
+        case 'maplike':
+        case 'setlike':
+        case 'extended-attribute':
+        case 'event':
+        case 'idl': return (text) => `{{${text}}}`;
+
+        case 'element-state':
+        case 'element-attr':
+        case 'attr-value':
+        case 'element': return (element) => `<{${element}}>`;
+
+        case 'grammar': return (text) => `${text} (within a <pre class=prod>)`;
+
+        case 'type': return (text)=> `<<${text}>>`;
+
+        case 'descriptor':
+        case 'property': return (text) => `'${text}'`;
+
+        default: return;
+    };
+};
+
+function genLinkingSyntaxes(dfn) {
+    if(dfn.tagName != "DFN") return;
+
+    const type = dfn.getAttribute('data-dfn-type');
+    if(!type) {
+        console.log(`<dfn> doesn't have a data-dfn-type:`, dfn);
+        return [];
+    }
+
+    // Return a function that wraps link text based on the type
+    const linkFormatter = linkFormatterFromType(type);
+    if(!linkFormatter) {
+        console.log(`<dfn> has an unknown data-dfn-type:`, dfn);
+        return [];
+    }
+
+    let ltAlts;
+    if(dfn.hasAttribute('data-lt')) {
+        ltAlts = dfn.getAttribute('data-lt')
+            .split("|")
+            .map(x=>x.trim());
+    } else {
+        ltAlts = [dfn.textContent.trim()];
+    }
+    if(type == "type") {
+        // lt of "<foo>", but "foo" is the interior;
+        // <<foo/bar>> is how you write it with a for,
+        // not <foo/<bar>> or whatever.
+        for(var i = 0; i < ltAlts.length; i++) {
+            const lt = ltAlts[i];
+            const match = /<(.*)>/.exec(lt);
+            if(match) { ltAlts[i] = match[1]; }
+        }
+    }
+
+    let forAlts;
+    if(dfn.hasAttribute('data-dfn-for')) {
+        forAlts = dfn.getAttribute('data-dfn-for')
+            .split(",")
+            .map(x=>x.trim());
+    } else {
+        forAlts = [''];
+    }
+
+    let linkingSyntaxes = [];
+    if(!needsFor(type)) {
+        for(const lt of ltAlts) {
+            linkingSyntaxes.push(linkFormatter(lt));
+        }
+    }
+    if(!refusesFor(type)) {
+        for(const f of forAlts) {
+            linkingSyntaxes.push(linkFormatter(`${f}/${ltAlts[0]}`))
+        }
+    }
+    return [
+        mk.b({}, 'Possible linking syntaxes:'),
+        mk.ul({},
+            ...linkingSyntaxes.map(link => {
+                const copyLink = async () =>
+                    await navigator.clipboard.writeText(link);
+                return mk.li({},
+                    mk.div({ class: 'link-item' },
+                        mk.button({
+                            class: 'copy-icon', title: 'Copy',
+                            type: 'button',
+                            _onclick: copyLink,
+                            tabindex: 0,
+                        }, mk.span({ class: 'icon' }) ),
+                        mk.span({}, link)
+                    )
+                );
+            })
+        )
+    ];
+}
+}
+</script>
+<script>/* Boilerplate: script-ref-hints */
+"use strict";
+{
+let refsData = {
+"#consistent_snapshot": {"displayText":"consistent_snapshot","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"consistent_snapshot","type":"dfn","url":"#consistent_snapshot"},
+"#custom": {"displayText":"custom","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"custom","type":"dfn","url":"#custom"},
+"#date-time": {"displayText":"date-time","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"date-time","type":"dfn","url":"#date-time"},
+"#delegation-role-paths": {"displayText":"\"paths\"","export":true,"for_":["delegation-role"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"paths\"","type":"dfn","url":"#delegation-role-paths"},
+"#delegations": {"displayText":"delegations","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"delegations","type":"dfn","url":"#delegations"},
+"#expires": {"displayText":"expires","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"expires","type":"dfn","url":"#expires"},
+"#hash": {"displayText":"hash","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"hash","type":"dfn","url":"#hash"},
+"#hex_digest": {"displayText":"hex_digest","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"hex_digest","type":"dfn","url":"#hex_digest"},
+"#key": {"displayText":"key","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"key","type":"dfn","url":"#key"},
+"#keytype": {"displayText":"keytype","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"keytype","type":"dfn","url":"#keytype"},
+"#keytype-ecdsa": {"displayText":"\"ecdsa\"","export":true,"for_":["keytype"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"ecdsa\"","type":"dfn","url":"#keytype-ecdsa"},
+"#keytype-ed25519": {"displayText":"\"ed25519\"","export":true,"for_":["keytype"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"ed25519\"","type":"dfn","url":"#keytype-ed25519"},
+"#keytype-rsa": {"displayText":"\"rsa\"","export":true,"for_":["keytype"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"rsa\"","type":"dfn","url":"#keytype-rsa"},
+"#keyval": {"displayText":"keyval","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"keyval","type":"dfn","url":"#keyval"},
+"#keyval-ecdsa-public": {"displayText":"public","export":true,"for_":["keyval-ecdsa"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"public","type":"dfn","url":"#keyval-ecdsa-public"},
+"#keyval-ed25519-public": {"displayText":"public","export":true,"for_":["keyval-ed25519"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"public","type":"dfn","url":"#keyval-ed25519-public"},
+"#keyval-rsa-public": {"displayText":"public","export":true,"for_":["keyval-rsa"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"public","type":"dfn","url":"#keyval-rsa-public"},
+"#metafiles": {"displayText":"metafiles","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"metafiles","type":"dfn","url":"#metafiles"},
+"#metapath-hashes": {"displayText":"hashes","export":true,"for_":["metapath"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"hashes","type":"dfn","url":"#metapath-hashes"},
+"#metapath-length": {"displayText":"length","export":true,"for_":["metapath"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"length","type":"dfn","url":"#metapath-length"},
+"#metapath-version": {"displayText":"version","export":true,"for_":["metapath"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"version","type":"dfn","url":"#metapath-version"},
+"#mirrors-metapath": {"displayText":"metapath","export":true,"for_":["mirrors"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"metapath","type":"dfn","url":"#mirrors-metapath"},
+"#mirrorsjson": {"displayText":"mirrors.json","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"mirrors.json","type":"dfn","url":"#mirrorsjson"},
+"#path_hash_prefixes": {"displayText":"\"path_hash_prefixes\"","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"path_hash_prefixes\"","type":"dfn","url":"#path_hash_prefixes"},
+"#pathpattern": {"displayText":"pathpattern","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"pathpattern","type":"dfn","url":"#pathpattern"},
+"#role-keyid": {"displayText":"keyid","export":true,"for_":["role"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"keyid","type":"dfn","url":"#role-keyid"},
+"#role-role": {"displayText":"role","export":true,"for_":["role"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"role","type":"dfn","url":"#role-role"},
+"#role-version": {"displayText":"version","export":true,"for_":["role"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"version","type":"dfn","url":"#role-version"},
+"#rolename": {"displayText":"rolename","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"rolename","type":"dfn","url":"#rolename"},
+"#root-keyid": {"displayText":"keyid","export":true,"for_":["root"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"keyid","type":"dfn","url":"#root-keyid"},
+"#root-role": {"displayText":"role","export":true,"for_":["root"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"role","type":"dfn","url":"#root-role"},
+"#rootjson": {"displayText":"root.json","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"root.json","type":"dfn","url":"#rootjson"},
+"#scheme": {"displayText":"scheme","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"scheme","type":"dfn","url":"#scheme"},
+"#scheme-ecdsa-sha2-nistp256": {"displayText":"\"ecdsa-sha2-nistp256\"","export":true,"for_":["scheme"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"ecdsa-sha2-nistp256\"","type":"dfn","url":"#scheme-ecdsa-sha2-nistp256"},
+"#scheme-ed25519": {"displayText":"\"ed25519\"","export":true,"for_":["scheme"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"ed25519\"","type":"dfn","url":"#scheme-ed25519"},
+"#scheme-rsassa-pss-sha256": {"displayText":"\"rsassa-pss-sha256\"","export":true,"for_":["scheme"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"\"rsassa-pss-sha256\"","type":"dfn","url":"#scheme-rsassa-pss-sha256"},
+"#signature": {"displayText":"signature","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"signature","type":"dfn","url":"#signature"},
+"#snapshot-metapath": {"displayText":"metapath","export":true,"for_":["snapshot"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"metapath","type":"dfn","url":"#snapshot-metapath"},
+"#snapshotjson": {"displayText":"snapshot.json","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"snapshot.json","type":"dfn","url":"#snapshotjson"},
+"#spec_version": {"displayText":"spec_version","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"spec_version","type":"dfn","url":"#spec_version"},
+"#targetpath": {"displayText":"targetpath","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"targetpath","type":"dfn","url":"#targetpath"},
+"#targets-obj-hashes": {"displayText":"hashes","export":true,"for_":["targets-obj"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"hashes","type":"dfn","url":"#targets-obj-hashes"},
+"#targets-obj-length": {"displayText":"length","export":true,"for_":["targets-obj"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"length","type":"dfn","url":"#targets-obj-length"},
+"#targets-obj-targets": {"displayText":"targets","export":true,"for_":["targets-obj"],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"targets","type":"dfn","url":"#targets-obj-targets"},
+"#targetsjson": {"displayText":"targets.json","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"targets.json","type":"dfn","url":"#targetsjson"},
+"#targetspath": {"displayText":"targetspath","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"targetspath","type":"dfn","url":"#targetspath"},
+"#terminating": {"displayText":"terminating","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"terminating","type":"dfn","url":"#terminating"},
+"#threshold": {"displayText":"threshold","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"threshold","type":"dfn","url":"#threshold"},
+"#timestampjson": {"displayText":"timestamp.json","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"timestamp.json","type":"dfn","url":"#timestampjson"},
+"#urlbase": {"displayText":"urlbase","export":true,"for_":[],"level":"","normative":true,"shortname":"tuf","spec":"tuf","status":"local","text":"urlbase","type":"dfn","url":"#urlbase"},
+};
+
+function mkRefHint(link, ref) {
+    const linkText = link.textContent;
+    let dfnTextElements = '';
+    if (ref.displayText.toLowerCase() != linkText.toLowerCase()) {
+        // Give the original term if it's being displayed in a different way.
+        // But allow casing differences, they're insignificant.
+        dfnTextElements =
+            mk.li({},
+                mk.b({}, "Term: "),
+                mk.span({}, ref.displayText)
+            );
+    }
+    const forList = ref.for_;
+    let forListElements;
+    if(forList.length == 0) {
+        forListElements = [];
+    } else if(forList.length == 1) {
+        forListElements = mk.li({},
+            mk.b({}, "For: "),
+            mk.span({}, forList[0]),
+        );
+    } else {
+        forListElements = mk.li({},
+            mk.b({}, "For: "),
+            mk.ul({},
+                ...forList.map(forItem =>
+                    mk.li({},
+                        mk.span({}, forItem)
+                    ),
+                ),
+            ),
+        );
+    }
+    const url = ref.url;
+    const safeUrl = encodeURIComponent(url);
+    const hintPanel = mk.aside({
+        class: "ref-hint",
+        id: `ref-hint-for-${safeUrl}`,
+        "data-for": url,
+        "aria-labelled-by": `ref-hint-for-${safeUrl}`,
+    },
+        mk.ul({},
+            dfnTextElements,
+            mk.li({},
+                mk.b({}, "URL: "),
+                mk.a({ href: url, class: "ref" }, url),
+            ),
+            mk.li({},
+                mk.b({}, "Type: "),
+                mk.span({}, `${ref.type}`),
+            ),
+            mk.li({},
+                mk.b({}, "Spec: "),
+                mk.span({}, `${ref.spec ? ref.spec : ''}`),
+            ),
+            forListElements
+        ),
+    );
+    hintPanel.forLink = link;
+    setupRefHintEventListeners(link, hintPanel);
+    return hintPanel;
+}
+
+function hideAllRefHints() {
+    queryAll(".ref-hint").forEach(el=>hideRefHint(el));
+}
+
+function hideRefHint(refHint) {
+    const link = refHint.forLink;
+    link.setAttribute("aria-expanded", "false");
+    if(refHint.teardownEventListeners) {
+        refHint.teardownEventListeners();
+    }
+    refHint.remove();
+}
+
+function showRefHint(link) {
+    if(link.classList.contains("dfn-link")) return;
+    const url = link.getAttribute("href");
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
+    if(!ref) return;
+
+    hideAllRefHints(); // Only display one at this time.
+
+    const refHint = mkRefHint(link, ref);
+    append(document.body, refHint);
+    link.setAttribute("aria-expanded", "true");
+    positionRefHint(refHint);
+}
+
+function setupRefHintEventListeners(link, refHint) {
+    if (refHint.teardownEventListeners) return;
+    // Add event handlers to hide the refHint after the user moves away
+    // from both the link and refHint, if not hovering either within one second.
+    let timeout = null;
+    const startHidingRefHint = (event) => {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => {
+            hideRefHint(refHint);
+        }, 1000);
+    }
+    const resetHidingRefHint = (event) => {
+        if (timeout) clearTimeout(timeout);
+        timeout = null;
+    };
+    link.addEventListener("mouseleave", startHidingRefHint);
+    link.addEventListener("mouseenter", resetHidingRefHint);
+    link.addEventListener("blur", startHidingRefHint);
+    link.addEventListener("focus", resetHidingRefHint);
+    refHint.addEventListener("mouseleave", startHidingRefHint);
+    refHint.addEventListener("mouseenter", resetHidingRefHint);
+    refHint.addEventListener("blur", startHidingRefHint);
+    refHint.addEventListener("focus", resetHidingRefHint);
+
+    refHint.teardownEventListeners = () => {
+        // remove event listeners
+        resetHidingRefHint();
+        link.removeEventListener("mouseleave", startHidingRefHint);
+        link.removeEventListener("mouseenter", resetHidingRefHint);
+        link.removeEventListener("blur", startHidingRefHint);
+        link.removeEventListener("focus", resetHidingRefHint);
+        refHint.removeEventListener("mouseleave", startHidingRefHint);
+        refHint.removeEventListener("mouseenter", resetHidingRefHint);
+        refHint.removeEventListener("blur", startHidingRefHint);
+        refHint.removeEventListener("focus", resetHidingRefHint);
+    };
+}
+
+function positionRefHint(refHint) {
+    const link = refHint.forLink;
+    const linkPos = getBounds(link);
+    refHint.style.top = linkPos.bottom + "px";
+    refHint.style.left = linkPos.left + "px";
+
+    const panelPos = refHint.getBoundingClientRect();
+    const panelMargin = 8;
+    const maxRight = document.body.parentNode.clientWidth - panelMargin;
+    if (panelPos.right > maxRight) {
+        const overflowAmount = panelPos.right - maxRight;
+        const newLeft = Math.max(panelMargin, linkPos.left - overflowAmount);
+        refHint.style.left = newLeft + "px";
+    }
+}
+
+// TODO: shared util
+// Returns the root-level absolute position {left and top} of element.
+function getBounds(el, relativeTo=document.body) {
+    const relativeRect = relativeTo.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const top = elRect.top - relativeRect.top;
+    const left = elRect.left - relativeRect.left;
+    return {
+        top,
+        left,
+        bottom: top + elRect.height,
+        right: left + elRect.width,
+    }
+}
+
+function showRefHintListener(e) {
+    // If the target isn't in a link (or is a link),
+    // just ignore it.
+    let link = e.target.closest("a");
+    if(!link) return;
+
+    // If the target is in a ref-hint panel
+    // (aka a link in the already-open one),
+    // also just ignore it.
+    if(link.closest(".ref-hint")) return;
+
+    // Otherwise, show the panel for the link.
+    showRefHint(link);
+}
+
+function hideAllHintsListener(e) {
+    // If the click is inside a ref-hint panel, ignore it.
+    if(e.target.closest(".ref-hint")) return;
+    // Otherwise, close all the current panels.
+    hideAllRefHints();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.addEventListener("mousedown", showRefHintListener);
+    document.body.addEventListener("focus", showRefHintListener);
+
+    document.body.addEventListener("click", hideAllHintsListener);
+});
+
+window.addEventListener("resize", () => {
+    // Hide any open ref hint.
+    hideAllRefHints();
+});
+}
+</script>
